@@ -30,7 +30,7 @@ class ListViewController: UICollectionViewController {
     // MARK: UICollectionViewDataSource
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        
+        return UICollectionViewCell()
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

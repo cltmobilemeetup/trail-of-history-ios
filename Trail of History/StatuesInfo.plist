@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+   StatuesInfo.plist
+   Trail of History
+
+   Created by Dagna Bieda on 5/20/16.
+   Copyright (c) 2016 CLT Mobile. All rights reserved.
+-->
+<plist version="1.0">
+<dict>
+    <key>Statue 1</key>
+    <dict>
+        <key>name</key>
+        <string>William Henry Belk</string>
+        <key>location</key>
+        <string>{35.212547,-80.83627}</string>
+        <key>description</key>
+        <string>Starting from a small dry goods store in Monroe, North Carolina, William Henry Belk opened retail stores in Charlotte and other communities across the southeast...</string>
+    </dict>
+    <key>Statue 2</key>
+    <dict>
+        <key>name</key>
+        <string>Thaddeus Tate</string>
+        <key>location</key>
+        <string>{35.212177,-80.836235}</string>
+        <key>description</key>
+        <string>A prominent African American businessman and civic leader, Thaddeus (Thad) Lincoln Tate made a significant contribution to the Charlotte community in the early to mid twentieth-century...</string>
+    </dict>
+    <key>Statue 3</key>
+    <dict>
+        <key>name</key>
+        <string>Captain Jack</string>
+        <key>location</key>
+        <string>{35.21687,-80.8327}</string>
+        <key>description</key>
+        <string>On May 19, 1775 a rider raced into Charlottetowne with news of the massacre of colonists by the British at the Battle of Concord and Lexington...</string>
+    </dict>
+    <key>Statue 4</key>
+    <dict>
+        <key>name</key>
+        <string>Thomas Spratt, King Haigler </string>
+        <key>location</key>
+        <string>{35.22006,-80.83041}</string>
+        <key>description</key>
+        <string>Thomas “Kanawha” Spratt and his young family settled near the Catawba villages during the last ten years of King Haigler's life...</string>
+    </dict>
+    <key>Statue 5</key>
+    <dict>
+        <key>name</key>
+        <string>Thomas Polk</string>
+        <key>location</key>
+        <string>{35.21912,-80.82952}</string>
+        <key>description</key>
+        <string>Thomas Polk, one of the earliest settlers of Mecklenburg County...</string>
+    </dict>
+</dict>
+</plist>

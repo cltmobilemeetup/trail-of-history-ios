@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LBQ-mo-V3J">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="7jt-2O-3dS">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
         <!--Collection View Controller-->
@@ -38,6 +38,46 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q3O-Vg-591" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="245" y="976"/>
+        </scene>
+        <!--TrailMap-->
+        <scene sceneID="DI4-l5-6rL">
+            <objects>
+                <viewControllerPlaceholder storyboardName="TrailMap" id="q3a-Tq-nC9" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lwo-6y-T1c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="705.5" y="1648"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Tmk-H2-sdz">
+            <objects>
+                <viewController id="7jt-2O-3dS" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fYN-CM-55q"/>
+                        <viewControllerLayoutGuide type="bottom" id="clg-tB-5dE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6Pm-3C-YpC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hLb-xV-r3x">
+                                <rect key="frame" x="219" y="279" width="162" height="42"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="Maps example"/>
+                                <connections>
+                                    <segue destination="q3a-Tq-nC9" kind="show" id="bcw-DS-6yT"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="hLb-xV-r3x" firstAttribute="centerX" secondItem="6Pm-3C-YpC" secondAttribute="centerX" id="mfk-dk-NdX"/>
+                            <constraint firstItem="hLb-xV-r3x" firstAttribute="centerY" secondItem="6Pm-3C-YpC" secondAttribute="centerY" id="ubB-pf-dv2"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hpu-6t-C4z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="245" y="1648"/>
         </scene>
     </scenes>
 </document>
