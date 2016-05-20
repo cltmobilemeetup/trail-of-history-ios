@@ -23,27 +23,6 @@ class TrailMapViewController: UIViewController, MKMapViewDelegate {
     var trail = Trail(filename: "TrailOfHistoryGeo")
     var selectedOptions = [MapOptionsType]()
 
-    // MARK: VCLifecycle
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-
-        let latitudeDelta = fabs(trail.overlayTopLeftCoordinate.latitude - trail.overlayBottomRightCoordinate.latitude)
-        let longitudeDelta = fabs(trail.overlayTopLeftCoordinate.longitude - trail.overlayBottomRightCoordinate.longitude)
-        let span = MKCoordinateSpanMake(latitudeDelta, longitudeDelta)
-        let region = MKCoordinateRegionMake(trail.midCoordinate, span)
-
-        mapView.region = region
-    }
-
-    func loadSelectedOptions() {
-        // To be iplemented ...
-    }
-
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let optionsViewController = segue.destinationViewController as! MapOptionsViewController
-        optionsViewController.selectedOptions = selectedOptions
-    }
-
     @IBAction func closeOptions(exitSegue: UIStoryboardSegue) {
         let optionsViewController = exitSegue.sourceViewController as! MapOptionsViewController
         selectedOptions = optionsViewController.selectedOptions
@@ -60,4 +39,28 @@ class TrailMapViewController: UIViewController, MKMapViewDelegate {
             mapView.mapType = MKMapType.Satellite
         }
     }
+
+    // MARK: VCLifecycle
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+
+        let latitudeDelta = fabs(trail.overlayTopLeftCoordinate.latitude - trail.overlayBottomRightCoordinate.latitude)
+        let longitudeDelta = fabs(trail.overlayTopLeftCoordinate.longitude - trail.overlayBottomRightCoordinate.longitude)
+        let span = MKCoordinateSpanMake(latitudeDelta, longitudeDelta)
+        let region = MKCoordinateRegionMake(trail.midCoordinate, span)
+
+        mapView.region = region
+    }
+
+    // MARK: Navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let optionsViewController = segue.destinationViewController as! MapOptionsViewController
+        optionsViewController.selectedOptions = selectedOptions
+    }
+
+    func loadSelectedOptions() {
+        // To be iplemented ...
+    }
+
+
 }
