@@ -49,8 +49,15 @@ class TrailMapViewController: UIViewController, MKMapViewDelegate {
         selectedOptions = optionsViewController.selectedOptions
         self.loadSelectedOptions()
     }
-    
+
     @IBAction func mapTypeChanged(sender: AnyObject) {
-        // To be implemented
+        switch MapType(rawValue: mapTypeSegmentedControl.selectedSegmentIndex) {
+        case .None, .Some(.Standard):
+            mapView.mapType = MKMapType.Standard
+        case .Some(.Hybrid):
+            mapView.mapType = MKMapType.Hybrid
+        case .Some(.Satellite):
+            mapView.mapType = MKMapType.Satellite
+        }
     }
 }
