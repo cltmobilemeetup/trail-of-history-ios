@@ -6,4 +6,8 @@
 //  Copyright © 2016 CLT Mobile. All rights reserved.
 //
 
-import Foundation
+import UIKit
+import MapKit
+
+enum AttractionType: Int {
+    case

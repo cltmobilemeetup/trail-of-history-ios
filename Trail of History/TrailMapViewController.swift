@@ -58,6 +58,19 @@ class TrailMapViewController: UIViewController, MKMapViewDelegate {
         optionsViewController.selectedOptions = selectedOptions
     }
 
+    // MARK: MKMapViewDelegate
+    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+        if overlay is TrailMapOverlay {
+            let trailOfHistoryImage = UIImage(named: "overlay_trail")
+            let overlayView = TrailMapOverlayView(overlay: overlay, overlayImage: trailOfHistoryImage!)
+
+            return overlayView
+        }
+
+        return MKOverlayRenderer()
+    }
+
+    // MARK: Helper functions
     func loadSelectedOptions() {
         mapView.removeAnnotations(mapView.annotations)
         mapView.removeOverlays(mapView.overlays)
@@ -75,14 +88,5 @@ class TrailMapViewController: UIViewController, MKMapViewDelegate {
         mapView.addOverlay(overlay)
     }
 
-    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
-        if overlay is TrailMapOverlay {
-            let trailOfHistoryImage = UIImage(named: "overlay_trail")
-            let overlayView = TrailMapOverlayView(overlay: overlay, overlayImage: trailOfHistoryImage!)
 
-            return overlayView
-        }
-
-        return MKOverlayRenderer()
-    }
 }
