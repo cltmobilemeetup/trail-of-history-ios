@@ -78,6 +78,7 @@ class TrailMapViewController: UIViewController, MKMapViewDelegate {
         for option in selectedOptions{
             switch option {
             case .MapOverlay: addOverlay()
+            case .MapPins: addAttractionPins()
             default: break
             }
         }
@@ -86,5 +87,20 @@ class TrailMapViewController: UIViewController, MKMapViewDelegate {
     func addOverlay() {
         let overlay = TrailMapOverlay(trail: trail)
         mapView.addOverlay(overlay)
+    }
+
+    func addAttractionPins() {
+        let filePath = NSBundle.mainBundle().pathForResource("StatuesInfo", ofType: "plist")
+
+        if let attractions = NSDictionary(contentsOfFile: filePath!)?.allValues {
+            for attraction in attractions {
+                let (title, description) = (attraction["name"] as! String, attraction["description"] as! String)
+                let point = CGPointFromString(attraction["location"] as! String)
+                let coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(point.x), longitude: CLLocationDegrees(point.y))
+
+                let annotation = StatueAnnotation(coordinate: coordinate, title: title, description: description)
+                mapView.addAnnotation(annotation)
+            }
+        }
     }
 }
