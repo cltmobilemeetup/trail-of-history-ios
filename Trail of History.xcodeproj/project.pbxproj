@@ -15,6 +15,7 @@
 		3165B2061CEF62EE00F5C41E /* TrailMapOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3165B2051CEF62EE00F5C41E /* TrailMapOverlayView.swift */; };
 		3165B20A1CEF9D2E00F5C41E /* StatueAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3165B2091CEF9D2E00F5C41E /* StatueAnnotation.swift */; };
 		3165B20C1CEF9F9200F5C41E /* StatueAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3165B20B1CEF9F9200F5C41E /* StatueAnnotationView.swift */; };
+		3165B20E1CEFA4D800F5C41E /* StatuesInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3165B20D1CEFA4D800F5C41E /* StatuesInfo.plist */; };
 		31C86AAE1CEE263D00952042 /* TrailMap.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31C86AAD1CEE263D00952042 /* TrailMap.storyboard */; };
 		4D8B764C1C97944300A70B71 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8B764B1C97944300A70B71 /* AppDelegate.swift */; };
 		4D8B764E1C97944300A70B71 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8B764D1C97944300A70B71 /* ListViewController.swift */; };
@@ -52,6 +53,7 @@
 		3165B2051CEF62EE00F5C41E /* TrailMapOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailMapOverlayView.swift; sourceTree = "<group>"; };
 		3165B2091CEF9D2E00F5C41E /* StatueAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatueAnnotation.swift; sourceTree = "<group>"; };
 		3165B20B1CEF9F9200F5C41E /* StatueAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatueAnnotationView.swift; sourceTree = "<group>"; };
+		3165B20D1CEFA4D800F5C41E /* StatuesInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = StatuesInfo.plist; sourceTree = "<group>"; };
 		31C86AAD1CEE263D00952042 /* TrailMap.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TrailMap.storyboard; sourceTree = "<group>"; };
 		4D8B76481C97944300A70B71 /* Trail of History.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Trail of History.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D8B764B1C97944300A70B71 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				31726FC31CF4EC04009BB2E2 /* TrailOfHistoryGeo.plist */,
+				3165B20D1CEFA4D800F5C41E /* StatuesInfo.plist */,
 			);
 			name = "Trail Information";
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3165B20E1CEFA4D800F5C41E /* StatuesInfo.plist in Resources */,
 				4D8B76591C97944300A70B71 /* LaunchScreen.storyboard in Resources */,
 				31726FC41CF4EC04009BB2E2 /* TrailOfHistoryGeo.plist in Resources */,
 				31C86AAE1CEE263D00952042 /* TrailMap.storyboard in Resources */,

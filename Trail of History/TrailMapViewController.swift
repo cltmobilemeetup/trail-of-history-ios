@@ -87,6 +87,4 @@ class TrailMapViewController: UIViewController, MKMapViewDelegate {
         let overlay = TrailMapOverlay(trail: trail)
         mapView.addOverlay(overlay)
     }
-
-
 }
