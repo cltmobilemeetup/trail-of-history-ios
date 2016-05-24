@@ -20,14 +20,19 @@ class TrailMapViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var mapTypeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var mapView: MKMapView!
 
-    //var trail = Trail(filename: "TrailOfHistoryGeo")
+    var trail = Trail(filename: "TrailOfHistoryGeo")
     var selectedOptions = [MapOptionsType]()
 
     // MARK: VCLifecycle
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
-        // Implement starting with mapView.region that contains the trail
+        let latitudeDelta = fabs(trail.overlayTopLeftCoordinate.latitude - trail.overlayBottomRightCoordinate.latitude)
+        let longitudeDelta = fabs(trail.overlayTopLeftCoordinate.longitude - trail.overlayBottomRightCoordinate.longitude)
+        let span = MKCoordinateSpanMake(latitudeDelta, longitudeDelta)
+        let region = MKCoordinateRegionMake(trail.midCoordinate, span)
+
+        mapView.region = region
     }
 
     func loadSelectedOptions() {
