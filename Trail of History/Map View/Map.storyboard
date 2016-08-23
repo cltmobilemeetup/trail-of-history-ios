@@ -13,16 +13,16 @@
                         <viewControllerLayoutGuide type="top" id="ZBb-zJ-ExH"/>
                         <viewControllerLayoutGuide type="bottom" id="FYe-Xg-zzx"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="gCW-Op-v4E" userLabel="Map View">
+                    <view key="view" contentMode="scaleToFill" id="gCW-Op-v4E" userLabel="Container View">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dcM-wA-t3l" userLabel="POI Card Collection View">
-                                <rect key="frame" x="180" y="450" width="240" height="100"/>
+                                <rect key="frame" x="180" y="480" width="240" height="70"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="F4o-WJ-SE1"/>
-                                    <constraint firstAttribute="height" constant="100" id="ffT-He-fYi"/>
+                                    <constraint firstAttribute="height" constant="70" id="ffT-He-fYi"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="iEl-Oe-NON">
                                     <size key="itemSize" width="50" height="50"/>
@@ -32,7 +32,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="POI Card Cell" id="Tu2-3m-BZd" customClass="PoiCard" customModule="Trail_of_History" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="25" width="50" height="50"/>
+                                        <rect key="frame" x="0.0" y="10" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -47,7 +47,6 @@
                                 </connections>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="FYe-Xg-zzx" firstAttribute="top" secondItem="dcM-wA-t3l" secondAttribute="bottom" constant="50" id="O0E-tL-xbR"/>
                             <constraint firstItem="dcM-wA-t3l" firstAttribute="centerX" secondItem="gCW-Op-v4E" secondAttribute="centerX" id="XTo-jG-6nj"/>
