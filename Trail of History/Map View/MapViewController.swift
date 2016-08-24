@@ -14,8 +14,6 @@ class MapViewController: UIViewController {
     @IBOutlet weak var collectionViewHeightConstraint : NSLayoutConstraint!
     
     private let poiCardCellReuseIdentifier = "POI Card Cell"
-    private let poiCardNames = ["Robert", "Rachael", "Derek", "Eva", "Eric", "Mabel", "Jessica"]
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +27,10 @@ class MapViewController: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        self.navigationItem.hidesBackButton = true
     }
 }
 
@@ -55,13 +57,13 @@ extension MapViewController : UICollectionViewDelegate {
 
 extension MapViewController : UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return poiCardNames.count
+        return DummyData.poiNames.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let card = collectionView.dequeueReusableCellWithReuseIdentifier(poiCardCellReuseIdentifier, forIndexPath: indexPath) as! PoiCard
-        card.name = poiCardNames[indexPath.row]
+        card.name = DummyData.poiNames[indexPath.row]
         
         return card
     }
