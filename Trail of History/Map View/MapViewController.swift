@@ -23,6 +23,8 @@ class MapViewController: UIViewController {
             let nib = UINib(nibName: "PoiCard", bundle: nil)
             collectionView.registerNib(nib, forCellWithReuseIdentifier: poiCardCellReuseIdentifier)
         }
+
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.tohTerracotaColor()
     }
     
     override func didReceiveMemoryWarning() {
@@ -30,7 +32,7 @@ class MapViewController: UIViewController {
     }
 
     override func viewWillAppear(animated: Bool) {
-        self.navigationItem.hidesBackButton = true
+        navigationItem.hidesBackButton = true
     }
 }
 
