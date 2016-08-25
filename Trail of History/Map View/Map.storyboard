@@ -59,7 +59,7 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Trail of History" id="p5M-SC-jBf">
-                        <barButtonItem key="rightBarButtonItem" image="PoiPin" id="Xjn-Rs-aGf">
+                        <barButtonItem key="rightBarButtonItem" title="Map" id="Xjn-Rs-aGf">
                             <connections>
                                 <segue destination="Beb-Hd-0rH" kind="show" id="iRE-pO-3b3"/>
                             </connections>
@@ -127,7 +127,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Trail of History" id="ugj-J8-1UX">
-                        <barButtonItem key="rightBarButtonItem" image="PoiPin" id="DjC-nn-NjM">
+                        <barButtonItem key="rightBarButtonItem" image="list" id="DjC-nn-NjM">
                             <connections>
                                 <segue destination="bQf-DL-2yk" kind="unwind" unwindAction="unwind:" id="4w1-Ou-wRG"/>
                             </connections>
@@ -141,6 +141,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="PoiPin" width="21" height="30"/>
+        <image name="list" width="22" height="22"/>
     </resources>
 </document>
