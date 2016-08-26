@@ -18,8 +18,8 @@
                         <constraint firstAttribute="height" constant="11" id="b58-bh-aNK"/>
                     </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Trail of History" translatesAutoresizingMaskIntoConstraints="NO" id="nLT-ua-eLp" userLabel="Trail of History">
-                    <rect key="frame" x="2" y="3" width="197" height="22"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Trail of History" translatesAutoresizingMaskIntoConstraints="NO" id="nLT-ua-eLp" userLabel="Trail of History">
+                    <rect key="frame" x="2" y="12" width="197" height="22"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="197" id="Hbb-Xh-YJZ"/>
                         <constraint firstAttribute="height" constant="22" id="uKE-Hz-5CO"/>
@@ -31,7 +31,7 @@
                 <constraint firstItem="afL-k2-tWR" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="BD7-Sc-MXu"/>
                 <constraint firstItem="nLT-ua-eLp" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="JWU-r0-Qs2"/>
                 <constraint firstItem="afL-k2-tWR" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Kfu-nX-ytV"/>
-                <constraint firstItem="nLT-ua-eLp" firstAttribute="top" secondItem="afL-k2-tWR" secondAttribute="bottom" id="hgy-Tb-SwU"/>
+                <constraint firstItem="nLT-ua-eLp" firstAttribute="top" secondItem="afL-k2-tWR" secondAttribute="bottom" constant="1" id="hgy-Tb-SwU"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="250.5" y="142"/>
