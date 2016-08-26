@@ -20,9 +20,13 @@ class MapViewController: UIViewController {
         
         for view in self.view.subviews where view is UICollectionView {
             let collectionView = view as! UICollectionView
-            let nib = UINib(nibName: "PoiCard", bundle: nil)
-            collectionView.registerNib(nib, forCellWithReuseIdentifier: poiCardCellReuseIdentifier)
+            let poiCardNib = UINib(nibName: "PoiCard", bundle: nil)
+            collectionView.registerNib(poiCardNib, forCellWithReuseIdentifier: poiCardCellReuseIdentifier)
         }
+
+        let titleViewNib = UINib(nibName: "Title", bundle: nil)
+        let titleView = titleViewNib.instantiateWithOwner(nil, options: nil)[0] as? UIView
+        navigationItem.titleView = titleView
 
         navigationItem.rightBarButtonItem?.tintColor = UIColor.tohTerracotaColor()
     }

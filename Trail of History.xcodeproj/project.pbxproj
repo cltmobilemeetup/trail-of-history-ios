@@ -27,6 +27,8 @@
 		E1F984DD1D6DC48400D28411 /* DummyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F984DC1D6DC48400D28411 /* DummyListViewController.swift */; };
 		E1F984DF1D6DC52C00D28411 /* DummyDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F984DE1D6DC52C00D28411 /* DummyDataSource.swift */; };
 		E1F984E11D6E3CD400D28411 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F984E01D6E3CD400D28411 /* NavigationController.swift */; };
+		E1F984E31D6F692D00D28411 /* Title.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1F984E21D6F692D00D28411 /* Title.xib */; };
+		E1F984E51D6F6B1300D28411 /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F984E41D6F6B1300D28411 /* Title.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +75,8 @@
 		E1F984DC1D6DC48400D28411 /* DummyListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DummyListViewController.swift; path = "Map View/DummyListViewController.swift"; sourceTree = "<group>"; };
 		E1F984DE1D6DC52C00D28411 /* DummyDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DummyDataSource.swift; path = "Map View/DummyDataSource.swift"; sourceTree = "<group>"; };
 		E1F984E01D6E3CD400D28411 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationController.swift; path = "Map View/NavigationController.swift"; sourceTree = "<group>"; };
+		E1F984E21D6F692D00D28411 /* Title.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Title.xib; path = "Map View/Title.xib"; sourceTree = "<group>"; };
+		E1F984E41D6F6B1300D28411 /* Title.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Title.swift; path = "Map View/Title.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +135,8 @@
 				E1F984DC1D6DC48400D28411 /* DummyListViewController.swift */,
 				E1F984DE1D6DC52C00D28411 /* DummyDataSource.swift */,
 				E1F984E01D6E3CD400D28411 /* NavigationController.swift */,
+				E1F984E21D6F692D00D28411 /* Title.xib */,
+				E1F984E41D6F6B1300D28411 /* Title.swift */,
 			);
 			name = "Map View";
 			sourceTree = "<group>";
@@ -321,6 +327,7 @@
 				4D8B76561C97944300A70B71 /* Assets.xcassets in Resources */,
 				0C01F5131D63E0D1005C6284 /* Main.storyboard in Resources */,
 				E1C2383F1D6B29E900A718A8 /* PoiCard.xib in Resources */,
+				E1F984E31D6F692D00D28411 /* Title.xib in Resources */,
 				4D8B76511C97944300A70B71 /* List.storyboard in Resources */,
 				0C01F50F1D63DE30005C6284 /* Detail.storyboard in Resources */,
 				E1C2383C1D6B28C700A718A8 /* Map.storyboard in Resources */,
@@ -350,6 +357,7 @@
 			files = (
 				4D8B764E1C97944300A70B71 /* ListViewController.swift in Sources */,
 				E1F984DF1D6DC52C00D28411 /* DummyDataSource.swift in Sources */,
+				E1F984E51D6F6B1300D28411 /* Title.swift in Sources */,
 				E1C238681D6CA65700A718A8 /* UIViewExtensions.swift in Sources */,
 				4D8B76541C97944300A70B71 /* Trail_of_History.xcdatamodeld in Sources */,
 				0C01F5171D63E163005C6284 /* UIColor+CustomColors.swift in Sources */,
