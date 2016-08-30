@@ -9,10 +9,25 @@
 import UIKit
 
 class NavigationController: UINavigationController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationBar.barTintColor = UIColor.tohGreyishBrownTwoColor()
+    }
+}
+
+
+class NavigationControllerDelegate: NSObject, UINavigationControllerDelegate {
+    
+    func navigationControllerSupportedInterfaceOrientations(navigationController: UINavigationController) -> UIInterfaceOrientationMask {
+        return .Portrait
+    }
+}
+
+class NavigationBar: UINavigationBar {
+
+    override func sizeThatFits(size: CGSize) -> CGSize {
+        return super.sizeThatFits(size)
     }
 }

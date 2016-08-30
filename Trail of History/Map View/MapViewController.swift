@@ -10,24 +10,15 @@ import UIKit
 
 class MapViewController: UIViewController {
     
-    @IBOutlet weak var collectionViewWidthConstraint : NSLayoutConstraint!
-    @IBOutlet weak var collectionViewHeightConstraint : NSLayoutConstraint!
-    
+    @IBOutlet weak var collectionView : UICollectionView!
     private let poiCardCellReuseIdentifier = "POI Card Cell"
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        for view in self.view.subviews where view is UICollectionView {
-            let collectionView = view as! UICollectionView
-            let poiCardNib = UINib(nibName: "PoiCard", bundle: nil)
-            collectionView.registerNib(poiCardNib, forCellWithReuseIdentifier: poiCardCellReuseIdentifier)
-        }
+        collectionView.registerNib(UINib(nibName: "PoiCard", bundle: nil), forCellWithReuseIdentifier: poiCardCellReuseIdentifier)
 
-        let titleViewNib = UINib(nibName: "Title", bundle: nil)
-        let titleView = titleViewNib.instantiateWithOwner(nil, options: nil)[0] as? UIView
-        navigationItem.titleView = titleView
-
+        navigationItem.titleView = UINib(nibName: "Title", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as? UIView
         navigationItem.rightBarButtonItem?.tintColor = UIColor.tohTerracotaColor()
     }
     

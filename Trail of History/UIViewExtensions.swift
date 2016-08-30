@@ -40,21 +40,4 @@ public extension UIView {
         }
     }
     
-    public var viewController : UIViewController? {
-        func findViewController(forResponder responder: UIResponder) -> UIViewController? {
-            if let nextResponder = responder.nextResponder() {
-                switch nextResponder {
-                case is UIViewController:
-                    return nextResponder as? UIViewController
-                case is UIView:
-                    return findViewController(forResponder: nextResponder)
-                default:
-                    break
-                }
-            }
-            return nil
-        }
-        
-        return findViewController(forResponder: self)
-    }
 }

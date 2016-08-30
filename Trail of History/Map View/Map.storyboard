@@ -9,7 +9,7 @@
         <scene sceneID="F7v-qo-mci">
             <objects>
                 <navigationController id="fFa-DB-Nho" customClass="NavigationController" customModule="Trail_of_History" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UPf-dm-Fl0">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UPf-dm-Fl0" customClass="NavigationBar" customModule="Trail_of_History" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -18,10 +18,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
+                        <outlet property="delegate" destination="8Kl-cp-x6X" id="plc-zx-Ay2"/>
                         <segue destination="Tvg-KT-gws" kind="relationship" relationship="rootViewController" id="ij7-s5-73T"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bzr-Ry-d39" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="8Kl-cp-x6X" customClass="NavigationControllerDelegate" customModule="Trail_of_History" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="-690" y="516"/>
         </scene>
@@ -38,14 +40,14 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="s9X-Ud-FI5" id="xnp-HX-uTD">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" tag="1" contentMode="left" text="POI Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ev4-Z6-JFE">
-                                            <rect key="frame" x="15" y="0.0" width="570" height="43"/>
+                                            <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -133,6 +135,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="collectionView" destination="dcM-wA-t3l" id="Nb4-Vn-1ek"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jyN-r6-PMc" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="bQf-DL-2yk" userLabel="Exit" sceneMemberID="exit"/>
