@@ -4,8 +4,6 @@
 <dict>
 	<key>William Henry Belk</key>
 	<dict>
-		<key>name</key>
-		<string>William Henry Belk</string>
 		<key>location</key>
 		<string>{35.212547,-80.83627}</string>
 		<key>description</key>
@@ -13,8 +11,6 @@
 	</dict>
 	<key>Thaddeus Tate</key>
 	<dict>
-		<key>name</key>
-		<string>Thaddeus Tate</string>
 		<key>location</key>
 		<string>{35.212177,-80.836235}</string>
 		<key>description</key>
@@ -22,8 +18,6 @@
 	</dict>
 	<key>Captain Jack</key>
 	<dict>
-		<key>name</key>
-		<string>Captain Jack</string>
 		<key>location</key>
 		<string>{35.21687,-80.8327}</string>
 		<key>description</key>
@@ -31,8 +25,6 @@
 	</dict>
 	<key>Thomas Spratt &amp; King Haigler </key>
 	<dict>
-		<key>name</key>
-		<string>Thomas Spratt, King Haigler </string>
 		<key>location</key>
 		<string>{35.22006,-80.83041}</string>
 		<key>description</key>
@@ -40,8 +32,6 @@
 	</dict>
 	<key>Thomas Polk</key>
 	<dict>
-		<key>name</key>
-		<string>Thomas Polk</string>
 		<key>location</key>
 		<string>{35.21912,-80.82952}</string>
 		<key>description</key>

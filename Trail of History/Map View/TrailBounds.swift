@@ -28,9 +28,9 @@ class TrailBounds {
     private lazy var bottomLeftCoordinate: CLLocationCoordinate2D = { return self.makeCoordinate("bottomLeftCoord") }()
     private lazy var bottomRightCoordinate: CLLocationCoordinate2D = { return CLLocationCoordinate2DMake(self.bottomLeftCoordinate.latitude, self.topRightCoordinate.longitude) }()
 
+
     init?(filename: String) {
-        guard let filePath = NSBundle.mainBundle().pathForResource(filename, ofType: "plist"),
-            properties = NSDictionary(contentsOfFile: filePath)
+        guard let filePath = NSBundle.mainBundle().pathForResource(filename, ofType: "plist"), properties = NSDictionary(contentsOfFile: filePath)
             else { return nil }
         
         self.properties = properties
