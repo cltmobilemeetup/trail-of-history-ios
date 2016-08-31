@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import MapKit
 
 class MapViewController: UIViewController {
     
+    @IBOutlet weak var mapView: MKMapView!
+
     @IBOutlet weak var collectionView : UICollectionView!
     private let poiCardCellReuseIdentifier = "POI Card Cell"
 
@@ -22,10 +25,6 @@ class MapViewController: UIViewController {
         navigationItem.rightBarButtonItem?.tintColor = UIColor.tohTerracotaColor()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
     override func viewWillAppear(animated: Bool) {
         navigationItem.hidesBackButton = true
     }
@@ -70,4 +69,7 @@ extension MapViewController : UICollectionViewDelegateFlowLayout {
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return CGSizeMake(CGFloat(280), CGFloat(70))
     }
+}
+
+extension MapViewController : MKMapViewDelegate {
 }
