@@ -4,11 +4,11 @@
 <dict>
 	<key>midCoord</key>
 	<string>{35.21368,-80.83322}</string>
-	<key>overlayTopLeftCoord</key>
+	<key>topLeftCoord</key>
 	<string>{35.22154,-80.83917}</string>
-	<key>overlayTopRightCoord</key>
+	<key>topRightCoord</key>
 	<string>{35.22154,-80.82723}</string>
-	<key>overlayBottomLeftCoord</key>
+	<key>bottomLeftCoord</key>
 	<string>{35.20664,-80.83917}</string>
 	<key>boundary</key>
 	<array>

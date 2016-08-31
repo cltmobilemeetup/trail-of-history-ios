@@ -11,6 +11,8 @@ import MapKit
 
 class MapViewController: UIViewController {
     
+    private let boundsFileName = "TrailOfHistoryBounds"
+    private var trailBounds: TrailBounds?
     @IBOutlet weak var mapView: MKMapView!
 
     @IBOutlet weak var collectionView : UICollectionView!
@@ -18,7 +20,15 @@ class MapViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        if let bounds = TrailBounds(filename: boundsFileName) {
+            trailBounds = bounds
+            mapView.region = trailBounds!.region
+        }
+        else {
+            print("Cannot create the trail bounds from \(boundsFileName)")
+        }
+
         collectionView.registerNib(UINib(nibName: "PoiCard", bundle: nil), forCellWithReuseIdentifier: poiCardCellReuseIdentifier)
 
         navigationItem.titleView = UINib(nibName: "Title", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as? UIView
