@@ -27,7 +27,7 @@ class MapViewController: UIViewController {
         if let bounds = TrailBounds.instance {
             mapView.region = bounds.region
             
-            if let annotations = PoiAnnotation.annotations {
+            if let annotations = PointOfInterest.pointsOfInterest {
                 mapView.addAnnotations(annotations)
             }
         }
