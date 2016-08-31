@@ -11,7 +11,7 @@ import MapKit
 
 class MapViewController: UIViewController {
     
-    private let boundsFileName = "TrailOfHistoryBounds"
+    private let boundsFileName = "TrailBounds"
     private var trailBounds: TrailBounds?
     @IBOutlet weak var mapView: MKMapView!
 
