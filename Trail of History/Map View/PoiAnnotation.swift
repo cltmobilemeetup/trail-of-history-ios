@@ -21,9 +21,15 @@ class PoiAnnotation: NSObject, MKAnnotation {
         self.subtitle = description
     }
 
-    static func makeAnnotations(fileName: String) -> [PoiAnnotation]? {
-        guard let filePath = NSBundle.mainBundle().pathForResource(fileName, ofType: "plist"), pointsOfInterest = NSDictionary(contentsOfFile: filePath)
-            else { return nil }
+
+    private static let poiDataFileName = "PointsOfInterest"
+
+    private(set) static var annotations: [PoiAnnotation]? = {
+        guard let filePath = NSBundle.mainBundle().pathForResource(poiDataFileName, ofType: "plist"), pointsOfInterest = NSDictionary(contentsOfFile: filePath)
+            else {
+                print("Cannot create the POI annotations from \(poiDataFileName)")
+                return nil
+        }
         
         var annotations = [PoiAnnotation]()
 
@@ -40,5 +46,5 @@ class PoiAnnotation: NSObject, MKAnnotation {
         }
 
         return annotations
-    }
+    }()
 }

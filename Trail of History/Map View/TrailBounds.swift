@@ -9,53 +9,48 @@
 import Foundation
 import MapKit
 
-class TrailBounds {
-    private let properties: NSDictionary
+final class TrailBounds {
+    
+    static let instance: TrailBounds? = TrailBounds()
 
-    private lazy var boundary: [CLLocationCoordinate2D] = {
-        var boundary = [CLLocationCoordinate2D]()
-        let textPoints = self.properties["boundary"] as! [String]
-        for textPoint in textPoints {
-            let point = CGPointFromString(textPoint)
-            boundary += [CLLocationCoordinate2DMake(CLLocationDegrees(point.x), CLLocationDegrees(point.y))]
+    private let trailBoundsFileName = "TrailBounds"
+
+    private let midCoordinate: CLLocationCoordinate2D
+    private let topLeftCoordinate: CLLocationCoordinate2D
+    private let topRightCoordinate: CLLocationCoordinate2D
+    private let bottomLeftCoordinate: CLLocationCoordinate2D
+    private let bottomRightCoordinate: CLLocationCoordinate2D
+
+    private init?() {
+        guard let filePath = NSBundle.mainBundle().pathForResource(trailBoundsFileName, ofType: "plist"), properties = NSDictionary(contentsOfFile: filePath)
+            else {
+                print("Cannot create the trail bounds from \(trailBoundsFileName)")
+                return nil
         }
-        return boundary
-    }()
-
-    private lazy var midCoordinate: CLLocationCoordinate2D = { return self.makeCoordinate("midCoord") }()
-    private lazy var topLeftCoordinate: CLLocationCoordinate2D = { return self.makeCoordinate("topLeftCoord") }()
-    private lazy var topRightCoordinate: CLLocationCoordinate2D = { return self.makeCoordinate("topRightCoord") }()
-    private lazy var bottomLeftCoordinate: CLLocationCoordinate2D = { return self.makeCoordinate("bottomLeftCoord") }()
-    private lazy var bottomRightCoordinate: CLLocationCoordinate2D = { return CLLocationCoordinate2DMake(self.bottomLeftCoordinate.latitude, self.topRightCoordinate.longitude) }()
-
-
-    init?(filename: String) {
-        guard let filePath = NSBundle.mainBundle().pathForResource(filename, ofType: "plist"), properties = NSDictionary(contentsOfFile: filePath)
-            else { return nil }
         
-        self.properties = properties
-    }
-    
-    var rect: MKMapRect {
-        get {
-            let topLeft = MKMapPointForCoordinate(topLeftCoordinate);
-            let topRight = MKMapPointForCoordinate(topRightCoordinate);
-            let bottomLeft = MKMapPointForCoordinate(bottomLeftCoordinate);
-            return MKMapRectMake(topLeft.x, topLeft.y, fabs(topLeft.x-topRight.x), fabs(topLeft.y - bottomLeft.y))
+        func makeCoordinate(name: String) -> CLLocationCoordinate2D {
+            let point = CGPointFromString(properties[name] as! String)
+            return CLLocationCoordinate2DMake(CLLocationDegrees(point.x), CLLocationDegrees(point.y))
         }
+
+        midCoordinate = makeCoordinate("midCoord")
+        topLeftCoordinate = makeCoordinate("topLeftCoord")
+        topRightCoordinate = makeCoordinate("topRightCoord")
+        bottomLeftCoordinate = makeCoordinate("bottomLeftCoord")
+        bottomRightCoordinate = CLLocationCoordinate2DMake(bottomLeftCoordinate.latitude, topRightCoordinate.longitude)
     }
     
-    var region: MKCoordinateRegion {
-        get {
-            let latitudeDelta = fabs(topLeftCoordinate.latitude - bottomRightCoordinate.latitude)
-            let longitudeDelta = fabs(topLeftCoordinate.longitude - bottomRightCoordinate.longitude)
-            let span = MKCoordinateSpanMake(latitudeDelta, longitudeDelta)
-            return MKCoordinateRegionMake(midCoordinate, span)
-        }
-    }
+    private(set) lazy var rect: MKMapRect = {
+        let topLeft = MKMapPointForCoordinate(self.topLeftCoordinate);
+        let topRight = MKMapPointForCoordinate(self.topRightCoordinate);
+        let bottomLeft = MKMapPointForCoordinate(self.bottomLeftCoordinate);
+        return MKMapRectMake(topLeft.x, topLeft.y, fabs(topLeft.x-topRight.x), fabs(topLeft.y - bottomLeft.y))
+    }()
     
-    private func makeCoordinate(name: String) -> CLLocationCoordinate2D {
-        let point = CGPointFromString(properties[name] as! String)
-        return CLLocationCoordinate2DMake(CLLocationDegrees(point.x), CLLocationDegrees(point.y))
-    }
+    private(set) lazy var region: MKCoordinateRegion = {
+        let latitudeDelta = fabs(self.topLeftCoordinate.latitude - self.bottomRightCoordinate.latitude)
+        let longitudeDelta = fabs(self.topLeftCoordinate.longitude - self.bottomRightCoordinate.longitude)
+        let span = MKCoordinateSpanMake(latitudeDelta, longitudeDelta)
+        return MKCoordinateRegionMake(self.midCoordinate, span)
+    }()
 }
