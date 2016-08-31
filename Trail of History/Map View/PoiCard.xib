@@ -4,40 +4,61 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Archer-Medium.otf">
+            <string>Archer-Medium</string>
+        </mutableArray>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewController" customModule="Trail_of_History" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="xq2-62-uxi" userLabel="Point of Interest Card" customClass="PoiCard" customModule="Trail_of_History">
-            <rect key="frame" x="0.0" y="0.0" width="230" height="50"/>
+            <rect key="frame" x="0.0" y="0.0" width="230" height="70"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="230" height="50"/>
+                <rect key="frame" x="0.0" y="0.0" width="230" height="70"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PoiPin" translatesAutoresizingMaskIntoConstraints="NO" id="nMV-mg-0f5" userLabel="Map Pin">
-                        <rect key="frame" x="8" y="8" width="58" height="34"/>
+                        <rect key="frame" x="8" y="18" width="40" height="34"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="ZFx-72-Hdq"/>
+                            <constraint firstAttribute="height" constant="34" id="uwA-c0-PMq"/>
+                        </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="64L-MP-RrG" userLabel="Name">
-                        <rect key="frame" x="66" y="8" width="156" height="34"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="48" y="8" width="41" height="18"/>
+                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="300 yds" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4M5-S0-Vwo" userLabel="Distance">
+                        <rect key="frame" x="48" y="45" width="57" height="17"/>
+                        <fontDescription key="fontDescription" name="Archer-Medium" family="Archer" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Line" translatesAutoresizingMaskIntoConstraints="NO" id="ksE-Ks-yq6">
+                        <rect key="frame" x="48" y="33" width="55" height="4"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="4" id="buH-vN-QaO"/>
+                            <constraint firstAttribute="width" constant="55" id="p99-6C-ySn"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.79916487068965514" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="64L-MP-RrG" firstAttribute="leading" secondItem="nMV-mg-0f5" secondAttribute="trailing" id="9lc-rx-jQP"/>
-                <constraint firstItem="nMV-mg-0f5" firstAttribute="width" secondItem="xq2-62-uxi" secondAttribute="width" multiplier="0.25" id="Boa-p1-keT"/>
-                <constraint firstItem="nMV-mg-0f5" firstAttribute="top" secondItem="xq2-62-uxi" secondAttribute="topMargin" id="JeR-D4-t0N"/>
-                <constraint firstItem="nMV-mg-0f5" firstAttribute="bottom" secondItem="xq2-62-uxi" secondAttribute="bottomMargin" id="NEC-GA-KG1"/>
-                <constraint firstItem="64L-MP-RrG" firstAttribute="trailing" secondItem="xq2-62-uxi" secondAttribute="trailingMargin" id="NQ9-R7-piH"/>
-                <constraint firstItem="nMV-mg-0f5" firstAttribute="leading" secondItem="xq2-62-uxi" secondAttribute="leadingMargin" id="ZNm-Rd-TdO"/>
-                <constraint firstItem="64L-MP-RrG" firstAttribute="top" secondItem="xq2-62-uxi" secondAttribute="topMargin" id="fbD-2E-8EN"/>
-                <constraint firstItem="64L-MP-RrG" firstAttribute="bottom" secondItem="xq2-62-uxi" secondAttribute="bottomMargin" id="jbG-Wp-pXU"/>
+                <constraint firstItem="64L-MP-RrG" firstAttribute="top" secondItem="xq2-62-uxi" secondAttribute="topMargin" id="4az-dX-FoF"/>
+                <constraint firstItem="ksE-Ks-yq6" firstAttribute="leading" secondItem="nMV-mg-0f5" secondAttribute="trailing" id="US9-YH-ZXT"/>
+                <constraint firstItem="4M5-S0-Vwo" firstAttribute="bottom" secondItem="xq2-62-uxi" secondAttribute="bottomMargin" id="chw-Uv-hkI"/>
+                <constraint firstItem="nMV-mg-0f5" firstAttribute="leading" secondItem="xq2-62-uxi" secondAttribute="leadingMargin" id="gPp-CJ-SYL"/>
+                <constraint firstItem="4M5-S0-Vwo" firstAttribute="leading" secondItem="nMV-mg-0f5" secondAttribute="trailing" id="mgp-aQ-gCv"/>
+                <constraint firstItem="64L-MP-RrG" firstAttribute="leading" secondItem="nMV-mg-0f5" secondAttribute="trailing" id="pLw-Sf-dj7"/>
+                <constraint firstItem="nMV-mg-0f5" firstAttribute="centerY" secondItem="xq2-62-uxi" secondAttribute="centerY" id="v9V-s3-m4V"/>
+                <constraint firstItem="ksE-Ks-yq6" firstAttribute="centerY" secondItem="xq2-62-uxi" secondAttribute="centerY" id="xHT-nZ-s1z"/>
             </constraints>
             <size key="customSize" width="232" height="50"/>
             <userDefinedRuntimeAttributes>
@@ -58,6 +79,7 @@
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="Line" width="36" height="3"/>
         <image name="PoiPin" width="21" height="30"/>
     </resources>
 </document>

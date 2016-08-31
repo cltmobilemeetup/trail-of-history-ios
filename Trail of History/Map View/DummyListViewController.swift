@@ -12,6 +12,12 @@ class DummyListViewController: UITableViewController {
 
     private let cellReuseIdentifier = "POI Name"
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        //printfonts()
+    }
+
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -29,5 +35,14 @@ class DummyListViewController: UITableViewController {
     }
 
     @IBAction func unwind(segue:UIStoryboardSegue) {
+    }
+
+    func printfonts() {
+        for family: String in UIFont.familyNames() {
+            print("\(family)")
+            for names: String in UIFont.fontNamesForFamilyName(family) {
+                print("== \(names)")
+            }
+        }
     }
 }

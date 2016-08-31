@@ -89,10 +89,10 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                             </mapView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dcM-wA-t3l" userLabel="POI Card Collection View">
-                                <rect key="frame" x="180" y="426" width="240" height="80"/>
+                                <rect key="frame" x="138" y="426" width="325" height="80"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="F4o-WJ-SE1"/>
+                                    <constraint firstAttribute="width" constant="325" id="F4o-WJ-SE1"/>
                                     <constraint firstAttribute="height" constant="80" id="ffT-He-fYi"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="iEl-Oe-NON">

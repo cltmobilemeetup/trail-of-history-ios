@@ -68,6 +68,6 @@ extension MapViewController : UICollectionViewDataSource {
 
 extension MapViewController : UICollectionViewDelegateFlowLayout {
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(CGFloat(200), CGFloat(70))
+        return CGSizeMake(CGFloat(280), CGFloat(70))
     }
 }

@@ -18,12 +18,14 @@
 		4D8B76591C97944300A70B71 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D8B76571C97944300A70B71 /* LaunchScreen.storyboard */; };
 		4D8B76641C97944300A70B71 /* Trail_of_HistoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8B76631C97944300A70B71 /* Trail_of_HistoryTests.swift */; };
 		4D8B766F1C97944300A70B71 /* Trail_of_HistoryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8B766E1C97944300A70B71 /* Trail_of_HistoryUITests.swift */; };
+		E150ED441D763903006C40AF /* Archer-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = E150ED421D763903006C40AF /* Archer-Medium.otf */; };
 		E1C2383C1D6B28C700A718A8 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1C2383B1D6B28C700A718A8 /* Map.storyboard */; };
 		E1C2383F1D6B29E900A718A8 /* PoiCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1C2383D1D6B29E900A718A8 /* PoiCard.xib */; };
 		E1C238401D6B29E900A718A8 /* PoiCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C2383E1D6B29E900A718A8 /* PoiCard.swift */; };
 		E1C238461D6B6AFD00A718A8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C238451D6B6AFD00A718A8 /* MapViewController.swift */; };
 		E1C238661D6C9EF900A718A8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C238651D6C9EF900A718A8 /* MapKit.framework */; };
 		E1C238681D6CA65700A718A8 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C238671D6CA65700A718A8 /* UIViewExtensions.swift */; };
+		E1DFEBB01D7663B9007359F4 /* DIN Condensed Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E1DFEBAF1D7663B9007359F4 /* DIN Condensed Bold.ttf */; };
 		E1F984DD1D6DC48400D28411 /* DummyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F984DC1D6DC48400D28411 /* DummyListViewController.swift */; };
 		E1F984DF1D6DC52C00D28411 /* DummyDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F984DE1D6DC52C00D28411 /* DummyDataSource.swift */; };
 		E1F984E11D6E3CD400D28411 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F984E01D6E3CD400D28411 /* NavigationController.swift */; };
@@ -66,12 +68,14 @@
 		4D8B766A1C97944300A70B71 /* Trail of HistoryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Trail of HistoryUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D8B766E1C97944300A70B71 /* Trail_of_HistoryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trail_of_HistoryUITests.swift; sourceTree = "<group>"; };
 		4D8B76701C97944300A70B71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E150ED421D763903006C40AF /* Archer-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Archer-Medium.otf"; sourceTree = "<group>"; };
 		E1C2383B1D6B28C700A718A8 /* Map.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Map.storyboard; path = "Map View/Map.storyboard"; sourceTree = "<group>"; };
 		E1C2383D1D6B29E900A718A8 /* PoiCard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PoiCard.xib; path = "Map View/PoiCard.xib"; sourceTree = "<group>"; };
 		E1C2383E1D6B29E900A718A8 /* PoiCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PoiCard.swift; path = "Map View/PoiCard.swift"; sourceTree = "<group>"; };
 		E1C238451D6B6AFD00A718A8 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = "Map View/MapViewController.swift"; sourceTree = "<group>"; };
 		E1C238651D6C9EF900A718A8 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E1C238671D6CA65700A718A8 /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
+		E1DFEBAF1D7663B9007359F4 /* DIN Condensed Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DIN Condensed Bold.ttf"; sourceTree = "<group>"; };
 		E1F984DC1D6DC48400D28411 /* DummyListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DummyListViewController.swift; path = "Map View/DummyListViewController.swift"; sourceTree = "<group>"; };
 		E1F984DE1D6DC52C00D28411 /* DummyDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DummyDataSource.swift; path = "Map View/DummyDataSource.swift"; sourceTree = "<group>"; };
 		E1F984E01D6E3CD400D28411 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationController.swift; path = "Map View/NavigationController.swift"; sourceTree = "<group>"; };
@@ -112,6 +116,8 @@
 				4D8B76551C97944300A70B71 /* Assets.xcassets */,
 				0C01F5121D63E0D1005C6284 /* Main.storyboard */,
 				4D8B76571C97944300A70B71 /* LaunchScreen.storyboard */,
+				E150ED421D763903006C40AF /* Archer-Medium.otf */,
+				E1DFEBAF1D7663B9007359F4 /* DIN Condensed Bold.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -336,9 +342,11 @@
 				0C01F5131D63E0D1005C6284 /* Main.storyboard in Resources */,
 				E1C2383F1D6B29E900A718A8 /* PoiCard.xib in Resources */,
 				E1F984E31D6F692D00D28411 /* Title.xib in Resources */,
+				E1DFEBB01D7663B9007359F4 /* DIN Condensed Bold.ttf in Resources */,
 				4D8B76511C97944300A70B71 /* List.storyboard in Resources */,
 				0C01F50F1D63DE30005C6284 /* Detail.storyboard in Resources */,
 				E1C2383C1D6B28C700A718A8 /* Map.storyboard in Resources */,
+				E150ED441D763903006C40AF /* Archer-Medium.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
