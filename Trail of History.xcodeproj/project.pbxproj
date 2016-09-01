@@ -29,7 +29,6 @@
 		E1DFEBB81D7705D7007359F4 /* TrailBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFEBB71D7705D7007359F4 /* TrailBounds.swift */; };
 		E1DFEBBB1D775E7A007359F4 /* PointsOfInterest.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1DFEBB91D775E7A007359F4 /* PointsOfInterest.plist */; };
 		E1DFEBBC1D775E7A007359F4 /* TrailBounds.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1DFEBBA1D775E7A007359F4 /* TrailBounds.plist */; };
-		E1DFEBC01D77715E007359F4 /* DummyDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFEBBD1D77715E007359F4 /* DummyDataSource.swift */; };
 		E1DFEBC11D77715E007359F4 /* DummyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFEBBE1D77715E007359F4 /* DummyListViewController.swift */; };
 		E1DFEBC21D77715E007359F4 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFEBBF1D77715E007359F4 /* NavigationController.swift */; };
 		E1DFEBC41D777BE9007359F4 /* PointOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFEBC31D777BE9007359F4 /* PointOfInterest.swift */; };
@@ -81,9 +80,8 @@
 		E1C238671D6CA65700A718A8 /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		E1DFEBAF1D7663B9007359F4 /* DIN Condensed Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DIN Condensed Bold.ttf"; sourceTree = "<group>"; };
 		E1DFEBB71D7705D7007359F4 /* TrailBounds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TrailBounds.swift; path = "Map View/TrailBounds.swift"; sourceTree = "<group>"; };
-		E1DFEBB91D775E7A007359F4 /* PointsOfInterest.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PointsOfInterest.plist; path = "Map View/GeoData/PointsOfInterest.plist"; sourceTree = "<group>"; };
-		E1DFEBBA1D775E7A007359F4 /* TrailBounds.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = TrailBounds.plist; path = "Map View/GeoData/TrailBounds.plist"; sourceTree = "<group>"; };
-		E1DFEBBD1D77715E007359F4 /* DummyDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DummyDataSource.swift; path = "Map View/Temp/DummyDataSource.swift"; sourceTree = "<group>"; };
+		E1DFEBB91D775E7A007359F4 /* PointsOfInterest.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PointsOfInterest.plist; path = "Map View/Data/PointsOfInterest.plist"; sourceTree = "<group>"; };
+		E1DFEBBA1D775E7A007359F4 /* TrailBounds.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = TrailBounds.plist; path = "Map View/Data/TrailBounds.plist"; sourceTree = "<group>"; };
 		E1DFEBBE1D77715E007359F4 /* DummyListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DummyListViewController.swift; path = "Map View/Temp/DummyListViewController.swift"; sourceTree = "<group>"; };
 		E1DFEBBF1D77715E007359F4 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationController.swift; path = "Map View/Temp/NavigationController.swift"; sourceTree = "<group>"; };
 		E1DFEBC31D777BE9007359F4 /* PointOfInterest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PointOfInterest.swift; path = "Map View/PointOfInterest.swift"; sourceTree = "<group>"; };
@@ -237,7 +235,6 @@
 		E150ED411D7629CB006C40AF /* Temp */ = {
 			isa = PBXGroup;
 			children = (
-				E1DFEBBD1D77715E007359F4 /* DummyDataSource.swift */,
 				E1DFEBBE1D77715E007359F4 /* DummyListViewController.swift */,
 				E1DFEBBF1D77715E007359F4 /* NavigationController.swift */,
 			);
@@ -403,7 +400,6 @@
 				4D8B764C1C97944300A70B71 /* AppDelegate.swift in Sources */,
 				E1C238401D6B29E900A718A8 /* PoiCard.swift in Sources */,
 				E1C238461D6B6AFD00A718A8 /* MapViewController.swift in Sources */,
-				E1DFEBC01D77715E007359F4 /* DummyDataSource.swift in Sources */,
 				E1DFEBC11D77715E007359F4 /* DummyListViewController.swift in Sources */,
 				E1DFEBC41D777BE9007359F4 /* PointOfInterest.swift in Sources */,
 			);

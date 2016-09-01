@@ -11,9 +11,9 @@ import MapKit
 
 class PointOfInterest: NSObject, MKAnnotation {
 
-    var coordinate: CLLocationCoordinate2D
     var title: String?
     var subtitle: String?
+    var coordinate: CLLocationCoordinate2D
 
     init(coordinate: CLLocationCoordinate2D, title: String, description: String) {
         self.coordinate = coordinate

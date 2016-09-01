@@ -11,6 +11,7 @@ import UIKit
 class DummyListViewController: UITableViewController {
 
     private let cellReuseIdentifier = "POI Name"
+    private let poiNames = ["Captain Jack", "William Henry Blake", "Thomas Polk", "Thad Tate", "Jane Wilkes", "Thomas Sprate and King Haigler", "Emily King"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,12 +26,12 @@ class DummyListViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return DummyData.poiNames.count
+        return poiNames.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath)
-        cell.textLabel?.text = DummyData.poiNames[indexPath.row]
+        cell.textLabel?.text = poiNames[indexPath.row]
         return cell
     }
 

@@ -62,13 +62,14 @@ extension MapViewController : UICollectionViewDelegate {
 
 extension MapViewController : UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return DummyData.poiNames.count
+        if let count = PointOfInterest.pointsOfInterest?.count { return count }
+        return 1
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let card = collectionView.dequeueReusableCellWithReuseIdentifier(poiCardCellReuseIdentifier, forIndexPath: indexPath) as! PoiCard
-        card.name = DummyData.poiNames[indexPath.row]
+        if let title = PointOfInterest.pointsOfInterest?[indexPath.row].title { card.name = title }
         
         return card
     }
