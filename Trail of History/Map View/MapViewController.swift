@@ -83,4 +83,23 @@ extension MapViewController : UICollectionViewDelegateFlowLayout {
 }
 
 extension MapViewController : MKMapViewDelegate {
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        if annotation is PointOfInterest {
+            let reuseId = "Pin"
+
+            if let annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) {
+                annotationView.annotation = annotation
+                return annotationView
+            }
+            else {
+                let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+                annotationView.canShowCallout = true
+                annotationView.image = UIImage(named: "PoiPin")
+                return annotationView
+            }
+        }
+
+        return nil
+    }
 }

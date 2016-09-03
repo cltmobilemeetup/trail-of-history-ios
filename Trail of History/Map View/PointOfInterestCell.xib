@@ -81,6 +81,6 @@
     </objects>
     <resources>
         <image name="Line" width="36" height="3"/>
-        <image name="PoiPin" width="21" height="30"/>
+        <image name="PoiPin" width="20" height="29"/>
     </resources>
 </document>
