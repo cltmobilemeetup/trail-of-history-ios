@@ -62,10 +62,42 @@ class DetailViewController: UIPageViewController {
 extension DetailViewController: UIPageViewControllerDataSource {
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+        guard let viewControllerIndex = orderedViewControllers.indexOf(viewController) else {
         return nil
+        }
+        
+        // business logic
+        let previousIndex = viewControllerIndex - 1
+        
+        guard previousIndex >= 0 else {
+            return orderedViewControllers.last // return nil to deactivate loop
+        }
+        
+        guard orderedViewControllers.count > previousIndex else {
+            return nil
+        }
+        
+        return orderedViewControllers[previousIndex]
     }
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+        guard let viewControllerIndex = orderedViewControllers.indexOf(viewController) else {
         return nil
+        }
+        
+        let nextIndex = viewControllerIndex + 1
+        let orderedViewControllersCount = orderedViewControllers.count
+        
+        guard orderedViewControllersCount != nextIndex else {
+            return orderedViewControllers.first // return nil to deactivate loop
+        }
+        
+        guard orderedViewControllersCount > nextIndex else {
+            return nil
+        }
+        
+        return orderedViewControllers[nextIndex]
     }
+    
+    // TODO: add functions for dots
 }

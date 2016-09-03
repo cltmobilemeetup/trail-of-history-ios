@@ -1,21 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BVa-N1-FxL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3ci-wH-eij">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Detail View Controller-->
-        <scene sceneID="1Re-Kp-Oag">
-            <objects>
-                <viewController id="BVa-N1-FxL" customClass="DetailViewController" customModule="Trail_of_History" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="gZm-wt-Kmp"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6gT-jP-G6Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1524.5" y="413.5"/>
-        </scene>
         <!--View Controller-->
         <scene sceneID="dsD-Z4-Ryw">
             <objects>
@@ -42,6 +31,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ixO-2g-TtW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1219.5" y="1210.5"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="4eQ-Yx-Fwb">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="3ci-wH-eij" customClass="DetailViewController" customModule="Trail_of_History" customModuleProvider="target" sceneMemberID="viewController">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lqw-3B-Ths" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1429" y="197"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="3eA-Ug-C9c">
