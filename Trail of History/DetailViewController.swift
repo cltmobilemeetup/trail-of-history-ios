@@ -8,19 +8,24 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIPageViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        dataSource = self
+        
+        
+        
+        
     }
-
+    
+    /*
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    */
 
     /*
     // MARK: - Navigation
@@ -32,4 +37,17 @@ class DetailViewController: UIViewController {
     }
     */
 
+}
+
+
+// MARK: Datasource
+extension DetailViewController: UIPageViewControllerDataSource {
+    
+    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+        return nil
+    }
+    
+    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+        return nil
+    }
 }
