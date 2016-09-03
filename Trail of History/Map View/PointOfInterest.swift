@@ -12,6 +12,7 @@ import MapKit
 
 final class PointOfInterest: NSObject, MKAnnotation {
 
+    // Sorted by longitude, westmost first
     static let pointsOfInterest: [PointOfInterest] = {
         var poiArray = [PointOfInterest]()
 
@@ -22,22 +23,20 @@ final class PointOfInterest: NSObject, MKAnnotation {
             
             poiArray.append(PointOfInterest(title: title as! String, coordinate: coordinate, information: data["description"] as! String))
         }
-
-        return poiArray
+        
+        return poiArray.sort { $0.coordinate.longitude < $1.coordinate.longitude }
     }()
 
+    let information: String
 
     // MARK: - MKAnnotation implementation
     let title: String?
     let subtitle: String?
     let coordinate: CLLocationCoordinate2D
     
-    let information: String
-
-    // Required by UICollectionViewCell's adoption of NSCoding
     private init(title: String, coordinate: CLLocationCoordinate2D, information: String) {
         self.title = title
-        self.subtitle = nil
+        self.subtitle = "lat \(coordinate.latitude), long \(coordinate.longitude)"
         self.coordinate = coordinate
         self.information = information
     }

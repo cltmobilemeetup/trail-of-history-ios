@@ -63,11 +63,13 @@ extension MapViewController : UICollectionViewDataSource {
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        // The points of interest are sorted by longitude, westmost first. The cell corresponding to the westmost poi will be first
+        // and the cell corresponding to the eastmost poi will be last. Thus the horizontal sequencing of the cells from left to
+        // right will match the logitudinal sequencing of the points of interest from west to east.
         let poi = PointOfInterest.pointsOfInterest[indexPath.row]
         let poiCell = collectionView.dequeueReusableCellWithReuseIdentifier(poiCellReuseIdentifier, forIndexPath: indexPath) as! PointOfInterestCell
         
         poiCell.nameLabel.text = poi.title
-        
         if let distance = poi.distance { poiCell.distanceLabel.text = "\(distance) yds" }
         else {  poiCell.distanceLabel.text = "<unknown>"}
         
@@ -83,6 +85,7 @@ extension MapViewController : UICollectionViewDelegateFlowLayout {
 }
 
 extension MapViewController : MKMapViewDelegate {
+    
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         
         if annotation is PointOfInterest {
@@ -101,5 +104,13 @@ extension MapViewController : MKMapViewDelegate {
         }
 
         return nil
+    }
+
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+        // Scroll the collection view to the cell (point of interest) that corresponds to the selected annotation (point of interest).
+        if let pointOfInterest = view.annotation as? PointOfInterest {
+            let position = PointOfInterest.pointsOfInterest.indexOf(pointOfInterest)!
+            collectionView.scrollToItemAtIndexPath(NSIndexPath(forRow: position, inSection: 0), atScrollPosition: .CenteredHorizontally, animated: true)
+        }
     }
 }
