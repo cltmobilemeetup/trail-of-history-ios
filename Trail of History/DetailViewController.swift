@@ -9,15 +9,33 @@
 import UIKit
 
 class DetailViewController: UIPageViewController {
+    
+    // MARK: Properties
+    
+    private(set) lazy var orderedViewControllers: [UIViewController] = {
+        return [self.loadViewController("alpha"),
+                self.loadViewController("beta"),
+                self.loadViewController("gamma"),
+                self.loadViewController("delta")
+                ]
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         dataSource = self
         
+        if let firstViewController = orderedViewControllers.first {
+            setViewControllers([firstViewController], direction: .Forward, animated: true, completion: nil)
+        }
         
         
         
+        
+    }
+    
+    func loadViewController(id: String) -> UIViewController {
+        return UIStoryboard(name: "Detail", bundle: nil) . instantiateViewControllerWithIdentifier("\(id)")
     }
     
     /*
