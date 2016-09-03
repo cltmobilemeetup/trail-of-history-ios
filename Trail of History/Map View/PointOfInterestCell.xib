@@ -11,9 +11,9 @@
         </mutableArray>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewController" customModule="Trail_of_History" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="xq2-62-uxi" userLabel="Point of Interest Card" customClass="PoiCard" customModule="Trail_of_History">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PointOfInterestCell" id="xq2-62-uxi" customClass="PointOfInterestCell" customModule="Trail_of_History">
             <rect key="frame" x="0.0" y="0.0" width="230" height="70"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -40,8 +40,8 @@
                             <constraint firstAttribute="width" constant="55" id="p99-6C-ySn"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="300 yds" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4M5-S0-Vwo" userLabel="Distance">
-                        <rect key="frame" x="48" y="45" width="57" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4M5-S0-Vwo" userLabel="Distance">
+                        <rect key="frame" x="48" y="45" width="65" height="17"/>
                         <fontDescription key="fontDescription" name="Archer-Medium" family="Archer" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -73,7 +73,8 @@
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
             <connections>
-                <outlet property="nameLabel" destination="64L-MP-RrG" id="0hK-PQ-viT"/>
+                <outlet property="distanceLabel" destination="4M5-S0-Vwo" id="nhE-3D-esu"/>
+                <outlet property="nameLabel" destination="64L-MP-RrG" id="CWj-nh-G2b"/>
             </connections>
             <point key="canvasLocation" x="200" y="195"/>
         </collectionViewCell>

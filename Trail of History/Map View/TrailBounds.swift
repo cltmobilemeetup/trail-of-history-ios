@@ -11,9 +11,7 @@ import MapKit
 
 final class TrailBounds {
     
-    static let instance: TrailBounds? = TrailBounds()
-
-    private let trailBoundsFileName = "TrailBounds"
+    static let instance: TrailBounds = TrailBounds()
 
     private let midCoordinate: CLLocationCoordinate2D
     private let topLeftCoordinate: CLLocationCoordinate2D
@@ -21,13 +19,9 @@ final class TrailBounds {
     private let bottomLeftCoordinate: CLLocationCoordinate2D
     private let bottomRightCoordinate: CLLocationCoordinate2D
 
-    private init?() {
-        guard let filePath = NSBundle.mainBundle().pathForResource(trailBoundsFileName, ofType: "plist"), properties = NSDictionary(contentsOfFile: filePath)
-            else {
-                print("Cannot create the trail bounds from \(trailBoundsFileName)")
-                return nil
-        }
-        
+    private init() {
+        let properties = NSDictionary(contentsOfFile: NSBundle.mainBundle().pathForResource("TrailBounds", ofType: "plist")!)!
+       
         func makeCoordinate(name: String) -> CLLocationCoordinate2D {
             let point = CGPointFromString(properties[name] as! String)
             return CLLocationCoordinate2DMake(CLLocationDegrees(point.x), CLLocationDegrees(point.y))

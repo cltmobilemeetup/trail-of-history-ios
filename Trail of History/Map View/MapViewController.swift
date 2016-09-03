@@ -12,25 +12,21 @@ import MapKit
 class MapViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
-
     @IBOutlet weak var collectionView : UICollectionView!
-    private let poiCardCellReuseIdentifier = "POI Card Cell"
+    
+    private let poiCellReuseIdentifier = "PointOfInterestCell"
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        collectionView.registerNib(UINib(nibName: "PoiCard", bundle: nil), forCellWithReuseIdentifier: poiCardCellReuseIdentifier)
-
-        navigationItem.titleView = UINib(nibName: "Title", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as? UIView
+        navigationItem.titleView = UIView.fromNib("Title")
         navigationItem.rightBarButtonItem?.tintColor = UIColor.tohTerracotaColor()
         
-        if let bounds = TrailBounds.instance {
-            mapView.region = bounds.region
-            
-            if let annotations = PointOfInterest.pointsOfInterest {
-                mapView.addAnnotations(annotations)
-            }
-        }
+        mapView.region = TrailBounds.instance.region
+        mapView.addAnnotations(PointOfInterest.pointsOfInterest)
+        
+        let poiCellNib = UINib(nibName: "PointOfInterestCell", bundle: nil)
+        collectionView.registerNib(poiCellNib, forCellWithReuseIdentifier: poiCellReuseIdentifier)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -61,21 +57,26 @@ extension MapViewController : UICollectionViewDelegate {
 }
 
 extension MapViewController : UICollectionViewDataSource {
+
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let count = PointOfInterest.pointsOfInterest?.count { return count }
-        return 1
+        return PointOfInterest.pointsOfInterest.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let poi = PointOfInterest.pointsOfInterest[indexPath.row]
+        let poiCell = collectionView.dequeueReusableCellWithReuseIdentifier(poiCellReuseIdentifier, forIndexPath: indexPath) as! PointOfInterestCell
         
-        let card = collectionView.dequeueReusableCellWithReuseIdentifier(poiCardCellReuseIdentifier, forIndexPath: indexPath) as! PoiCard
-        if let title = PointOfInterest.pointsOfInterest?[indexPath.row].title { card.name = title }
+        poiCell.nameLabel.text = poi.title
         
-        return card
+        if let distance = poi.distance { poiCell.distanceLabel.text = "\(distance) yds" }
+        else {  poiCell.distanceLabel.text = "<unknown>"}
+        
+        return poiCell
     }
 }
 
 extension MapViewController : UICollectionViewDelegateFlowLayout {
+
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return CGSizeMake(CGFloat(280), CGFloat(70))
     }
