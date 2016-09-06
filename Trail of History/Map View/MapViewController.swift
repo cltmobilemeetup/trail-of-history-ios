@@ -59,11 +59,25 @@ class MapViewController: UIViewController {
      */
     private func configurePointOfInterest(poi: PointOfInterest, isCurrent: Bool) {
         poi.isCurrent = isCurrent
+
         let image = isCurrent ? PointOfInterest.imageForCurrent : PointOfInterest.imageForNotCurrent
+
         mapView.viewForAnnotation(poi)?.image = image
+
         let path = NSIndexPath(forItem: PointOfInterest.pointsOfInterest.indexOf(poi)!, inSection: 0)
         (collectionView.cellForItemAtIndexPath(path) as? PointOfInterestCell)?.imageView.image = image
+
         if isCurrent { mapView.setCenterCoordinate(poi.coordinate, animated: true) }
+    }
+
+    private func getCurrentPoi() -> PointOfInterest {
+        for poi in PointOfInterest.pointsOfInterest {
+            if poi.isCurrent {
+                return poi
+            }
+        }
+        
+        fatalError("There is not a current Point of Interest???") // This should never happen
     }
 }
 
@@ -79,9 +93,9 @@ extension MapViewController : UICollectionViewDelegate {
         // cell had previously occupied that position. By using a curried function we are able to store that information
         // in a way that is entirely local.
         func makeCurrentCellChangeDetecter(position: CGPoint) -> () -> (oldCurrent: NSIndexPath, newCurrent: NSIndexPath)? {
-            // The only circumstance for which the initial value of indexOfCurrent could be nil is if position points to a spot where, when the
-            // collection is initially displayed, there is no cell - we would not choose such a position. Note that the detecter never sets indexOfCurrent to nil.
-            var indexOfCurrent = collectionView.indexPathForItemAtPoint(CGPoint(x: position.x + collectionView.contentOffset.x, y: position.y + collectionView.contentOffset.y))
+            
+            let item = PointOfInterest.pointsOfInterest.indexOf(getCurrentPoi())!
+            var indexOfCurrent = NSIndexPath(forItem: item, inSection: 0)
             
             // The detecter returns the index of the cell that has newly occupied the position or
             // returns nil if 1) the cell has not changed or 2) no cell is at the position.
@@ -91,8 +105,8 @@ extension MapViewController : UICollectionViewDelegate {
                 if newIndex == nil || newIndex == indexOfCurrent { return nil }
                 
                 let oldIndex = indexOfCurrent
-                indexOfCurrent = newIndex
-                return (oldIndex!, newIndex!) // TODO: I got an exception wherein oldIndex was nil
+                indexOfCurrent = newIndex!
+                return (oldIndex, newIndex!)
             }
             
             return changeDetecter
@@ -136,6 +150,10 @@ extension MapViewController : UICollectionViewDataSource {
         if let distance = poi.distance { poiCell.distanceLabel.text = "\(distance) yds" }
         else { poiCell.distanceLabel.text = "<unknown>" }
         
+        poiCell.layer.shadowOpacity = 0.3
+        poiCell.layer.masksToBounds = false
+        poiCell.layer.shadowOffset = CGSize(width: 4, height: 4)
+
         return poiCell
     }
 }
@@ -172,19 +190,16 @@ extension MapViewController : MKMapViewDelegate {
     }
 
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
-        // Scroll the collection view to the cell (point of interest) that corresponds to the selected annotation (point of interest).
         if let selectedPoi = view.annotation as? PointOfInterest {
+            // If the user tapped on a point of interest other than the current one then ...
             if !selectedPoi.isCurrent {
+
+                // Scroll the collection view to the cell (point of interest) that corresponds to the selected annotation (point of interest).
                 let selectedPoiIndex = PointOfInterest.pointsOfInterest.indexOf(selectedPoi)!
                 collectionView.scrollToItemAtIndexPath(NSIndexPath(forRow: selectedPoiIndex, inSection: 0), atScrollPosition: .CenteredHorizontally, animated: true)
                 
                 // Find the current POI and make it not current.
-                for poi in PointOfInterest.pointsOfInterest {
-                    if poi.isCurrent {
-                        configurePointOfInterest(poi, isCurrent: false)
-                        break
-                    }
-                }
+                configurePointOfInterest(getCurrentPoi(), isCurrent: false)
                 
                 // Now make the selected POI the current POI
                 configurePointOfInterest(selectedPoi, isCurrent: true)
