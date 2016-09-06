@@ -29,10 +29,13 @@ final class PointOfInterest: NSObject, MKAnnotation {
 
     let information: String
 
-    // MARK: - MKAnnotation implementation
+    // MARK: - MKAnnotation implementation and related members
     let title: String?
     let subtitle: String?
     let coordinate: CLLocationCoordinate2D
+    var isCurrent: Bool = false
+    static let imageForCurrent = UIImage(named: "CurrentPoiAnnotation")
+    static let imageForNotCurrent = UIImage(named: "PoiAnnotation")
     
     private init(title: String, coordinate: CLLocationCoordinate2D, information: String) {
         self.title = title

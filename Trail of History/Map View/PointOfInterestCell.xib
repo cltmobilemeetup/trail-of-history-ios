@@ -20,7 +20,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="230" height="70"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PoiPin" translatesAutoresizingMaskIntoConstraints="NO" id="nMV-mg-0f5" userLabel="Map Pin">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PoiAnnotation" translatesAutoresizingMaskIntoConstraints="NO" id="nMV-mg-0f5" userLabel="Image">
                         <rect key="frame" x="8" y="18" width="40" height="34"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="ZFx-72-Hdq"/>
@@ -74,6 +74,7 @@
             </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="distanceLabel" destination="4M5-S0-Vwo" id="nhE-3D-esu"/>
+                <outlet property="imageView" destination="nMV-mg-0f5" id="hAr-3I-eh4"/>
                 <outlet property="nameLabel" destination="64L-MP-RrG" id="CWj-nh-G2b"/>
             </connections>
             <point key="canvasLocation" x="200" y="195"/>
@@ -81,6 +82,6 @@
     </objects>
     <resources>
         <image name="Line" width="36" height="3"/>
-        <image name="PoiPin" width="20" height="29"/>
+        <image name="PoiAnnotation" width="20" height="29"/>
     </resources>
 </document>

@@ -9,6 +9,24 @@
 import UIKit
 import MapKit
 
+// This wrapper allows us to pass an Any (struct, enum, function, class) where an AnyObject (class) is specified.
+class ObjectWrapper<T> {
+    let value: T
+    init(value: T) {
+        self.value = value
+    }
+}
+
+// The point of interest UICollectionView's width has been configured such that only one cell can be entirely visible; other cells
+// will be only partially visible on the left and/or the right. We will refer to the  cell which is occupying the majority of the
+// collection view as the current cell. The things that we want to accomplish are:
+//
+//      1)  The current cell's image should be PointOfInterest.imageForCurrent; all of the other cells should
+//          use PointOfInterest.imageForNotCurrent
+//
+//      2)  The view of the map annotaion corresponding to the current cell should be PointOfInterest.imageForCurrent;
+//          the view for all of the other annotations should be PointOfInterest.imageForNotCurrent
+//
 class MapViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
@@ -27,33 +45,74 @@ class MapViewController: UIViewController {
         
         let poiCellNib = UINib(nibName: "PointOfInterestCell", bundle: nil)
         collectionView.registerNib(poiCellNib, forCellWithReuseIdentifier: poiCellReuseIdentifier)
+        
+        PointOfInterest.pointsOfInterest[0].isCurrent = true
     }
     
     override func viewWillAppear(animated: Bool) {
         navigationItem.hidesBackButton = true
     }
 
+    /* For the given Point of Interest, set the image used by its collection view cell and its map annotation.
+     * The current point of interest uses a unique image; all of the others use the same image.
+     */
+    private func configurePointOfInterest(poi: PointOfInterest, isCurrent: Bool) {
+        poi.isCurrent = isCurrent
+        let image = isCurrent ? PointOfInterest.imageForCurrent : PointOfInterest.imageForNotCurrent
+        mapView.viewForAnnotation(poi)?.image = image
+        let path = NSIndexPath(forItem: PointOfInterest.pointsOfInterest.indexOf(poi)!, inSection: 0)
+        (collectionView.cellForItemAtIndexPath(path) as? PointOfInterestCell)?.imageView.image = image
+    }
 }
 
 extension MapViewController : UICollectionViewDelegate {
-    /*
-     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-     // handle tap events
-     print("You selected card #\(indexPath.item + 1).")
-     }
-     
-     // change background color when user touches card
-     override func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath) {
-     let card = collectionView.cellForItemAtIndexPath(indexPath)
-     card?.backgroundColor = UIColor.redColor()
-     }
-     
-     // change background color back when user releases card
-     override func collectionView(collectionView: UICollectionView, didUnhighlightItemAtIndexPath indexPath: NSIndexPath) {
-     let card = collectionView.cellForItemAtIndexPath(indexPath)
-     card?.backgroundColor = UIColor.yellowColor()
-     }
-     */
+    
+    // When the user scrolls the collection view the current cell will change. We will respond to this change as it occurs
+    // by updating the images accordingly. We will accomplish this via a timer which will run for the duration of the
+    // scrolling and the deceleration (if any).
+    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+
+        // Whichever cell occupies the specified positon (for example, the center of the collection view) will be considered
+        // to be the current cell. In order to detect that a new cell has moved into that position we need to remember which
+        // cell had previously occupied that position. By using a curried function we are able to store that information
+        // in a way that is entirely local.
+        func makeCurrentCellChangeDetecter(position: CGPoint) -> () -> (oldCurrent: NSIndexPath, newCurrent: NSIndexPath)? {
+            // The only circumstance for which the initial value of indexOfCurrent could be nil is if position points to a spot where, when the
+            // collection is initially displayed, there is no cell - we would not choose such a position. Note that the detecter never sets indexOfCurrent to nil.
+            var indexOfCurrent = collectionView.indexPathForItemAtPoint(CGPoint(x: position.x + collectionView.contentOffset.x, y: position.y + collectionView.contentOffset.y))
+            
+            // The detecter returns the index of the cell that has newly occupied the position or
+            // returns nil if 1) the cell has not changed or 2) no cell is at the position.
+            let changeDetecter: () -> (old: NSIndexPath, new: NSIndexPath)? = {
+                let newIndex = self.collectionView.indexPathForItemAtPoint(CGPoint(x: position.x + self.collectionView.contentOffset.x, y: position.y + self.collectionView.contentOffset.y))
+
+                if newIndex == nil || newIndex == indexOfCurrent { return nil }
+                
+                let oldIndex = indexOfCurrent
+                indexOfCurrent = newIndex
+                return (oldIndex!, newIndex!) // TODO: I got an exception wherein oldIndex was nil
+            }
+            
+            return changeDetecter
+        }
+
+        let centerPoint = CGPoint(x: collectionView.frame.width/2, y: collectionView.frame.height/2)
+        let detector = makeCurrentCellChangeDetecter(centerPoint)
+        let timer = NSTimer(timeInterval: 0.25, target: self, selector: #selector(currentCellChangeDetectionTimer), userInfo: ObjectWrapper(value: detector), repeats: true)
+        NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)}
+    
+    @objc func currentCellChangeDetectionTimer(timer: NSTimer) {
+        let changeDetecter = (timer.userInfo as! ObjectWrapper<() -> (oldCurrent: NSIndexPath, newCurrent: NSIndexPath)?>).value
+        if let currentCellChanged = changeDetecter() {
+            let oldPoi = PointOfInterest.pointsOfInterest[currentCellChanged.oldCurrent.item]
+            configurePointOfInterest(oldPoi, isCurrent: false)
+
+            let newPoi = PointOfInterest.pointsOfInterest[currentCellChanged.newCurrent.item]
+            configurePointOfInterest(newPoi, isCurrent: true)
+        }
+
+        if !collectionView.dragging && !collectionView.decelerating { timer.invalidate() }
+    }
 }
 
 extension MapViewController : UICollectionViewDataSource {
@@ -63,15 +122,17 @@ extension MapViewController : UICollectionViewDataSource {
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        // The points of interest are sorted by longitude, westmost first. The cell corresponding to the westmost poi will be first
-        // and the cell corresponding to the eastmost poi will be last. Thus the horizontal sequencing of the cells from left to
-        // right will match the logitudinal sequencing of the points of interest from west to east.
-        let poi = PointOfInterest.pointsOfInterest[indexPath.row]
+
         let poiCell = collectionView.dequeueReusableCellWithReuseIdentifier(poiCellReuseIdentifier, forIndexPath: indexPath) as! PointOfInterestCell
-        
+
+        // The points of interest are sorted by longitude, westmost first. The cell at index 0 will use the data from the westmost (first) poi;
+        // the cell at index count - 1 will use the data from the eastmost (last) poi. Thus the horizontal sequencing of the cells from left to
+        // right will mirror the logitudinal sequencing of the points of interest from west to east.
+        let poi = PointOfInterest.pointsOfInterest[indexPath.item]
         poiCell.nameLabel.text = poi.title
+        poiCell.imageView.image = poi.isCurrent ? PointOfInterest.imageForCurrent : PointOfInterest.imageForNotCurrent
         if let distance = poi.distance { poiCell.distanceLabel.text = "\(distance) yds" }
-        else {  poiCell.distanceLabel.text = "<unknown>"}
+        else { poiCell.distanceLabel.text = "<unknown>" }
         
         return poiCell
     }
@@ -88,19 +149,21 @@ extension MapViewController : MKMapViewDelegate {
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         
-        if annotation is PointOfInterest {
-            let reuseId = "Pin"
-
-            if let annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) {
-                annotationView.annotation = annotation
-                return annotationView
+        if let poi = annotation as? PointOfInterest {
+            
+            let reuseId = "PoiAnnotation"
+            let annotationView: MKAnnotationView
+            
+            if let view = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) {
+                annotationView = view
             }
             else {
-                let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-                annotationView.canShowCallout = true
-                annotationView.image = UIImage(named: "PoiPin")
-                return annotationView
+                annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
             }
+
+            annotationView.canShowCallout = false
+            annotationView.image = poi.isCurrent ? PointOfInterest.imageForCurrent : PointOfInterest.imageForNotCurrent
+            return annotationView
         }
 
         return nil
@@ -108,9 +171,22 @@ extension MapViewController : MKMapViewDelegate {
 
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
         // Scroll the collection view to the cell (point of interest) that corresponds to the selected annotation (point of interest).
-        if let pointOfInterest = view.annotation as? PointOfInterest {
-            let position = PointOfInterest.pointsOfInterest.indexOf(pointOfInterest)!
-            collectionView.scrollToItemAtIndexPath(NSIndexPath(forRow: position, inSection: 0), atScrollPosition: .CenteredHorizontally, animated: true)
+        if let selectedPoi = view.annotation as? PointOfInterest {
+            if !selectedPoi.isCurrent {
+                let selectedPoiIndex = PointOfInterest.pointsOfInterest.indexOf(selectedPoi)!
+                collectionView.scrollToItemAtIndexPath(NSIndexPath(forRow: selectedPoiIndex, inSection: 0), atScrollPosition: .CenteredHorizontally, animated: true)
+                
+                // Find the current POI and make it not current.
+                for poi in PointOfInterest.pointsOfInterest {
+                    if poi.isCurrent {
+                        configurePointOfInterest(poi, isCurrent: false)
+                        break
+                    }
+                }
+                
+                // Now make the selected POI the current POI
+                configurePointOfInterest(selectedPoi, isCurrent: true)
+            }
         }
     }
 }
