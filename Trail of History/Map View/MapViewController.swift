@@ -55,6 +55,7 @@ class MapViewController: UIViewController {
 
     /* For the given Point of Interest, set the image used by its collection view cell and its map annotation.
      * The current point of interest uses a unique image; all of the others use the same image.
+     * If isCurrent is true then take the additional step of centering the map on the annotation
      */
     private func configurePointOfInterest(poi: PointOfInterest, isCurrent: Bool) {
         poi.isCurrent = isCurrent
@@ -62,6 +63,7 @@ class MapViewController: UIViewController {
         mapView.viewForAnnotation(poi)?.image = image
         let path = NSIndexPath(forItem: PointOfInterest.pointsOfInterest.indexOf(poi)!, inSection: 0)
         (collectionView.cellForItemAtIndexPath(path) as? PointOfInterestCell)?.imageView.image = image
+        if isCurrent { mapView.setCenterCoordinate(poi.coordinate, animated: true) }
     }
 }
 
