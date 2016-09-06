@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-// This wrapper allows us to pass an Any (struct, enum, function, class) where an AnyObject (class) is specified.
+// This wrapper allows us to pass an Any (struct, enum, function, class) where an AnyObject (class) is required.
 class ObjectWrapper<T> {
     let value: T
     init(value: T) {
@@ -17,15 +17,15 @@ class ObjectWrapper<T> {
     }
 }
 
-// The point of interest UICollectionView's width has been configured such that only one cell can be entirely visible; other cells
-// will be only partially visible on the left and/or the right. We will refer to the  cell which is occupying the majority of the
-// collection view as the current cell. The things that we want to accomplish are:
-//
-//      1)  The current cell's image should be PointOfInterest.imageForCurrent; all of the other cells should
-//          use PointOfInterest.imageForNotCurrent
-//
-//      2)  The view of the map annotaion corresponding to the current cell should be PointOfInterest.imageForCurrent;
-//          the view for all of the other annotations should be PointOfInterest.imageForNotCurrent
+// The Map View Controller has the concept of a "current" point of interest. The current point of interest is the one whose card (cell)
+// occupies the majority of the card collection view (the UICollectionView's width has been configured such that only one cell can be
+// entirely visible; other cells will be only partially visible on the right and/or the left) and whose map annotation is highlighted
+// and centered. Initially the current point of interest is set to the first (westmost) point of interest. The user can change it in
+// two ways:
+//      1) By tapping on a different map annotation. The controller responds by highlighting that annotation and centerimg the map on it.
+//      2) By scrolling the collection view to a different card.
+// When the user performs one of the these actions, the controller will automatically perform the other. Thus the map annotations and the
+// cards are always kept in sync with regard to the current point of interest.
 //
 class MapViewController: UIViewController {
     
@@ -33,6 +33,8 @@ class MapViewController: UIViewController {
     @IBOutlet weak var collectionView : UICollectionView!
     
     private let poiCellReuseIdentifier = "PointOfInterestCell"
+
+    var locationManager : CLLocationManager!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,37 +49,20 @@ class MapViewController: UIViewController {
         collectionView.registerNib(poiCellNib, forCellWithReuseIdentifier: poiCellReuseIdentifier)
         
         PointOfInterest.pointsOfInterest[0].isCurrent = true
+
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager = CLLocationManager()
+            //locationManager.desiredAccuracy = 1
+            //locationManager.distanceFilter = 0.5
+            locationManager.delegate = self
+        }
+        else {
+            alertUser("Location Services Needed", body: "Please enable location services so that Trail of History can show you how far you are from the points of interest.")
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
         navigationItem.hidesBackButton = true
-    }
-
-    /* For the given Point of Interest, set the image used by its collection view cell and its map annotation.
-     * The current point of interest uses a unique image; all of the others use the same image.
-     * If isCurrent is true then take the additional step of centering the map on the annotation
-     */
-    private func configurePointOfInterest(poi: PointOfInterest, isCurrent: Bool) {
-        poi.isCurrent = isCurrent
-
-        let image = isCurrent ? PointOfInterest.imageForCurrent : PointOfInterest.imageForNotCurrent
-
-        mapView.viewForAnnotation(poi)?.image = image
-
-        let path = NSIndexPath(forItem: PointOfInterest.pointsOfInterest.indexOf(poi)!, inSection: 0)
-        (collectionView.cellForItemAtIndexPath(path) as? PointOfInterestCell)?.imageView.image = image
-
-        if isCurrent { mapView.setCenterCoordinate(poi.coordinate, animated: true) }
-    }
-
-    private func getCurrentPoi() -> PointOfInterest {
-        for poi in PointOfInterest.pointsOfInterest {
-            if poi.isCurrent {
-                return poi
-            }
-        }
-        
-        fatalError("There is not a current Point of Interest???") // This should never happen
     }
 }
 
@@ -143,12 +128,11 @@ extension MapViewController : UICollectionViewDataSource {
 
         // The points of interest are sorted by longitude, westmost first. The cell at index 0 will use the data from the westmost (first) poi;
         // the cell at index count - 1 will use the data from the eastmost (last) poi. Thus the horizontal sequencing of the cells from left to
-        // right will mirror the logitudinal sequencing of the points of interest from west to east.
+        // right mirrors the logitudinal sequencing of the points of interest from west to east.
         let poi = PointOfInterest.pointsOfInterest[indexPath.item]
         poiCell.nameLabel.text = poi.title
         poiCell.imageView.image = poi.isCurrent ? PointOfInterest.imageForCurrent : PointOfInterest.imageForNotCurrent
-        if let distance = poi.distance { poiCell.distanceLabel.text = "\(distance) yds" }
-        else { poiCell.distanceLabel.text = "<unknown>" }
+        poiCell.distanceLabel.text = formatDistanceTo(pointOfInterest: poi)
         
         poiCell.layer.shadowOpacity = 0.3
         poiCell.layer.masksToBounds = false
@@ -205,5 +189,70 @@ extension MapViewController : MKMapViewDelegate {
                 configurePointOfInterest(selectedPoi, isCurrent: true)
             }
         }
+    }
+}
+
+extension MapViewController : CLLocationManagerDelegate {
+
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        
+        switch status {
+        case CLAuthorizationStatus.NotDetermined:
+            locationManager.requestWhenInUseAuthorization();
+            
+        case CLAuthorizationStatus.AuthorizedWhenInUse:
+            locationManager.startUpdatingLocation()
+            
+        default:
+            break
+        }
+    }
+
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        PointOfInterest.updateDistancesTo(userLocation: locations[locations.count - 1])
+        for poi in PointOfInterest.pointsOfInterest {
+            let path = NSIndexPath(forItem: PointOfInterest.pointsOfInterest.indexOf(poi)!, inSection: 0)
+            (collectionView.cellForItemAtIndexPath(path) as? PointOfInterestCell)?.distanceLabel.text = formatDistanceTo(pointOfInterest: poi)
+        }
+    }
+}
+
+extension MapViewController {
+    /* For the given Point of Interest, set the image used by its collection view cell and its map annotation.
+     * The current point of interest uses a unique image; all of the others use the same image.
+     * If isCurrent is true then take the additional step of centering the map on the annotation
+     */
+    private func configurePointOfInterest(poi: PointOfInterest, isCurrent: Bool) {
+        poi.isCurrent = isCurrent
+        
+        let image = isCurrent ? PointOfInterest.imageForCurrent : PointOfInterest.imageForNotCurrent
+        
+        mapView.viewForAnnotation(poi)?.image = image
+        
+        let path = NSIndexPath(forItem: PointOfInterest.pointsOfInterest.indexOf(poi)!, inSection: 0)
+        (collectionView.cellForItemAtIndexPath(path) as? PointOfInterestCell)?.imageView.image = image
+        
+        if isCurrent { mapView.setCenterCoordinate(poi.coordinate, animated: true) }
+    }
+    
+    private func getCurrentPoi() -> PointOfInterest {
+        for poi in PointOfInterest.pointsOfInterest {
+            if poi.isCurrent {
+                return poi
+            }
+        }
+        
+        fatalError("There is not a current Point of Interest???") // This should never happen
+    }
+    
+    private func alertUser(title: String?, body: String?) {
+        let alert = UIAlertController(title: title, message: body, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: false, completion: nil)
+    }
+    
+    private func formatDistanceTo(pointOfInterest poi: PointOfInterest) -> String {
+        if let distance = poi.distance { return "\(Int(round(distance))) yds" }
+        else { return "<unknown>" }
     }
 }

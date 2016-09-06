@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>The Trail of History would like to use your current location so as to be able to show you how far you are from the points of interest.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Archer-Medium.otf</string>
