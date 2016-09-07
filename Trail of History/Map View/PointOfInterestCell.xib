@@ -47,7 +47,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pM6-hk-DqZ" userLabel="Detail">
-                        <rect key="frame" x="201" y="8" width="21" height="54"/>
+                        <rect key="frame" x="201" y="8" width="21" height="22"/>
                         <state key="normal" image="DetailIndicator"/>
                         <connections>
                             <action selector="detailDisclosure:" destination="xq2-62-uxi" eventType="touchUpInside" id="W1V-y6-xW3"/>
@@ -66,7 +66,6 @@
                 <constraint firstItem="pM6-hk-DqZ" firstAttribute="top" secondItem="xq2-62-uxi" secondAttribute="topMargin" id="gw3-dR-aEi"/>
                 <constraint firstItem="4M5-S0-Vwo" firstAttribute="leading" secondItem="nMV-mg-0f5" secondAttribute="trailing" id="mgp-aQ-gCv"/>
                 <constraint firstItem="64L-MP-RrG" firstAttribute="leading" secondItem="nMV-mg-0f5" secondAttribute="trailing" id="pLw-Sf-dj7"/>
-                <constraint firstItem="pM6-hk-DqZ" firstAttribute="bottom" secondItem="xq2-62-uxi" secondAttribute="bottomMargin" id="q9K-0a-Pn7"/>
                 <constraint firstItem="nMV-mg-0f5" firstAttribute="centerY" secondItem="xq2-62-uxi" secondAttribute="centerY" id="v9V-s3-m4V"/>
                 <constraint firstItem="ksE-Ks-yq6" firstAttribute="centerY" secondItem="xq2-62-uxi" secondAttribute="centerY" id="xHT-nZ-s1z"/>
             </constraints>

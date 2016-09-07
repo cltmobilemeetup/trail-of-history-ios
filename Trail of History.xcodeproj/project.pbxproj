@@ -26,7 +26,7 @@
 		E1C238661D6C9EF900A718A8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C238651D6C9EF900A718A8 /* MapKit.framework */; };
 		E1C238681D6CA65700A718A8 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C238671D6CA65700A718A8 /* UIViewExtensions.swift */; };
 		E1DFEBB01D7663B9007359F4 /* DIN Condensed Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E1DFEBAF1D7663B9007359F4 /* DIN Condensed Bold.ttf */; };
-		E1DFEBB81D7705D7007359F4 /* TrailBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFEBB71D7705D7007359F4 /* TrailBounds.swift */; };
+		E1DFEBB81D7705D7007359F4 /* TrailRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFEBB71D7705D7007359F4 /* TrailRegion.swift */; };
 		E1DFEBBB1D775E7A007359F4 /* PointsOfInterest.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1DFEBB91D775E7A007359F4 /* PointsOfInterest.plist */; };
 		E1DFEBBC1D775E7A007359F4 /* TrailBounds.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1DFEBBA1D775E7A007359F4 /* TrailBounds.plist */; };
 		E1DFEBC11D77715E007359F4 /* DummyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFEBBE1D77715E007359F4 /* DummyListViewController.swift */; };
@@ -79,7 +79,7 @@
 		E1C238651D6C9EF900A718A8 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E1C238671D6CA65700A718A8 /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		E1DFEBAF1D7663B9007359F4 /* DIN Condensed Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DIN Condensed Bold.ttf"; sourceTree = "<group>"; };
-		E1DFEBB71D7705D7007359F4 /* TrailBounds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TrailBounds.swift; path = "Map View/TrailBounds.swift"; sourceTree = "<group>"; };
+		E1DFEBB71D7705D7007359F4 /* TrailRegion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TrailRegion.swift; path = "Map View/TrailRegion.swift"; sourceTree = "<group>"; };
 		E1DFEBB91D775E7A007359F4 /* PointsOfInterest.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PointsOfInterest.plist; path = "Map View/Data/PointsOfInterest.plist"; sourceTree = "<group>"; };
 		E1DFEBBA1D775E7A007359F4 /* TrailBounds.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = TrailBounds.plist; path = "Map View/Data/TrailBounds.plist"; sourceTree = "<group>"; };
 		E1DFEBBE1D77715E007359F4 /* DummyListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DummyListViewController.swift; path = "Map View/Temp/DummyListViewController.swift"; sourceTree = "<group>"; };
@@ -147,7 +147,7 @@
 				E114C71D1D7B0D8500BE3984 /* PointOfInterestCell.swift */,
 				E1F984E41D6F6B1300D28411 /* Title.swift */,
 				E1F984E21D6F692D00D28411 /* Title.xib */,
-				E1DFEBB71D7705D7007359F4 /* TrailBounds.swift */,
+				E1DFEBB71D7705D7007359F4 /* TrailRegion.swift */,
 				E1DFEBB21D7701AF007359F4 /* Data */,
 				E150ED411D7629CB006C40AF /* Temp */,
 			);
@@ -394,7 +394,7 @@
 				E1DFEBC21D77715E007359F4 /* NavigationController.swift in Sources */,
 				E1F984E51D6F6B1300D28411 /* Title.swift in Sources */,
 				E1C238681D6CA65700A718A8 /* UIViewExtensions.swift in Sources */,
-				E1DFEBB81D7705D7007359F4 /* TrailBounds.swift in Sources */,
+				E1DFEBB81D7705D7007359F4 /* TrailRegion.swift in Sources */,
 				E114C71E1D7B0D8500BE3984 /* PointOfInterestCell.swift in Sources */,
 				4D8B76541C97944300A70B71 /* Trail_of_History.xcdatamodeld in Sources */,
 				0C01F5171D63E163005C6284 /* UIColor+CustomColors.swift in Sources */,

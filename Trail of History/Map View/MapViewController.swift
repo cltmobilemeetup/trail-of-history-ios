@@ -44,7 +44,7 @@ class MapViewController: UIViewController {
         navigationItem.titleView = UIView.fromNib("Title")
         navigationItem.rightBarButtonItem?.tintColor = UIColor.tohTerracotaColor()
         
-        mapView.region = TrailBounds.instance.region
+        mapView.region = TrailRegion.instance.region
         mapView.addAnnotations(PointOfInterest.pointsOfInterest)
         
         let poiCellNib = UINib(nibName: "PointOfInterestCell", bundle: nil)
