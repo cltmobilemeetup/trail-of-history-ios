@@ -43,20 +43,30 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4M5-S0-Vwo" userLabel="Distance">
                         <rect key="frame" x="48" y="45" width="65" height="17"/>
                         <fontDescription key="fontDescription" name="Archer-Medium" family="Archer" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pM6-hk-DqZ" userLabel="Detail">
+                        <rect key="frame" x="201" y="8" width="21" height="54"/>
+                        <state key="normal" image="DetailIndicator"/>
+                        <connections>
+                            <action selector="detailDisclosure:" destination="xq2-62-uxi" eventType="touchUpInside" id="W1V-y6-xW3"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.79916487068965514" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="64L-MP-RrG" firstAttribute="top" secondItem="xq2-62-uxi" secondAttribute="topMargin" id="4az-dX-FoF"/>
+                <constraint firstItem="pM6-hk-DqZ" firstAttribute="trailing" secondItem="xq2-62-uxi" secondAttribute="trailingMargin" id="SQR-qU-DjR"/>
                 <constraint firstItem="ksE-Ks-yq6" firstAttribute="leading" secondItem="nMV-mg-0f5" secondAttribute="trailing" id="US9-YH-ZXT"/>
                 <constraint firstItem="4M5-S0-Vwo" firstAttribute="bottom" secondItem="xq2-62-uxi" secondAttribute="bottomMargin" id="chw-Uv-hkI"/>
                 <constraint firstItem="nMV-mg-0f5" firstAttribute="leading" secondItem="xq2-62-uxi" secondAttribute="leadingMargin" id="gPp-CJ-SYL"/>
+                <constraint firstItem="pM6-hk-DqZ" firstAttribute="top" secondItem="xq2-62-uxi" secondAttribute="topMargin" id="gw3-dR-aEi"/>
                 <constraint firstItem="4M5-S0-Vwo" firstAttribute="leading" secondItem="nMV-mg-0f5" secondAttribute="trailing" id="mgp-aQ-gCv"/>
                 <constraint firstItem="64L-MP-RrG" firstAttribute="leading" secondItem="nMV-mg-0f5" secondAttribute="trailing" id="pLw-Sf-dj7"/>
+                <constraint firstItem="pM6-hk-DqZ" firstAttribute="bottom" secondItem="xq2-62-uxi" secondAttribute="bottomMargin" id="q9K-0a-Pn7"/>
                 <constraint firstItem="nMV-mg-0f5" firstAttribute="centerY" secondItem="xq2-62-uxi" secondAttribute="centerY" id="v9V-s3-m4V"/>
                 <constraint firstItem="ksE-Ks-yq6" firstAttribute="centerY" secondItem="xq2-62-uxi" secondAttribute="centerY" id="xHT-nZ-s1z"/>
             </constraints>
@@ -81,6 +91,7 @@
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="DetailIndicator" width="21" height="13"/>
         <image name="Line" width="36" height="3"/>
         <image name="PoiAnnotation" width="20" height="29"/>
     </resources>

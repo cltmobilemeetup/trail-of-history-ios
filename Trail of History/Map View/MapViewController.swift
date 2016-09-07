@@ -34,10 +34,12 @@ class MapViewController: UIViewController {
     
     private let poiCellReuseIdentifier = "PointOfInterestCell"
 
-    var locationManager : CLLocationManager!
+    private var locationManager : CLLocationManager!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        PointOfInterest.pointsOfInterest[0].isCurrent = true
 
         navigationItem.titleView = UIView.fromNib("Title")
         navigationItem.rightBarButtonItem?.tintColor = UIColor.tohTerracotaColor()
@@ -48,8 +50,6 @@ class MapViewController: UIViewController {
         let poiCellNib = UINib(nibName: "PointOfInterestCell", bundle: nil)
         collectionView.registerNib(poiCellNib, forCellWithReuseIdentifier: poiCellReuseIdentifier)
         
-        PointOfInterest.pointsOfInterest[0].isCurrent = true
-
         if CLLocationManager.locationServicesEnabled() {
             locationManager = CLLocationManager()
             //locationManager.desiredAccuracy = 1
@@ -60,9 +60,41 @@ class MapViewController: UIViewController {
             alertUser("Location Services Needed", body: "Please enable location services so that Trail of History can show you how far you are from the points of interest.")
         }
     }
-    
+
     override func viewWillAppear(animated: Bool) {
         navigationItem.hidesBackButton = true
+    }
+
+    private var detailView: UILabel!
+    func showDetailView(cell: PointOfInterestCell) {
+        if detailView == nil {
+            detailView = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+            detailView.autoresizingMask = [.FlexibleTopMargin, .FlexibleRightMargin, .FlexibleBottomMargin, .FlexibleLeftMargin]
+            detailView.numberOfLines = 0 // As many as needed
+            detailView.lineBreakMode = .ByWordWrapping
+            detailView.backgroundColor = UIColor.whiteColor()
+            detailView.userInteractionEnabled = true
+            detailView.layer.cornerRadius = 5
+            detailView.layer.borderColor = UIColor.grayColor().CGColor
+            detailView.layer.borderWidth = 1
+            detailView.addGestureRecognizer(UITapGestureRecognizer(target:self, action: #selector(removeDetailView)))
+        }
+
+        let poi = PointOfInterest.pointsOfInterest[collectionView.indexPathForCell(cell)!.item]
+        detailView.text = poi.information
+        view.addSubview(detailView)
+        detailView.bounds = CGRectInset(view!.bounds, 50, 100)
+        detailView.sizeToFit()
+        detailView.center = CGPoint(x: view.bounds.width/2, y: view.bounds.height/2)
+        
+        collectionView.scrollEnabled = false
+    }
+
+    func removeDetailView(sender: UITapGestureRecognizer) {
+        if sender.state == .Ended {
+            detailView.removeFromSuperview()
+            collectionView.scrollEnabled = true
+        }
     }
 }
 
@@ -124,12 +156,13 @@ extension MapViewController : UICollectionViewDataSource {
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
 
-        let poiCell = collectionView.dequeueReusableCellWithReuseIdentifier(poiCellReuseIdentifier, forIndexPath: indexPath) as! PointOfInterestCell
-
         // The points of interest are sorted by longitude, westmost first. The cell at index 0 will use the data from the westmost (first) poi;
         // the cell at index count - 1 will use the data from the eastmost (last) poi. Thus the horizontal sequencing of the cells from left to
         // right mirrors the logitudinal sequencing of the points of interest from west to east.
         let poi = PointOfInterest.pointsOfInterest[indexPath.item]
+
+        let poiCell = collectionView.dequeueReusableCellWithReuseIdentifier(poiCellReuseIdentifier, forIndexPath: indexPath) as! PointOfInterestCell
+
         poiCell.nameLabel.text = poi.title
         poiCell.imageView.image = poi.isCurrent ? PointOfInterest.imageForCurrent : PointOfInterest.imageForNotCurrent
         poiCell.distanceLabel.text = formatDistanceTo(pointOfInterest: poi)
@@ -137,6 +170,8 @@ extension MapViewController : UICollectionViewDataSource {
         poiCell.layer.shadowOpacity = 0.3
         poiCell.layer.masksToBounds = false
         poiCell.layer.shadowOffset = CGSize(width: 4, height: 4)
+
+        poiCell.showDetailViewDelegate = showDetailView
 
         return poiCell
     }
@@ -217,7 +252,8 @@ extension MapViewController : CLLocationManagerDelegate {
     }
 }
 
-extension MapViewController {
+extension MapViewController { // Utility Methods
+
     /* For the given Point of Interest, set the image used by its collection view cell and its map annotation.
      * The current point of interest uses a unique image; all of the others use the same image.
      * If isCurrent is true then take the additional step of centering the map on the annotation
