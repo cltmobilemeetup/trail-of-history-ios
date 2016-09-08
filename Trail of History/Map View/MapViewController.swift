@@ -38,19 +38,18 @@ class MapViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         PointOfInterest.pointsOfInterest[0].isCurrent = true
 
         navigationItem.titleView = UIView.fromNib("Title")
         navigationItem.rightBarButtonItem?.tintColor = UIColor.tohTerracotaColor()
-        
-        mapView.region = TrailRegion.instance.region
-        mapView.addAnnotations(PointOfInterest.pointsOfInterest)
-        
+         
         let poiCellNib = UINib(nibName: "PointOfInterestCell", bundle: nil)
         collectionView.registerNib(poiCellNib, forCellWithReuseIdentifier: poiCellReuseIdentifier)
         
-        if CLLocationManager.locationServicesEnabled() {
+         mapView.region = TrailRegion.instance.region
+         mapView.addAnnotations(PointOfInterest.pointsOfInterest)
+
+         if CLLocationManager.locationServicesEnabled() {
             locationManager = CLLocationManager()
             //locationManager.desiredAccuracy = 1
             //locationManager.distanceFilter = 0.5
@@ -64,40 +63,8 @@ class MapViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         navigationItem.hidesBackButton = true
     }
-
-    private var detailView: UILabel!
-    func showDetailView(cell: PointOfInterestCell) {
-        if detailView == nil {
-            detailView = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-            detailView.autoresizingMask = [.FlexibleTopMargin, .FlexibleRightMargin, .FlexibleBottomMargin, .FlexibleLeftMargin]
-            detailView.numberOfLines = 0 // As many as needed
-            detailView.lineBreakMode = .ByWordWrapping
-            detailView.backgroundColor = UIColor.whiteColor()
-            detailView.userInteractionEnabled = true
-            detailView.layer.cornerRadius = 5
-            detailView.layer.borderColor = UIColor.grayColor().CGColor
-            detailView.layer.borderWidth = 1
-            detailView.addGestureRecognizer(UITapGestureRecognizer(target:self, action: #selector(removeDetailView)))
-        }
-
-        let poi = PointOfInterest.pointsOfInterest[collectionView.indexPathForCell(cell)!.item]
-        detailView.text = poi.information
-        view.addSubview(detailView)
-        detailView.bounds = CGRectInset(view!.bounds, 50, 100)
-        detailView.sizeToFit()
-        detailView.center = CGPoint(x: view.bounds.width/2, y: view.bounds.height/2)
-        
-        collectionView.scrollEnabled = false
-    }
-
-    func removeDetailView(sender: UITapGestureRecognizer) {
-        if sender.state == .Ended {
-            detailView.removeFromSuperview()
-            collectionView.scrollEnabled = true
-        }
-    }
 }
-
+ 
 extension MapViewController : UICollectionViewDelegate {
     
     // When the user scrolls the collection view the current cell will change. We will respond to this change as it occurs
@@ -171,7 +138,7 @@ extension MapViewController : UICollectionViewDataSource {
         poiCell.layer.masksToBounds = false
         poiCell.layer.shadowOffset = CGSize(width: 4, height: 4)
 
-        poiCell.showDetailViewDelegate = showDetailView
+        poiCell.showDetailViewDelegate = self
 
         return poiCell
     }
@@ -252,6 +219,47 @@ extension MapViewController : CLLocationManagerDelegate {
     }
 }
 
+extension MapViewController : ShowDetailViewDelegate {
+
+    class GestureRecognizer: UITapGestureRecognizer {
+        private var detailView: UILabel
+        
+        init(target: AnyObject?, action: Selector, detail: UILabel) {
+            detailView = detail
+            super.init(target: target, action: action)
+        }
+    }
+
+    func showDetailViewFor(cell: PointOfInterestCell) {
+        let detailView = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        detailView.autoresizingMask = [.FlexibleTopMargin, .FlexibleRightMargin, .FlexibleBottomMargin, .FlexibleLeftMargin]
+        detailView.numberOfLines = 0 // As many as needed
+        detailView.lineBreakMode = .ByWordWrapping
+        detailView.backgroundColor = UIColor.whiteColor()
+        detailView.userInteractionEnabled = true
+        detailView.layer.cornerRadius = 5
+        detailView.layer.borderColor = UIColor.grayColor().CGColor
+        detailView.layer.borderWidth = 1
+        detailView.addGestureRecognizer(GestureRecognizer(target:self, action: #selector(removeDetailView), detail: detailView))
+        
+        let poi = PointOfInterest.pointsOfInterest[collectionView.indexPathForCell(cell)!.item]
+        detailView.text = poi.information
+        view.addSubview(detailView)
+        detailView.bounds = CGRectInset(view!.bounds, 50, 100)
+        detailView.sizeToFit()
+        detailView.center = CGPoint(x: view.bounds.width/2, y: view.bounds.height/2)
+        
+        collectionView.scrollEnabled = false
+    }
+    
+    func removeDetailView(sender: UITapGestureRecognizer) {
+        if sender.state == .Ended {
+            (sender as! GestureRecognizer).detailView.removeFromSuperview()
+            collectionView.scrollEnabled = true
+        }
+    }
+}
+
 extension MapViewController { // Utility Methods
 
     /* For the given Point of Interest, set the image used by its collection view cell and its map annotation.
@@ -292,3 +300,4 @@ extension MapViewController { // Utility Methods
         else { return "<unknown>" }
     }
 }
+ 

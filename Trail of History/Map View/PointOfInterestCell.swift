@@ -8,15 +8,19 @@
 
 import UIKit
 
+protocol ShowDetailViewDelegate: class {
+    func showDetailViewFor(cell: PointOfInterestCell)
+}
+
 class PointOfInterestCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     
-    var showDetailViewDelegate: ((PointOfInterestCell) -> ())?
+    weak var showDetailViewDelegate: ShowDetailViewDelegate?
 
     @IBAction func detailDisclosure(sender: UIButton) {
-        if let delegate = showDetailViewDelegate { delegate(self) }
+        if let delegate = showDetailViewDelegate { delegate.showDetailViewFor(self) }
     }
 }
