@@ -63,6 +63,20 @@ class MapViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         navigationItem.hidesBackButton = true
     }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        switch segue.identifier {
+        case "Show Options"?:
+            let controller = segue.destinationViewController as! OptionsViewController
+            // TODO: Calculate the preferred size from the actual content of the Options controller's table.
+            controller.preferredContentSize = CGSize(width: 150, height: 200)
+            let presentationController = controller.popoverPresentationController!
+            presentationController.barButtonItem = sender as? UIBarButtonItem
+            presentationController.delegate = controller
+        default:
+            break
+        }
+    }
 }
  
 extension MapViewController : UICollectionViewDelegate {
