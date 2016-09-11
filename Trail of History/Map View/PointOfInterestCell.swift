@@ -21,6 +21,6 @@ class PointOfInterestCell: UICollectionViewCell {
     weak var showDetailViewDelegate: ShowDetailViewDelegate?
 
     @IBAction func detailDisclosure(sender: UIButton) {
-        if let delegate = showDetailViewDelegate { delegate.showDetailViewFor(self) }
+        showDetailViewDelegate?.showDetailViewFor(self)
     }
 }

@@ -69,7 +69,9 @@ class MapViewController: UIViewController {
         case "Show Options"?:
             let controller = segue.destinationViewController as! OptionsViewController
             // TODO: Calculate the preferred size from the actual content of the Options controller's table.
-            controller.preferredContentSize = CGSize(width: 150, height: 200)
+            controller.preferredContentSize = CGSize(width: 150, height: 325)
+            controller.delegate = self
+
             let presentationController = controller.popoverPresentationController!
             presentationController.barButtonItem = sender as? UIBarButtonItem
             presentationController.delegate = controller
@@ -270,6 +272,35 @@ extension MapViewController : ShowDetailViewDelegate {
         if sender.state == .Ended {
             (sender as! GestureRecognizer).detailView.removeFromSuperview()
             collectionView.scrollEnabled = true
+        }
+    }
+}
+
+extension MapViewController : OptionsViewControllerDelegate {
+    var mapType: MKMapType {
+        get {
+            return mapView.mapType
+        }
+        set {
+            mapView.mapType = newValue
+        }
+    }
+
+    var trailPathIsVisible: Bool {
+        get {
+            return false
+        }
+        set {
+            
+        }
+    }
+
+    var userLocationIsTracked: Bool {
+        get {
+            return false
+        }
+        set {
+            
         }
     }
 }
