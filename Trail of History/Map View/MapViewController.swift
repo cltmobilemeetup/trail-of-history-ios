@@ -41,6 +41,7 @@ class MapViewController: UIViewController {
         PointOfInterest.pointsOfInterest[0].isCurrent = true
 
         navigationItem.titleView = UIView.fromNib("Title")
+        navigationItem.titleView?.backgroundColor = UIColor.clearColor() // It was set to an opaque color in the nib so that the white images would be visible
         navigationItem.rightBarButtonItem?.tintColor = UIColor.tohTerracotaColor()
          
         let poiCellNib = UINib(nibName: "PointOfInterestCell", bundle: nil)
@@ -67,14 +68,14 @@ class MapViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segue.identifier {
         case "Show Options"?:
-            let controller = segue.destinationViewController as! OptionsViewController
+            let optionsViewController = segue.destinationViewController as! OptionsViewController
             // TODO: Calculate the preferred size from the actual content of the Options controller's table.
-            controller.preferredContentSize = CGSize(width: 150, height: 325)
-            controller.delegate = self
+            optionsViewController.preferredContentSize = CGSize(width: 150, height: 325)
+            optionsViewController.delegate = self
 
-            let presentationController = controller.popoverPresentationController!
+            let presentationController = optionsViewController.popoverPresentationController!
             presentationController.barButtonItem = sender as? UIBarButtonItem
-            presentationController.delegate = controller
+            presentationController.delegate = optionsViewController
         default:
             break
         }

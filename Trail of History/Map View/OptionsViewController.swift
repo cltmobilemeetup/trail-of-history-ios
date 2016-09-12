@@ -58,7 +58,7 @@ class OptionsViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
         func processMapTypeSelection(cell: UITableViewCell, identifier: CellIdentifier) {
-            // Ensure that the cell is one of the Map Type cells and that it had not already been selected
+            // Ensure that the cell is a map type cell and that the user has not tapped the one that was previously selected (no need to process it again)
             guard let mapType = identifier.mapType where cell.accessoryType == .None else { return }
             
             // Check the selected cell and uncheck the others.
@@ -67,7 +67,6 @@ class OptionsViewController: UITableViewController {
                 id.getCell(tableView)?.accessoryType = .None
             }
 
-            // Update the manner in which the map is displayed
             delegate?.mapType = mapType
         }
 
@@ -90,7 +89,11 @@ class OptionsViewController: UITableViewController {
                 delegate?.userLocationIsTracked = cell.accessoryType == .Checkmark
         }
         
-        cell.selected = false
+        cell.selected = false // Don't leave it highlighted
+    }
+
+    @IBAction func dismiss(sender: UIButton) {
+        dismissViewControllerAnimated(true, completion: nil)
     }
 }
 
