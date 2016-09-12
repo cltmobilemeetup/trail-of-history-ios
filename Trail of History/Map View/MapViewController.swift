@@ -41,7 +41,7 @@ class MapViewController: UIViewController {
         PointOfInterest.pointsOfInterest[0].isCurrent = true
 
         navigationItem.titleView = UIView.fromNib("Title")
-        navigationItem.titleView?.backgroundColor = UIColor.clearColor() // It was set to an opaque color in the nib so that the white images would be visible
+        navigationItem.titleView?.backgroundColor = UIColor.clearColor() // It was set to an opaque color in the nib so that the white images would be visible in Interface Builder.
         navigationItem.rightBarButtonItem?.tintColor = UIColor.tohTerracotaColor()
          
         let poiCellNib = UINib(nibName: "PointOfInterestCell", bundle: nil)
