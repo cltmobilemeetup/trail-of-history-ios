@@ -38,7 +38,7 @@ class MapViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        PointOfInterest.pointsOfInterest[0].isCurrent = true
+        Trail.instance.pointsOfInterest[0].isCurrent = true
 
         navigationItem.titleView = UIView.fromNib("Title")
         navigationItem.titleView?.backgroundColor = UIColor.clearColor() // It was set to an opaque color in the nib so that the white images would be visible in Interface Builder.
@@ -48,7 +48,7 @@ class MapViewController: UIViewController {
         collectionView.registerNib(poiCellNib, forCellWithReuseIdentifier: poiCellReuseIdentifier)
         
          mapView.region = Trail.instance.region
-         mapView.addAnnotations(PointOfInterest.pointsOfInterest)
+         mapView.addAnnotations(Trail.instance.pointsOfInterest)
 
          if CLLocationManager.locationServicesEnabled() {
             locationManager = CLLocationManager()
@@ -95,7 +95,7 @@ extension MapViewController : UICollectionViewDelegate {
         // in a way that is entirely local.
         func makeCurrentCellChangeDetecter(position: CGPoint) -> () -> (oldCurrent: NSIndexPath, newCurrent: NSIndexPath)? {
             
-            let item = PointOfInterest.pointsOfInterest.indexOf(getCurrentPoi())!
+            let item = Trail.instance.pointsOfInterest.indexOf(getCurrentPoi())!
             var indexOfCurrent = NSIndexPath(forItem: item, inSection: 0)
             
             // The detecter returns the index of the cell that has newly occupied the position or
@@ -121,10 +121,10 @@ extension MapViewController : UICollectionViewDelegate {
     @objc func currentCellChangeDetectionTimer(timer: NSTimer) {
         let changeDetecter = (timer.userInfo as! ObjectWrapper<() -> (oldCurrent: NSIndexPath, newCurrent: NSIndexPath)?>).value
         if let currentCellChanged = changeDetecter() {
-            let oldPoi = PointOfInterest.pointsOfInterest[currentCellChanged.oldCurrent.item]
+            let oldPoi = Trail.instance.pointsOfInterest[currentCellChanged.oldCurrent.item]
             configurePointOfInterest(oldPoi, isCurrent: false)
 
-            let newPoi = PointOfInterest.pointsOfInterest[currentCellChanged.newCurrent.item]
+            let newPoi = Trail.instance.pointsOfInterest[currentCellChanged.newCurrent.item]
             configurePointOfInterest(newPoi, isCurrent: true)
         }
 
@@ -135,7 +135,7 @@ extension MapViewController : UICollectionViewDelegate {
 extension MapViewController : UICollectionViewDataSource {
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return PointOfInterest.pointsOfInterest.count
+        return Trail.instance.pointsOfInterest.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -143,12 +143,12 @@ extension MapViewController : UICollectionViewDataSource {
         // The points of interest are sorted by longitude, westmost first. The cell at index 0 will use the data from the westmost (first) poi;
         // the cell at index count - 1 will use the data from the eastmost (last) poi. Thus the horizontal sequencing of the cells from left to
         // right mirrors the logitudinal sequencing of the points of interest from west to east.
-        let poi = PointOfInterest.pointsOfInterest[indexPath.item]
+        let poi = Trail.instance.pointsOfInterest[indexPath.item]
 
         let poiCell = collectionView.dequeueReusableCellWithReuseIdentifier(poiCellReuseIdentifier, forIndexPath: indexPath) as! PointOfInterestCell
 
         poiCell.nameLabel.text = poi.title
-        poiCell.imageView.image = poi.isCurrent ? PointOfInterest.imageForCurrent : PointOfInterest.imageForNotCurrent
+        poiCell.imageView.image = poi.isCurrent ? Trail.PointOfInterest.imageForCurrent : Trail.PointOfInterest.imageForNotCurrent
         poiCell.distanceLabel.text = formatDistanceTo(pointOfInterest: poi)
         
         poiCell.layer.shadowOpacity = 0.3
@@ -172,7 +172,7 @@ extension MapViewController : MKMapViewDelegate {
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         
-        if let poi = annotation as? PointOfInterest {
+        if let poi = annotation as? Trail.PointOfInterest {
             
             let reuseId = "PoiAnnotation"
             let annotationView: MKAnnotationView
@@ -185,7 +185,7 @@ extension MapViewController : MKMapViewDelegate {
             }
 
             annotationView.canShowCallout = false
-            annotationView.image = poi.isCurrent ? PointOfInterest.imageForCurrent : PointOfInterest.imageForNotCurrent
+            annotationView.image = poi.isCurrent ? Trail.PointOfInterest.imageForCurrent : Trail.PointOfInterest.imageForNotCurrent
             return annotationView
         }
 
@@ -193,12 +193,12 @@ extension MapViewController : MKMapViewDelegate {
     }
 
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
-        if let selectedPoi = view.annotation as? PointOfInterest {
+        if let selectedPoi = view.annotation as? Trail.PointOfInterest {
             // If the user tapped on a point of interest other than the current one then ...
             if !selectedPoi.isCurrent {
 
                 // Scroll the collection view to the cell (point of interest) that corresponds to the selected annotation (point of interest).
-                let selectedPoiIndex = PointOfInterest.pointsOfInterest.indexOf(selectedPoi)!
+                let selectedPoiIndex = Trail.instance.pointsOfInterest.indexOf(selectedPoi)!
                 collectionView.scrollToItemAtIndexPath(NSIndexPath(forRow: selectedPoiIndex, inSection: 0), atScrollPosition: .CenteredHorizontally, animated: true)
                 
                 // Find the current POI and make it not current.
@@ -211,7 +211,7 @@ extension MapViewController : MKMapViewDelegate {
     }
 
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
-        return Trail.instance
+        return Trail.instance.route.renderer
     }
 }
 
@@ -232,9 +232,9 @@ extension MapViewController : CLLocationManagerDelegate {
     }
 
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        PointOfInterest.updateDistancesTo(userLocation: locations[locations.count - 1])
-        for poi in PointOfInterest.pointsOfInterest {
-            let path = NSIndexPath(forItem: PointOfInterest.pointsOfInterest.indexOf(poi)!, inSection: 0)
+        Trail.instance.updateDistancesTo(userLocation: locations[locations.count - 1])
+        for poi in Trail.instance.pointsOfInterest {
+            let path = NSIndexPath(forItem: Trail.instance.pointsOfInterest.indexOf(poi)!, inSection: 0)
             (collectionView.cellForItemAtIndexPath(path) as? PointOfInterestCell)?.distanceLabel.text = formatDistanceTo(pointOfInterest: poi)
         }
     }
@@ -263,7 +263,7 @@ extension MapViewController : ShowDetailViewDelegate {
         detailView.layer.borderWidth = 1
         detailView.addGestureRecognizer(GestureRecognizer(target:self, action: #selector(removeDetailView), detail: detailView))
         
-        let poi = PointOfInterest.pointsOfInterest[collectionView.indexPathForCell(cell)!.item]
+        let poi = Trail.instance.pointsOfInterest[collectionView.indexPathForCell(cell)!.item]
         detailView.text = poi.information
         view.addSubview(detailView)
         detailView.bounds = CGRectInset(view!.bounds, 50, 100)
@@ -297,10 +297,10 @@ extension MapViewController : OptionsViewControllerDelegate {
         }
         set {
             if newValue {
-                mapView.addOverlay(Trail.instance.path)
+                mapView.addOverlay(Trail.instance.route)
             }
             else {
-                mapView.removeOverlay(Trail.instance.path)
+                mapView.removeOverlay(Trail.instance.route)
             }
         }
     }
@@ -321,21 +321,21 @@ extension MapViewController { // Utility Methods
      * The current point of interest uses a unique image; all of the others use the same image.
      * If isCurrent is true then take the additional step of centering the map on the annotation
      */
-    private func configurePointOfInterest(poi: PointOfInterest, isCurrent: Bool) {
+    private func configurePointOfInterest(poi: Trail.PointOfInterest, isCurrent: Bool) {
         poi.isCurrent = isCurrent
         
-        let image = isCurrent ? PointOfInterest.imageForCurrent : PointOfInterest.imageForNotCurrent
+        let image = isCurrent ? Trail.PointOfInterest.imageForCurrent : Trail.PointOfInterest.imageForNotCurrent
         
         mapView.viewForAnnotation(poi)?.image = image
         
-        let path = NSIndexPath(forItem: PointOfInterest.pointsOfInterest.indexOf(poi)!, inSection: 0)
+        let path = NSIndexPath(forItem: Trail.instance.pointsOfInterest.indexOf(poi)!, inSection: 0)
         (collectionView.cellForItemAtIndexPath(path) as? PointOfInterestCell)?.imageView.image = image
         
         if isCurrent { mapView.setCenterCoordinate(poi.coordinate, animated: true) }
     }
     
-    private func getCurrentPoi() -> PointOfInterest {
-        for poi in PointOfInterest.pointsOfInterest {
+    private func getCurrentPoi() -> Trail.PointOfInterest {
+        for poi in Trail.instance.pointsOfInterest {
             if poi.isCurrent {
                 return poi
             }
@@ -350,7 +350,7 @@ extension MapViewController { // Utility Methods
         self.presentViewController(alert, animated: false, completion: nil)
     }
     
-    private func formatDistanceTo(pointOfInterest poi: PointOfInterest) -> String {
+    private func formatDistanceTo(pointOfInterest poi: Trail.PointOfInterest) -> String {
         if let distance = poi.distance { return "\(Int(round(distance))) yds" }
         else { return "<unknown>" }
     }

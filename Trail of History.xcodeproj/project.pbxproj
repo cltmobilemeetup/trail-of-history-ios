@@ -32,7 +32,6 @@
 		E1DFEBBC1D775E7A007359F4 /* TrailBounds.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1DFEBBA1D775E7A007359F4 /* TrailBounds.plist */; };
 		E1DFEBC11D77715E007359F4 /* DummyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFEBBE1D77715E007359F4 /* DummyListViewController.swift */; };
 		E1DFEBC21D77715E007359F4 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFEBBF1D77715E007359F4 /* NavigationController.swift */; };
-		E1DFEBC41D777BE9007359F4 /* PointOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFEBC31D777BE9007359F4 /* PointOfInterest.swift */; };
 		E1F984E31D6F692D00D28411 /* Title.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1F984E21D6F692D00D28411 /* Title.xib */; };
 /* End PBXBuildFile section */
 
@@ -85,7 +84,6 @@
 		E1DFEBBA1D775E7A007359F4 /* TrailBounds.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = TrailBounds.plist; path = "Map View/Data/TrailBounds.plist"; sourceTree = "<group>"; };
 		E1DFEBBE1D77715E007359F4 /* DummyListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DummyListViewController.swift; path = "Map View/Temp/DummyListViewController.swift"; sourceTree = "<group>"; };
 		E1DFEBBF1D77715E007359F4 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationController.swift; path = "Map View/Temp/NavigationController.swift"; sourceTree = "<group>"; };
-		E1DFEBC31D777BE9007359F4 /* PointOfInterest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PointOfInterest.swift; path = "Map View/PointOfInterest.swift"; sourceTree = "<group>"; };
 		E1F984E21D6F692D00D28411 /* Title.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Title.xib; path = "Map View/Title.xib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,7 +141,6 @@
 				E1C2383B1D6B28C700A718A8 /* Map.storyboard */,
 				E1C238451D6B6AFD00A718A8 /* MapViewController.swift */,
 				E1110D441D83564E00CA5135 /* OptionsViewController.swift */,
-				E1DFEBC31D777BE9007359F4 /* PointOfInterest.swift */,
 				E1C2383D1D6B29E900A718A8 /* PointOfInterestCell.xib */,
 				E114C71D1D7B0D8500BE3984 /* PointOfInterestCell.swift */,
 				E1F984E21D6F692D00D28411 /* Title.xib */,
@@ -401,7 +398,6 @@
 				E1C238461D6B6AFD00A718A8 /* MapViewController.swift in Sources */,
 				E1110D461D83564E00CA5135 /* OptionsViewController.swift in Sources */,
 				E1DFEBC11D77715E007359F4 /* DummyListViewController.swift in Sources */,
-				E1DFEBC41D777BE9007359F4 /* PointOfInterest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
