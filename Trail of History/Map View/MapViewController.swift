@@ -47,7 +47,7 @@ class MapViewController: UIViewController {
         let poiCellNib = UINib(nibName: "PointOfInterestCell", bundle: nil)
         collectionView.registerNib(poiCellNib, forCellWithReuseIdentifier: poiCellReuseIdentifier)
         
-         mapView.region = TrailRegion.instance.region
+         mapView.region = Trail.instance.region
          mapView.addAnnotations(PointOfInterest.pointsOfInterest)
 
          if CLLocationManager.locationServicesEnabled() {
@@ -209,6 +209,10 @@ extension MapViewController : MKMapViewDelegate {
             }
         }
     }
+
+    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+        return Trail.instance
+    }
 }
 
 extension MapViewController : CLLocationManagerDelegate {
@@ -289,10 +293,15 @@ extension MapViewController : OptionsViewControllerDelegate {
 
     var trailPathIsVisible: Bool {
         get {
-            return false
+            return mapView.overlays.count == 1
         }
         set {
-            
+            if newValue {
+                mapView.addOverlay(Trail.instance.path)
+            }
+            else {
+                mapView.removeOverlay(Trail.instance.path)
+            }
         }
     }
 
