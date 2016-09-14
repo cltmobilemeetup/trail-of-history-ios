@@ -11,8 +11,11 @@ import MapKit
 
 protocol OptionsViewControllerDelegate: class {
     var mapType: MKMapType { get set }
-    var trailPathIsVisible: Bool { get set }
-    var userLocationIsTracked: Bool { get set }
+    var trailRouteVisible: Bool { get set }
+    var calloutsEnabled: Bool { get set }
+    func zoomToTrail()
+    func zoomToUser()
+    func zoomToBoth()
 }
 
 class OptionsViewController: UITableViewController {
@@ -22,9 +25,13 @@ class OptionsViewController: UITableViewController {
         case Satellite
         case Hybrid
         
-        case TrailPath
-        case TrackUser
+        case TrailRoute
+        case Callouts
         
+        case ZoomToTrail
+        case ZoomToUser
+        case ZoomToBoth
+
         var mapType: MKMapType? {
             get {
                 switch(self) {
@@ -47,46 +54,60 @@ class OptionsViewController: UITableViewController {
         }
     }
 
-    weak var delegate: OptionsViewControllerDelegate?
+    weak var delegate: OptionsViewControllerDelegate!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        CellIdentifier.Standard.getCell(tableView)?.accessoryType = .Checkmark
+        switch delegate.mapType {
+        case .Standard:
+            CellIdentifier.Standard.getCell(tableView)?.accessoryType = .Checkmark
+        case .Satellite:
+            CellIdentifier.Satellite.getCell(tableView)?.accessoryType = .Checkmark
+        case .Hybrid:
+            CellIdentifier.Hybrid.getCell(tableView)?.accessoryType = .Checkmark
+        default:
+            break
+        }
+
+        CellIdentifier.TrailRoute.getCell(tableView)?.accessoryType = delegate.trailRouteVisible ? .Checkmark : .None
+        CellIdentifier.Callouts.getCell(tableView)?.accessoryType = delegate.calloutsEnabled ? .Checkmark : .None
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-
-        func processMapTypeSelection(cell: UITableViewCell, identifier: CellIdentifier) {
-            // Ensure that the cell is a map type cell and that the user has not tapped the one that was previously selected (no need to process it again)
-            guard let mapType = identifier.mapType where cell.accessoryType == .None else { return }
-            
-            // Check the selected cell and uncheck the others.
-            cell.accessoryType = .Checkmark
-            for id in [CellIdentifier.Standard, CellIdentifier.Satellite, CellIdentifier.Hybrid] where id != identifier {
-                id.getCell(tableView)?.accessoryType = .None
-            }
-
-            delegate?.mapType = mapType
-        }
-
 
         let cell = tableView.cellForRowAtIndexPath(indexPath)!
         let identifier = CellIdentifier(rawValue: cell.reuseIdentifier!)!
 
         switch identifier {
-            case .Standard: fallthrough
-            case .Satellite: fallthrough
-            case .Hybrid:
-                processMapTypeSelection(cell, identifier: identifier)
+        // Map Types
+        case .Standard: fallthrough
+        case .Satellite: fallthrough
+        case .Hybrid:
+            if cell.accessoryType == .None { // If the user taps the one that is already checked then there is nothing that needs to be done
+                // Check the selected cell and uncheck the others.
+                cell.accessoryType = .Checkmark
+                for id in [CellIdentifier.Standard, CellIdentifier.Satellite, CellIdentifier.Hybrid] where id != identifier {
+                    id.getCell(tableView)?.accessoryType = .None
+                }
+                delegate.mapType = identifier.mapType!
+            }
 
-            case .TrailPath:
-                cell.accessoryType = cell.accessoryType == .None ? .Checkmark : .None
-                delegate?.trailPathIsVisible = cell.accessoryType == .Checkmark
- 
-            case .TrackUser:
-                cell.accessoryType = cell.accessoryType == .None ? .Checkmark : .None
-                delegate?.userLocationIsTracked = cell.accessoryType == .Checkmark
+        // Map Features
+        case .TrailRoute:
+            cell.accessoryType = cell.accessoryType == .None ? .Checkmark : .None
+            delegate.trailRouteVisible = cell.accessoryType == .Checkmark
+        case .Callouts:
+            cell.accessoryType = cell.accessoryType == .None ? .Checkmark : .None
+            delegate.calloutsEnabled = cell.accessoryType == .Checkmark
+
+        // Map Actions
+        case .ZoomToTrail:
+            delegate.zoomToTrail()
+        case .ZoomToUser:
+            delegate.zoomToUser()
+        case .ZoomToBoth:
+            delegate.zoomToBoth()
         }
         
         cell.selected = false // Don't leave it highlighted
