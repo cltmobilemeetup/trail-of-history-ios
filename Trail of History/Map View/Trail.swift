@@ -24,16 +24,16 @@ import MapKit
 //          The POIs implement MKAnnotation and so can be added to a map.
 //
 // In addition the Trail is a CLLocationManagerDelegate. When the Trail is instantiated it creates a Location Manger
-// and starts location updates. When the Trail receives those updates it uses them to update the distance between the
-// user and each of the points of interest.
+// and starts location updates. As the Trail receives the updates it uses them to update the distance from the user
+// to each of the points of interest.
 
 class Trail : NSObject {
 
     static let instance: Trail = Trail()
 
-    let route: Route
-    let region: MKCoordinateRegion
-    let pointsOfInterest: [PointOfInterest] // Sorted by longitude, westmost first
+    let route: Route // Usage: MapView.addOverlay(Trail.instance.route)
+    let region: MKCoordinateRegion // Usage: MapView.region = Trail.instance.region
+    let pointsOfInterest: [PointOfInterest] // Usage: MapView.addAnnotations(Trail.instance.pointsOfInterest). Sorted by longitude, westmost first.
 
     private let locationManager : CLLocationManager?
 
@@ -164,7 +164,8 @@ extension Trail {
 
         let narrative: String
         let location: CLLocation
-        private(set) var distance: Double?
+        private(set) var distance: Double? // The distance will remain nil if location services are unavailable or unauthorized.
+
         
         private init(title: String, coordinate: CLLocationCoordinate2D, narrative: String) {
             self.title = title
