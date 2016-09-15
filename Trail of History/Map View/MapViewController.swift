@@ -6,12 +6,12 @@
 //  Copyright © 2016 CLT Mobile. All rights reserved.
 //
 
-// Latitude is 0 degrees at the equater. It increases heading north and becomes +90 degrees
-// at the north pole. It decreases heading south and becomes -90 degrees at the south pole.
+// Latitude is 0 degrees at the equater. It increases heading north, becoming +90 degrees
+// at the north pole. It decreases heading south, becoming -90 degrees at the south pole.
 //
 // Longitude is 0 degress at the prime meridian (Greenwich, England). It increases heading
-// east and becomes +180 degrees when it reaches the "other side" of the prime meridian.
-// It decreases heading west and becomes -180 degrees when it reaches the other side.
+// east, becoming +180 degrees when it reaches the "other side" of the prime meridian.
+// It decreases heading west, becoming -180 degrees when it reaches the other side.
 
 import UIKit
 import MapKit
@@ -24,15 +24,17 @@ class ObjectWrapper<T> {
     }
 }
 
-// The Map View Controller has the concept of a "current" point of interest. The current point of interest is the one whose card (cell)
-// occupies the majority of the card collection view (the UICollectionView's width has been configured such that only one cell can be
-// entirely visible; other cells will be only partially visible on the right and/or the left) and whose map annotation is highlighted
-// and centered. Initially the current point of interest is set to the first (westmost) point of interest. The user can change it in
-// two ways:
-//      1) By tapping on a different map annotation. The controller responds by highlighting that annotation and centerimg the map on it.
+// The Map View Controller presents a MKMapView and a UICollectionView. Each of these two views present the Trail of History's
+// points of interest. The map view presents a set of annotations. The collection view presents a set of cards. The map view
+// controller uses the concept of a "current" point of interest to keep these two views in sync. The current point of interest
+// is the one whose card occupies the majority of the card collection view (the UICollectionView's width has been configured
+// such that only one cell can be entirely visible; other cells will be partially visible on the left or the right) and
+// whose map annotation is highlighted and centered. Initially the current point of interest is set to the first (westmost)
+// point of interest. The user can change the current point of interest in one of two ways:
+//      1) By tapping on a different map annotation. The controller will highlight that annotation and center the map on it.
 //      2) By scrolling the collection view to a different card.
-// When the user performs one of the these actions, the controller will automatically perform the other. Thus the map annotations and the
-// cards are always kept in sync with regard to the current point of interest.
+// Whenever the user performs one of the above actions, the controller will automatically perform the other. Thus the annotations
+// and the cards are always kept in sync with regard to the current point of interest.
 
 class MapViewController: UIViewController {
     
@@ -50,8 +52,8 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
 
         navigationItem.titleView = UIView.fromNib("Title")
-        navigationItem.titleView?.backgroundColor = UIColor.clearColor() // It was set to an opaque color in the nib so that the white, text images would be visible in Interface Builder.
-        navigationItem.rightBarButtonItem?.tintColor = UIColor.tohTerracotaColor()
+        navigationItem.titleView?.backgroundColor = UIColor.clearColor() // It was set to an opaque color in the NIB so that the white, text images would be visible in Interface Builder.
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.tohTerracotaColor() // I was unable to access the TOH colors in Interface Builder
          
         let poiCellNib = UINib(nibName: "PointOfInterestCell", bundle: nil)
         collectionView.registerNib(poiCellNib, forCellWithReuseIdentifier: poiCellReuseIdentifier)
@@ -154,7 +156,7 @@ extension MapViewController : UICollectionViewDataSource {
         poiCell.layer.masksToBounds = false
         poiCell.layer.shadowOffset = CGSize(width: 4, height: 4)
 
-        poiCell.showDetailViewDelegate = self
+        poiCell.collectionView = collectionView
 
         return poiCell
     }
@@ -221,47 +223,6 @@ extension MapViewController : MKMapViewDelegate {
         for poi in Trail.instance.pointsOfInterest {
             let index = NSIndexPath(forItem: Trail.instance.pointsOfInterest.indexOf(poi)!, inSection: 0)
             (collectionView.cellForItemAtIndexPath(index) as? PointOfInterestCell)?.distanceLabel.text = formatDistanceTo(pointOfInterest: poi)
-        }
-    }
-}
-
-extension MapViewController : ShowDetailViewDelegate {
-
-    class GestureRecognizer: UITapGestureRecognizer {
-        private var detailView: UILabel
-        
-        init(target: AnyObject?, action: Selector, detail: UILabel) {
-            detailView = detail
-            super.init(target: target, action: action)
-        }
-    }
-
-    func showDetailViewFor(cell: PointOfInterestCell) {
-        let detailView = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-        detailView.autoresizingMask = [.FlexibleTopMargin, .FlexibleRightMargin, .FlexibleBottomMargin, .FlexibleLeftMargin]
-        detailView.numberOfLines = 0 // As many as needed
-        detailView.lineBreakMode = .ByWordWrapping
-        detailView.backgroundColor = UIColor.whiteColor()
-        detailView.userInteractionEnabled = true
-        detailView.layer.cornerRadius = 5
-        detailView.layer.borderColor = UIColor.grayColor().CGColor
-        detailView.layer.borderWidth = 1
-        detailView.addGestureRecognizer(GestureRecognizer(target:self, action: #selector(removeDetailView), detail: detailView))
-        
-        let poi = Trail.instance.pointsOfInterest[collectionView.indexPathForCell(cell)!.item]
-        detailView.text = poi.narrative
-        view.addSubview(detailView)
-        detailView.bounds = CGRectInset(view!.bounds, 50, 100)
-        detailView.sizeToFit()
-        detailView.center = CGPoint(x: view.bounds.width/2, y: view.bounds.height/2)
-        
-        collectionView.scrollEnabled = false
-    }
-    
-    func removeDetailView(sender: UITapGestureRecognizer) {
-        if sender.state == .Ended {
-            (sender as! GestureRecognizer).detailView.removeFromSuperview()
-            collectionView.scrollEnabled = true
         }
     }
 }

@@ -25,7 +25,7 @@ import MapKit
 //
 // In addition the Trail is a CLLocationManagerDelegate. When the Trail is instantiated it creates a Location Manger
 // and starts location updates. When the Trail receives those updates it uses them to update the distance between the
-// userand each of the points of interest.
+// user and each of the points of interest.
 
 class Trail : NSObject {
 
@@ -124,7 +124,7 @@ extension Trail {
 
         private(set) var renderer: Renderer!
         
-        init(midCoordinate: CLLocationCoordinate2D, boundingMapRect: MKMapRect) {
+        private init(midCoordinate: CLLocationCoordinate2D, boundingMapRect: MKMapRect) {
             self.coordinate = midCoordinate
             self.boundingMapRect = boundingMapRect
             super.init()
