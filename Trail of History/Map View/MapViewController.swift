@@ -19,7 +19,7 @@ import MapKit
 //      1) By tapping on a different map annotation. The controller will highlight that annotation and center the map on it.
 //      2) By scrolling the collection view to a different card.
 // Whenever the user performs one of the above actions, the controller will automatically perform the other. Thus the annotations
-// and the cards are always kept in sync with regard to the current point of interest.
+// and the cards are always kept in sync, each indicating the same current point of interest.
 //
 // The Map View Controller also gives the user access to an Options View Controller (via a small drop down arrow to the right
 // of the title view). The Options controller allows the user to set various features and/or perform various actions.
