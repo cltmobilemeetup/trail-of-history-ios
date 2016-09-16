@@ -13,7 +13,7 @@ import MapKit
 // points of interest. The map view presents a set of annotations. The collection view presents a set of cards. The map view
 // controller uses the concept of a "current" point of interest to keep these two views in sync. The current point of interest
 // is the one whose card occupies the majority of the card collection view (the UICollectionView's width has been configured
-// such that only one cell can be entirely visible; other cells will be partially visible on the left or the right) and
+// such that only one card can be entirely visible; the other cards will be partially visible on the left or the right) and
 // whose map annotation is highlighted and centered. Initially the current point of interest is set to the first (westmost)
 // point of interest. The user can change the current point of interest in one of two ways:
 //      1) By tapping on a different map annotation. The controller will highlight that annotation and center the map on it.
@@ -72,6 +72,51 @@ class MapViewController: UIViewController {
 
         default:
             break
+        }
+    }
+}
+
+extension MapViewController : MKMapViewDelegate {
+    
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        if let poi = annotation as? Trail.PointOfInterest {
+            
+            let reuseId = "PoiAnnotation"
+            var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
+            if annotationView == nil  {
+                annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            }
+            
+            annotationView?.canShowCallout = calloutsEnabled
+            annotationView?.image = isCurrent(poi)  ? imageForCurrent : imageForNotCurrent
+            return annotationView
+        }
+        
+        if let userLocation = annotation as? MKUserLocation {
+            userLocation.subtitle = "lat \(String(format: "%.6f", userLocation.coordinate.latitude)), long \(String(format: "%.6f", userLocation.coordinate.longitude))"
+        }
+        
+        return nil
+    }
+    
+    // Make the selected point of interest the new current POI
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+        if let poi = view.annotation as? Trail.PointOfInterest where !isCurrent(poi) {
+            changeCurrentTo(Trail.instance.pointsOfInterest[currentPoiIndex], suppressCardScrolling: false)
+        }
+    }
+    
+    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+        return Trail.instance.route.renderer
+    }
+    
+    // As the user's location changes, update the POI collection's visible cards.
+    func mapView(mapView: MKMapView, didUpdateUserLocation userLocation: MKUserLocation) {
+        for index in collectionView.indexPathsForVisibleItems() {
+            let cell = collectionView.cellForItemAtIndexPath(index) as! PointOfInterestCell
+            let poi = Trail.instance.pointsOfInterest[index.item]
+            cell.distanceLabel.text = distanceTo(pointOfInterest: poi)
         }
     }
 }
@@ -136,51 +181,6 @@ extension MapViewController : UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension MapViewController : MKMapViewDelegate {
-    
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        
-        if let poi = annotation as? Trail.PointOfInterest {
-            
-            let reuseId = "PoiAnnotation"
-            var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
-            if annotationView == nil  {
-                annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-            }
-
-            annotationView?.canShowCallout = calloutsEnabled
-            annotationView?.image = isCurrent(poi)  ? imageForCurrent : imageForNotCurrent
-            return annotationView
-        }
-
-        if let userLocation = annotation as? MKUserLocation {
-            userLocation.subtitle = "lat \(String(format: "%.6f", userLocation.coordinate.latitude)), long \(String(format: "%.6f", userLocation.coordinate.longitude))"
-        }
-        
-        return nil
-    }
-
-    // Make the selected point of interest the new current POI
-    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
-        if let poi = view.annotation as? Trail.PointOfInterest where !isCurrent(poi) {
-            changeCurrentTo(Trail.instance.pointsOfInterest[currentPoiIndex], suppressCardScrolling: false)
-        }
-    }
-
-    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
-        return Trail.instance.route.renderer
-    }
-
-    // As the user's location changes, update the POI collection's visible cards.
-    func mapView(mapView: MKMapView, didUpdateUserLocation userLocation: MKUserLocation) {
-        for index in collectionView.indexPathsForVisibleItems() {
-            let cell = collectionView.cellForItemAtIndexPath(index) as! PointOfInterestCell
-            let poi = Trail.instance.pointsOfInterest[index.item]
-            cell.distanceLabel.text = distanceTo(pointOfInterest: poi)
-        }
-    }
-}
-
 extension MapViewController : OptionsViewControllerDelegate {
     var mapType: MKMapType {
         get {
@@ -228,6 +228,7 @@ extension MapViewController : OptionsViewControllerDelegate {
     
     func zoomToTrail() {
         mapView.region = Trail.instance.region
+        mapView.setCenterCoordinate(Trail.instance.pointsOfInterest[currentPoiIndex].coordinate, animated: true)
     }
 
     func zoomToUser() {
