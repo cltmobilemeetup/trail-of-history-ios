@@ -20,6 +20,7 @@
 		4D8B766F1C97944300A70B71 /* Trail_of_HistoryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8B766E1C97944300A70B71 /* Trail_of_HistoryUITests.swift */; };
 		E1110D461D83564E00CA5135 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1110D441D83564E00CA5135 /* OptionsViewController.swift */; };
 		E114C71E1D7B0D8500BE3984 /* PointOfInterestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E114C71D1D7B0D8500BE3984 /* PointOfInterestCell.swift */; };
+		E138C1A91D8C3D3800E81D06 /* ReadMe.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E138C1A81D8C3D3800E81D06 /* ReadMe.rtf */; };
 		E150ED441D763903006C40AF /* Archer-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = E150ED421D763903006C40AF /* Archer-Medium.otf */; };
 		E1C2383C1D6B28C700A718A8 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1C2383B1D6B28C700A718A8 /* Map.storyboard */; };
 		E1C2383F1D6B29E900A718A8 /* PointOfInterestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1C2383D1D6B29E900A718A8 /* PointOfInterestCell.xib */; };
@@ -73,6 +74,7 @@
 		4D8B76701C97944300A70B71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1110D441D83564E00CA5135 /* OptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OptionsViewController.swift; path = "Map View/OptionsViewController.swift"; sourceTree = "<group>"; };
 		E114C71D1D7B0D8500BE3984 /* PointOfInterestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PointOfInterestCell.swift; path = "Map View/PointOfInterestCell.swift"; sourceTree = "<group>"; };
+		E138C1A81D8C3D3800E81D06 /* ReadMe.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; name = ReadMe.rtf; path = "Map View/ReadMe.rtf"; sourceTree = "<group>"; };
 		E150ED421D763903006C40AF /* Archer-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Archer-Medium.otf"; sourceTree = "<group>"; };
 		E1C2383B1D6B28C700A718A8 /* Map.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Map.storyboard; path = "Map View/Map.storyboard"; sourceTree = "<group>"; };
 		E1C2383D1D6B29E900A718A8 /* PointOfInterestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PointOfInterestCell.xib; path = "Map View/PointOfInterestCell.xib"; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 		0C01F50C1D63DDF1005C6284 /* Map View */ = {
 			isa = PBXGroup;
 			children = (
+				E138C1A81D8C3D3800E81D06 /* ReadMe.rtf */,
 				E1C2383B1D6B28C700A718A8 /* Map.storyboard */,
 				E1C238451D6B6AFD00A718A8 /* MapViewController.swift */,
 				E1110D441D83564E00CA5135 /* OptionsViewController.swift */,
@@ -355,6 +358,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D8B76591C97944300A70B71 /* LaunchScreen.storyboard in Resources */,
+				E138C1A91D8C3D3800E81D06 /* ReadMe.rtf in Resources */,
 				4D8B76561C97944300A70B71 /* Assets.xcassets in Resources */,
 				0C01F5131D63E0D1005C6284 /* Main.storyboard in Resources */,
 				E1C2383F1D6B29E900A718A8 /* PointOfInterestCell.xib in Resources */,
