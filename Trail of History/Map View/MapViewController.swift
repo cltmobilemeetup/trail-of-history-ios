@@ -22,7 +22,7 @@ import MapKit
 // and the cards are always kept in sync, each indicating the same current point of interest.
 //
 // The Map View Controller also gives the user access to an Options View Controller (via a small drop down arrow to the right
-// of the title view). The Options controller allows the user to set various features and/or perform various actions.
+// of the title view). The Options controller allows the user to set various features and to perform various actions.
 
 class MapViewController: UIViewController {
     
@@ -103,7 +103,7 @@ extension MapViewController : MKMapViewDelegate {
     // Make the selected point of interest the new current POI
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
         if let poi = view.annotation as? Trail.PointOfInterest where !isCurrent(poi) {
-            changeCurrentTo(Trail.instance.pointsOfInterest[currentPoiIndex], suppressCardScrolling: false)
+            changeCurrentTo(poi, suppressCardScrolling: false)
         }
     }
     
@@ -111,7 +111,7 @@ extension MapViewController : MKMapViewDelegate {
         return Trail.instance.route.renderer
     }
     
-    // As the user's location changes, update the POI collection's visible cards.
+    // As the user's location changes, update the distances of the POI collection's visible cards.
     func mapView(mapView: MKMapView, didUpdateUserLocation userLocation: MKUserLocation) {
         for index in collectionView.indexPathsForVisibleItems() {
             let cell = collectionView.cellForItemAtIndexPath(index) as! PointOfInterestCell
@@ -206,6 +206,9 @@ extension MapViewController : OptionsViewControllerDelegate {
         }
     }
     
+    // The Trail's Points of Interest (which are MKAnnotations) set their subtitle to display their coordinates.
+    // We might not want callouts in the final version and/or we might want to display something different. For
+    // now it is useful as a validation tool when we are testing by physically walking the Trail.
     var calloutsEnabled: Bool {
         get {
             // The canShowCallout value is the same for all of the POIs.
