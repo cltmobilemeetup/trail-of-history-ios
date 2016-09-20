@@ -19,6 +19,10 @@
 		4D8B76591C97944300A70B71 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D8B76571C97944300A70B71 /* LaunchScreen.storyboard */; };
 		4D8B76641C97944300A70B71 /* Trail_of_HistoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8B76631C97944300A70B71 /* Trail_of_HistoryTests.swift */; };
 		4D8B766F1C97944300A70B71 /* Trail_of_HistoryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8B766E1C97944300A70B71 /* Trail_of_HistoryUITests.swift */; };
+		FCCA41201D6427EC00F5BC15 /* DIN Condensed Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FCCA411F1D6427EC00F5BC15 /* DIN Condensed Bold.ttf */; };
+		FCCA41221D64289700F5BC15 /* Archer-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = FCCA41211D64289700F5BC15 /* Archer-Medium.otf */; };
+		FCF3B6E01D64093900CC8A59 /* POICollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF3B6DE1D64093900CC8A59 /* POICollectionViewCell.swift */; };
+		FCF3B6E11D64093900CC8A59 /* POICollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCF3B6DF1D64093900CC8A59 /* POICollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +61,10 @@
 		4D8B766A1C97944300A70B71 /* Trail of HistoryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Trail of HistoryUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D8B766E1C97944300A70B71 /* Trail_of_HistoryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trail_of_HistoryUITests.swift; sourceTree = "<group>"; };
 		4D8B76701C97944300A70B71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FCCA411F1D6427EC00F5BC15 /* DIN Condensed Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DIN Condensed Bold.ttf"; sourceTree = "<group>"; };
+		FCCA41211D64289700F5BC15 /* Archer-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Archer-Medium.otf"; sourceTree = "<group>"; };
+		FCF3B6DE1D64093900CC8A59 /* POICollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = POICollectionViewCell.swift; sourceTree = "<group>"; };
+		FCF3B6DF1D64093900CC8A59 /* POICollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = POICollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +95,8 @@
 		0C01F50A1D63DDCB005C6284 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FCCA411F1D6427EC00F5BC15 /* DIN Condensed Bold.ttf */,
+				FCCA41211D64289700F5BC15 /* Archer-Medium.otf */,
 				4D8B765A1C97944300A70B71 /* Info.plist */,
 				4D8B76551C97944300A70B71 /* Assets.xcassets */,
 				0C01F5121D63E0D1005C6284 /* Main.storyboard */,
@@ -100,6 +110,8 @@
 			children = (
 				4D8B764F1C97944300A70B71 /* List.storyboard */,
 				4D8B764D1C97944300A70B71 /* ListViewController.swift */,
+				FCF3B6DE1D64093900CC8A59 /* POICollectionViewCell.swift */,
+				FCF3B6DF1D64093900CC8A59 /* POICollectionViewCell.xib */,
 			);
 			name = "List View";
 			sourceTree = "<group>";
@@ -294,10 +306,13 @@
 			files = (
 				4D8B76591C97944300A70B71 /* LaunchScreen.storyboard in Resources */,
 				4D8B76561C97944300A70B71 /* Assets.xcassets in Resources */,
+				FCCA41201D6427EC00F5BC15 /* DIN Condensed Bold.ttf in Resources */,
 				0C01F5111D63DE79005C6284 /* Map.storyboard in Resources */,
 				0C01F5131D63E0D1005C6284 /* Main.storyboard in Resources */,
 				4D8B76511C97944300A70B71 /* List.storyboard in Resources */,
+				FCF3B6E11D64093900CC8A59 /* POICollectionViewCell.xib in Resources */,
 				0C01F50F1D63DE30005C6284 /* Detail.storyboard in Resources */,
+				FCCA41221D64289700F5BC15 /* Archer-Medium.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,6 +341,7 @@
 				4D8B76541C97944300A70B71 /* Trail_of_History.xcdatamodeld in Sources */,
 				0C01F5171D63E163005C6284 /* UIColor+CustomColors.swift in Sources */,
 				4D8B764C1C97944300A70B71 /* AppDelegate.swift in Sources */,
+				FCF3B6E01D64093900CC8A59 /* POICollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
