@@ -177,7 +177,18 @@ extension MapViewController : UICollectionViewDelegateFlowLayout {
 
     // TODO: Find a better way.
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(CGFloat(280), CGFloat(70))
+        let screenSize: CGRect = UIScreen.mainScreen().bounds
+        return CGSizeMake(CGFloat(screenSize.width * 0.8), CGFloat(70))
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        let screenSize: CGRect = UIScreen.mainScreen().bounds
+        return CGSize(width: screenSize.width * 0.1, height: 0)
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        let screenSize: CGRect = UIScreen.mainScreen().bounds
+        return CGSize(width: screenSize.width * 0.1, height: 0)
     }
 }
 
