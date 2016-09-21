@@ -21,6 +21,7 @@
 		4D8B766F1C97944300A70B71 /* Trail_of_HistoryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8B766E1C97944300A70B71 /* Trail_of_HistoryUITests.swift */; };
 		7D7960B6998C0CAB7B5CD4AC /* Pods_Trail_of_HistoryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F35F78E4B79039B968D2B34F /* Pods_Trail_of_HistoryUITests.framework */; };
 		92C47C321D7B19C400E86897 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C47C311D7B19C400E86897 /* DetailViewController.swift */; };
+		92EB9D7D1D83916F00326B25 /* DotsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EB9D7C1D83916F00326B25 /* DotsViewController.swift */; };
 		E654061AC08F53D1480B951A /* Pods_Trail_of_History.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B06C8C5A315C9849846EE02 /* Pods_Trail_of_History.framework */; };
 		FE5AE9AD2883097041A3BC8C /* Pods_Trail_of_HistoryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84692E81D22DF0133A8E6566 /* Pods_Trail_of_HistoryTests.framework */; };
 /* End PBXBuildFile section */
@@ -68,6 +69,7 @@
 		56A35ED576F5E8A6EA499650 /* Pods-Trail of HistoryUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trail of HistoryUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Trail of HistoryUITests/Pods-Trail of HistoryUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		84692E81D22DF0133A8E6566 /* Pods_Trail_of_HistoryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Trail_of_HistoryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		92C47C311D7B19C400E86897 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		92EB9D7C1D83916F00326B25 /* DotsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotsViewController.swift; sourceTree = "<group>"; };
 		C6584035D41FFC51CC6462F4 /* Pods-Trail of History.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trail of History.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Trail of History/Pods-Trail of History.debug.xcconfig"; sourceTree = "<group>"; };
 		D803628D458B43624130B850 /* Pods-Trail of HistoryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trail of HistoryTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Trail of HistoryTests/Pods-Trail of HistoryTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F35F78E4B79039B968D2B34F /* Pods_Trail_of_HistoryUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Trail_of_HistoryUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,6 +136,7 @@
 			children = (
 				0C01F50E1D63DE30005C6284 /* Detail.storyboard */,
 				92C47C311D7B19C400E86897 /* DetailViewController.swift */,
+				92EB9D7C1D83916F00326B25 /* DotsViewController.swift */,
 			);
 			name = "Detail View";
 			sourceTree = "<group>";
@@ -500,6 +503,7 @@
 				4D8B76541C97944300A70B71 /* Trail_of_History.xcdatamodeld in Sources */,
 				92C47C321D7B19C400E86897 /* DetailViewController.swift in Sources */,
 				0C01F5171D63E163005C6284 /* UIColor+CustomColors.swift in Sources */,
+				92EB9D7D1D83916F00326B25 /* DotsViewController.swift in Sources */,
 				4D8B764C1C97944300A70B71 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
