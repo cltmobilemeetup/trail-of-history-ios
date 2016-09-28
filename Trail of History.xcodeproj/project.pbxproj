@@ -21,6 +21,7 @@
 		E1110D461D83564E00CA5135 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1110D441D83564E00CA5135 /* OptionsViewController.swift */; };
 		E114C71E1D7B0D8500BE3984 /* PointOfInterestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E114C71D1D7B0D8500BE3984 /* PointOfInterestCell.swift */; };
 		E138C1A91D8C3D3800E81D06 /* ReadMe.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E138C1A81D8C3D3800E81D06 /* ReadMe.rtf */; };
+		E139E73B1D9BE6FA0057F20D /* MapViewCardCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E139E73A1D9BE6FA0057F20D /* MapViewCardCollectionViewFlowLayout.swift */; };
 		E150ED441D763903006C40AF /* Archer-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = E150ED421D763903006C40AF /* Archer-Medium.otf */; };
 		E1C2383C1D6B28C700A718A8 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1C2383B1D6B28C700A718A8 /* Map.storyboard */; };
 		E1C2383F1D6B29E900A718A8 /* PointOfInterestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1C2383D1D6B29E900A718A8 /* PointOfInterestCell.xib */; };
@@ -75,6 +76,7 @@
 		E1110D441D83564E00CA5135 /* OptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OptionsViewController.swift; path = "Map View/OptionsViewController.swift"; sourceTree = "<group>"; };
 		E114C71D1D7B0D8500BE3984 /* PointOfInterestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PointOfInterestCell.swift; path = "Map View/PointOfInterestCell.swift"; sourceTree = "<group>"; };
 		E138C1A81D8C3D3800E81D06 /* ReadMe.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; name = ReadMe.rtf; path = "Map View/ReadMe.rtf"; sourceTree = "<group>"; };
+		E139E73A1D9BE6FA0057F20D /* MapViewCardCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewCardCollectionViewFlowLayout.swift; path = "Map View/MapViewCardCollectionViewFlowLayout.swift"; sourceTree = "<group>"; };
 		E150ED421D763903006C40AF /* Archer-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Archer-Medium.otf"; sourceTree = "<group>"; };
 		E1C2383B1D6B28C700A718A8 /* Map.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Map.storyboard; path = "Map View/Map.storyboard"; sourceTree = "<group>"; };
 		E1C2383D1D6B29E900A718A8 /* PointOfInterestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PointOfInterestCell.xib; path = "Map View/PointOfInterestCell.xib"; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 		0C01F50C1D63DDF1005C6284 /* Map View */ = {
 			isa = PBXGroup;
 			children = (
+				E139E73A1D9BE6FA0057F20D /* MapViewCardCollectionViewFlowLayout.swift */,
 				E138C1A81D8C3D3800E81D06 /* ReadMe.rtf */,
 				E1C2383B1D6B28C700A718A8 /* Map.storyboard */,
 				E1C238451D6B6AFD00A718A8 /* MapViewController.swift */,
@@ -394,6 +397,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E139E73B1D9BE6FA0057F20D /* MapViewCardCollectionViewFlowLayout.swift in Sources */,
 				4D8B764E1C97944300A70B71 /* ListViewController.swift in Sources */,
 				E1DFEBC21D77715E007359F4 /* NavigationController.swift in Sources */,
 				E1C238681D6CA65700A718A8 /* UIViewExtensions.swift in Sources */,
