@@ -53,6 +53,6 @@ class CardCollectionLayout: UICollectionViewFlowLayout {
         }
         
         // Fallback
-        return super.targetContentOffsetForProposedContentOffset(proposedContentOffset)
+        return super.targetContentOffsetForProposedContentOffset(proposedContentOffset, withScrollingVelocity: velocity)
     }
 }
