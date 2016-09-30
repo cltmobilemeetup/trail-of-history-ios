@@ -94,16 +94,21 @@
                                     <outlet property="delegate" destination="Beb-Hd-0rH" id="2oy-Bu-6JL"/>
                                 </connections>
                             </mapView>
-                            <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dcM-wA-t3l" userLabel="POI Card Collection View">
+                            <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dcM-wA-t3l" userLabel="POI Card Collection View">
                                 <rect key="frame" x="0.0" y="426" width="600" height="80"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="ffT-He-fYi"/>
+                                    <constraint firstAttribute="height" constant="80" id="jGq-wn-nMj"/>
                                 </constraints>
-                                <collectionViewLayout key="collectionViewLayout" id="CeY-35-p2g" customClass="CardCollectionLayout" customModule="Trail_of_History" customModuleProvider="target"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bME-dH-xAN" customClass="CardCollectionLayout" customModule="Trail_of_History" customModuleProvider="target">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="50" height="50"/>
+                                    <size key="footerReferenceSize" width="50" height="50"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="POI Card Cell" id="Tu2-3m-BZd" customClass="PoiCard" customModule="Trail_of_History" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="POI Card Cell" id="Tu2-3m-BZd" customClass="PointOfInterestCell" customModule="Trail_of_History" customModuleProvider="target">
+                                        <rect key="frame" x="50" y="15" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -112,6 +117,14 @@
                                         </view>
                                     </collectionViewCell>
                                 </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="vxp-50-Xb0">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="80"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </collectionReusableView>
+                                <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="VVm-aY-BNO">
+                                    <rect key="frame" x="100" y="0.0" width="50" height="80"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </collectionReusableView>
                                 <connections>
                                     <outlet property="dataSource" destination="Beb-Hd-0rH" id="DRR-hF-owX"/>
                                     <outlet property="delegate" destination="Beb-Hd-0rH" id="9EF-cq-ukh"/>

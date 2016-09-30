@@ -45,6 +45,7 @@ class MapViewController: UIViewController {
          
         let poiCellNib = UINib(nibName: "PointOfInterestCell", bundle: nil)
         collectionView.registerNib(poiCellNib, forCellWithReuseIdentifier: poiCellReuseIdentifier)
+        collectionView.decelerationRate = UIScrollViewDecelerationRateFast
         
         mapView.showsUserLocation = true
         mapView.region = Trail.instance.region
@@ -143,6 +144,22 @@ extension MapViewController : UICollectionViewDelegate {
     }
 }
 
+// The FlowLayout looks for the UICollectionViewDelegateFlowLayout protocol's adoption on whatever object is set as the collection's delegate (i.e. UICollectionViewDelegate)
+extension MapViewController : UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        return CGSizeMake(CGFloat(collectionView.bounds.size.width * 0.8), CGFloat(collectionView.bounds.size.height * 0.875))
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.bounds.size.width * 0.1, height: 0)
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.bounds.size.width * 0.1, height: 0)
+    }
+}
+
 extension MapViewController : UICollectionViewDataSource {
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -151,44 +168,22 @@ extension MapViewController : UICollectionViewDataSource {
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
 
+        let poiCell = collectionView.dequeueReusableCellWithReuseIdentifier(poiCellReuseIdentifier, forIndexPath: indexPath) as! PointOfInterestCell
+
+        poiCell.layer.shadowOpacity = 0.3
+        poiCell.layer.masksToBounds = false
+        poiCell.layer.shadowOffset = CGSize(width: 4, height: 4)
+        poiCell.collectionView = collectionView
+
         // The points of interest are sorted by longitude, westmost first. The cell at index 0 will use the data from the westmost (first) poi;
         // the cell at index count - 1 will use the data from the eastmost (last) poi. Thus the horizontal sequencing of the cells from left to
         // right mirrors the logitudinal sequencing of the points of interest from west to east.
-
         let poi = Trail.instance.pointsOfInterest[indexPath.item]
-
-        let poiCell = collectionView.dequeueReusableCellWithReuseIdentifier(poiCellReuseIdentifier, forIndexPath: indexPath) as! PointOfInterestCell
-
         poiCell.nameLabel.text = poi.title
         poiCell.imageView.image = isCurrent(poi) ? imageForCurrent : imageForNotCurrent
         poiCell.distanceLabel.text = distanceTo(pointOfInterest: poi)
         
-        poiCell.layer.shadowOpacity = 0.3
-        poiCell.layer.masksToBounds = false
-        poiCell.layer.shadowOffset = CGSize(width: 4, height: 4)
-
-        poiCell.collectionView = collectionView
-
         return poiCell
-    }
-}
-
-extension MapViewController : UICollectionViewDelegateFlowLayout {
-
-    // TODO: Find a better way.
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let screenSize: CGRect = UIScreen.mainScreen().bounds
-        return CGSizeMake(CGFloat(screenSize.width * 0.8), CGFloat(70))
-    }
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        let screenSize: CGRect = UIScreen.mainScreen().bounds
-        return CGSize(width: screenSize.width * 0.1, height: 0)
-    }
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        let screenSize: CGRect = UIScreen.mainScreen().bounds
-        return CGSize(width: screenSize.width * 0.1, height: 0)
     }
 }
 
