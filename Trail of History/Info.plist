@@ -22,10 +22,17 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>The Trail of History would like to use your current location so as to be able to show you how far you are from the points of interest.</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Archer-Medium.otf</string>
+		<string>DIN Condensed Bold.ttf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
+	<string>Map</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
