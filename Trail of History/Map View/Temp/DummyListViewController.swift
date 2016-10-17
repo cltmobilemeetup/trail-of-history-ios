@@ -10,8 +10,8 @@ import UIKit
 
 class DummyListViewController: UITableViewController {
 
-    private let cellReuseIdentifier = "POI Name"
-    private let poiNames = ["Captain Jack", "William Henry Blake", "Thomas Polk", "Thad Tate", "Jane Wilkes", "Thomas Sprate and King Haigler", "Emily King"]
+    fileprivate let cellReuseIdentifier = "POI Name"
+    fileprivate let poiNames = ["Captain Jack", "William Henry Blake", "Thomas Polk", "Thad Tate", "Jane Wilkes", "Thomas Sprate and King Haigler", "Emily King"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,27 +21,27 @@ class DummyListViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return poiNames.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath)
-        cell.textLabel?.text = poiNames[indexPath.row]
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath)
+        cell.textLabel?.text = poiNames[(indexPath as NSIndexPath).row]
         return cell
     }
 
-    @IBAction func unwind(segue:UIStoryboardSegue) {
+    @IBAction func unwind(_ segue:UIStoryboardSegue) {
     }
 
     func printfonts() {
-        for family: String in UIFont.familyNames() {
+        for family: String in UIFont.familyNames {
             print("\(family)")
-            for names: String in UIFont.fontNamesForFamilyName(family) {
+            for names: String in UIFont.fontNames(forFamilyName: family) {
                 print("== \(names)")
             }
         }

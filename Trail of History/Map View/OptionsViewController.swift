@@ -35,18 +35,18 @@ class OptionsViewController: UITableViewController {
         var mapType: MKMapType? {
             get {
                 switch(self) {
-                case CellIdentifier.Standard: return MKMapType.Standard
-                case CellIdentifier.Satellite: return MKMapType.Satellite
-                case CellIdentifier.Hybrid: return MKMapType.Hybrid
+                case CellIdentifier.Standard: return MKMapType.standard
+                case CellIdentifier.Satellite: return MKMapType.satellite
+                case CellIdentifier.Hybrid: return MKMapType.hybrid
                 default: return nil
                 }
             }
         }
         
-        func getCell(table: UITableView) -> UITableViewCell? {
+        func getCell(_ table: UITableView) -> UITableViewCell? {
             for section in 0 ..< table.numberOfSections {
-                for row in 0 ..< table.numberOfRowsInSection(section) {
-                    let cell = table.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: section))!
+                for row in 0 ..< table.numberOfRows(inSection: section) {
+                    let cell = table.cellForRow(at: IndexPath(row: row, section: section))!
                     if self == CellIdentifier(rawValue: cell.reuseIdentifier!) { return cell }
                 }
             }
@@ -60,23 +60,23 @@ class OptionsViewController: UITableViewController {
         super.viewDidLoad()
 
         switch delegate.mapType {
-        case .Standard:
-            CellIdentifier.Standard.getCell(tableView)?.accessoryType = .Checkmark
-        case .Satellite:
-            CellIdentifier.Satellite.getCell(tableView)?.accessoryType = .Checkmark
-        case .Hybrid:
-            CellIdentifier.Hybrid.getCell(tableView)?.accessoryType = .Checkmark
+        case .standard:
+            CellIdentifier.Standard.getCell(tableView)?.accessoryType = .checkmark
+        case .satellite:
+            CellIdentifier.Satellite.getCell(tableView)?.accessoryType = .checkmark
+        case .hybrid:
+            CellIdentifier.Hybrid.getCell(tableView)?.accessoryType = .checkmark
         default:
             break
         }
 
-        CellIdentifier.TrailRoute.getCell(tableView)?.accessoryType = delegate.trailRouteVisible ? .Checkmark : .None
-        CellIdentifier.Callouts.getCell(tableView)?.accessoryType = delegate.calloutsEnabled ? .Checkmark : .None
+        CellIdentifier.TrailRoute.getCell(tableView)?.accessoryType = delegate.trailRouteVisible ? .checkmark : .none
+        CellIdentifier.Callouts.getCell(tableView)?.accessoryType = delegate.calloutsEnabled ? .checkmark : .none
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        let cell = tableView.cellForRowAtIndexPath(indexPath)!
+        let cell = tableView.cellForRow(at: indexPath)!
         let identifier = CellIdentifier(rawValue: cell.reuseIdentifier!)!
 
         switch identifier {
@@ -84,22 +84,22 @@ class OptionsViewController: UITableViewController {
         case .Standard: fallthrough
         case .Satellite: fallthrough
         case .Hybrid:
-            if cell.accessoryType == .None { // If the user taps the one that is already checked then there is nothing that needs to be done
+            if cell.accessoryType == .none { // If the user taps the one that is already checked then there is nothing that needs to be done
                 // Check the selected cell and uncheck the others.
-                cell.accessoryType = .Checkmark
+                cell.accessoryType = .checkmark
                 for id in [CellIdentifier.Standard, CellIdentifier.Satellite, CellIdentifier.Hybrid] where id != identifier {
-                    id.getCell(tableView)?.accessoryType = .None
+                    id.getCell(tableView)?.accessoryType = .none
                 }
                 delegate.mapType = identifier.mapType!
             }
 
         // Map Features
         case .TrailRoute:
-            cell.accessoryType = cell.accessoryType == .None ? .Checkmark : .None
-            delegate.trailRouteVisible = cell.accessoryType == .Checkmark
+            cell.accessoryType = cell.accessoryType == .none ? .checkmark : .none
+            delegate.trailRouteVisible = cell.accessoryType == .checkmark
         case .Callouts:
-            cell.accessoryType = cell.accessoryType == .None ? .Checkmark : .None
-            delegate.calloutsEnabled = cell.accessoryType == .Checkmark
+            cell.accessoryType = cell.accessoryType == .none ? .checkmark : .none
+            delegate.calloutsEnabled = cell.accessoryType == .checkmark
 
         // Map Actions
         case .ZoomToTrail:
@@ -110,18 +110,18 @@ class OptionsViewController: UITableViewController {
             delegate.zoomToBoth()
         }
         
-        cell.selected = false // Don't leave it highlighted
+        cell.isSelected = false // Don't leave it highlighted
     }
 
-    @IBAction func dismiss(sender: UIButton) {
-        dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func dismiss(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
 extension OptionsViewController: UIPopoverPresentationControllerDelegate {
 
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
-        return .None
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
     }
 /*
     func presentationController(controller: UIPresentationController, viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController? {

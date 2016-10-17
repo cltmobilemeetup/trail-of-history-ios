@@ -10,6 +10,8 @@
 		0C01F50F1D63DE30005C6284 /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C01F50E1D63DE30005C6284 /* Detail.storyboard */; };
 		0C01F5131D63E0D1005C6284 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C01F5121D63E0D1005C6284 /* Main.storyboard */; };
 		0C01F5171D63E163005C6284 /* UIColor+CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C01F5161D63E163005C6284 /* UIColor+CustomColors.swift */; };
+		4422897E3CD919446A4E8B04 /* libPods-Trail of HistoryTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 663E40419345BFAA966D6C06 /* libPods-Trail of HistoryTests.a */; };
+		4D68CDFF8772D4729ECF188A /* libPods-Trail of History.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D10F4F6240FDF5914D19411 /* libPods-Trail of History.a */; };
 		4D8B764C1C97944300A70B71 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8B764B1C97944300A70B71 /* AppDelegate.swift */; };
 		4D8B764E1C97944300A70B71 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8B764D1C97944300A70B71 /* ListViewController.swift */; };
 		4D8B76511C97944300A70B71 /* List.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D8B764F1C97944300A70B71 /* List.storyboard */; };
@@ -18,6 +20,8 @@
 		4D8B76591C97944300A70B71 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D8B76571C97944300A70B71 /* LaunchScreen.storyboard */; };
 		4D8B76641C97944300A70B71 /* Trail_of_HistoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8B76631C97944300A70B71 /* Trail_of_HistoryTests.swift */; };
 		4D8B766F1C97944300A70B71 /* Trail_of_HistoryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8B766E1C97944300A70B71 /* Trail_of_HistoryUITests.swift */; };
+		4D8E69CA1D92075B00DC0269 /* MapViewCardCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8E69C91D92075B00DC0269 /* MapViewCardCollectionViewFlowLayout.swift */; };
+		AFC8D1CE24F14651A7D54F8C /* libPods-Trail of HistoryUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1294D643F85DA3FD6135D9B1 /* libPods-Trail of HistoryUITests.a */; };
 		E1110D461D83564E00CA5135 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1110D441D83564E00CA5135 /* OptionsViewController.swift */; };
 		E114C71E1D7B0D8500BE3984 /* PointOfInterestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E114C71D1D7B0D8500BE3984 /* PointOfInterestCell.swift */; };
 		E138C1A91D8C3D3800E81D06 /* ReadMe.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E138C1A81D8C3D3800E81D06 /* ReadMe.rtf */; };
@@ -59,6 +63,9 @@
 		0C01F50E1D63DE30005C6284 /* Detail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Detail.storyboard; sourceTree = "<group>"; };
 		0C01F5121D63E0D1005C6284 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		0C01F5161D63E163005C6284 /* UIColor+CustomColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+CustomColors.swift"; sourceTree = "<group>"; };
+		1294D643F85DA3FD6135D9B1 /* libPods-Trail of HistoryUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Trail of HistoryUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2679BFF5225141B4C8CA3B32 /* Pods-Trail of HistoryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trail of HistoryTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Trail of HistoryTests/Pods-Trail of HistoryTests.debug.xcconfig"; sourceTree = "<group>"; };
+		3E23F6EF68C01C921852F36C /* Pods-Trail of HistoryUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trail of HistoryUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Trail of HistoryUITests/Pods-Trail of HistoryUITests.release.xcconfig"; sourceTree = "<group>"; };
 		4D8B76481C97944300A70B71 /* Trail of History.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Trail of History.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D8B764B1C97944300A70B71 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4D8B764D1C97944300A70B71 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
@@ -73,6 +80,10 @@
 		4D8B766A1C97944300A70B71 /* Trail of HistoryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Trail of HistoryUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D8B766E1C97944300A70B71 /* Trail_of_HistoryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trail_of_HistoryUITests.swift; sourceTree = "<group>"; };
 		4D8B76701C97944300A70B71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4D8E69C91D92075B00DC0269 /* MapViewCardCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewCardCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		663E40419345BFAA966D6C06 /* libPods-Trail of HistoryTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Trail of HistoryTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D10F4F6240FDF5914D19411 /* libPods-Trail of History.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Trail of History.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6FC7F45E7A9B75300AA3E164 /* Pods-Trail of History.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trail of History.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Trail of History/Pods-Trail of History.debug.xcconfig"; sourceTree = "<group>"; };
 		E1110D441D83564E00CA5135 /* OptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OptionsViewController.swift; path = "Map View/OptionsViewController.swift"; sourceTree = "<group>"; };
 		E114C71D1D7B0D8500BE3984 /* PointOfInterestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PointOfInterestCell.swift; path = "Map View/PointOfInterestCell.swift"; sourceTree = "<group>"; };
 		E138C1A81D8C3D3800E81D06 /* ReadMe.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; name = ReadMe.rtf; path = "Map View/ReadMe.rtf"; sourceTree = "<group>"; };
@@ -91,6 +102,9 @@
 		E1DFEBBE1D77715E007359F4 /* DummyListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DummyListViewController.swift; path = "Map View/Temp/DummyListViewController.swift"; sourceTree = "<group>"; };
 		E1DFEBBF1D77715E007359F4 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationController.swift; path = "Map View/Temp/NavigationController.swift"; sourceTree = "<group>"; };
 		E1F984E21D6F692D00D28411 /* Title.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Title.xib; path = "Map View/Title.xib"; sourceTree = "<group>"; };
+		F31A40223A68496C2A3DC939 /* Pods-Trail of HistoryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trail of HistoryTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Trail of HistoryTests/Pods-Trail of HistoryTests.release.xcconfig"; sourceTree = "<group>"; };
+		F5EAD61089994794A61D00C3 /* Pods-Trail of History.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trail of History.release.xcconfig"; path = "Pods/Target Support Files/Pods-Trail of History/Pods-Trail of History.release.xcconfig"; sourceTree = "<group>"; };
+		FE9B8903B8591A989D29C6EF /* Pods-Trail of HistoryUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trail of HistoryUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Trail of HistoryUITests/Pods-Trail of HistoryUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +113,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1C238661D6C9EF900A718A8 /* MapKit.framework in Frameworks */,
+				4D68CDFF8772D4729ECF188A /* libPods-Trail of History.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4422897E3CD919446A4E8B04 /* libPods-Trail of HistoryTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,6 +129,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFC8D1CE24F14651A7D54F8C /* libPods-Trail of HistoryUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,6 +168,7 @@
 				E1110D441D83564E00CA5135 /* OptionsViewController.swift */,
 				E1C2383D1D6B29E900A718A8 /* PointOfInterestCell.xib */,
 				E114C71D1D7B0D8500BE3984 /* PointOfInterestCell.swift */,
+				4D8E69C91D92075B00DC0269 /* MapViewCardCollectionViewFlowLayout.swift */,
 				E1F984E21D6F692D00D28411 /* Title.xib */,
 				E1DFEBB71D7705D7007359F4 /* Trail.swift */,
 				E1DFEBB21D7701AF007359F4 /* Data */,
@@ -185,6 +203,19 @@
 			name = UI;
 			sourceTree = "<group>";
 		};
+		20D82087A7E17A0C89BC7141 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6FC7F45E7A9B75300AA3E164 /* Pods-Trail of History.debug.xcconfig */,
+				F5EAD61089994794A61D00C3 /* Pods-Trail of History.release.xcconfig */,
+				2679BFF5225141B4C8CA3B32 /* Pods-Trail of HistoryTests.debug.xcconfig */,
+				F31A40223A68496C2A3DC939 /* Pods-Trail of HistoryTests.release.xcconfig */,
+				FE9B8903B8591A989D29C6EF /* Pods-Trail of HistoryUITests.debug.xcconfig */,
+				3E23F6EF68C01C921852F36C /* Pods-Trail of HistoryUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		4D8B763F1C97944300A70B71 = {
 			isa = PBXGroup;
 			children = (
@@ -193,6 +224,8 @@
 				4D8B76621C97944300A70B71 /* Trail of HistoryTests */,
 				4D8B766D1C97944300A70B71 /* Trail of HistoryUITests */,
 				4D8B76491C97944300A70B71 /* Products */,
+				20D82087A7E17A0C89BC7141 /* Pods */,
+				896E85D2910027162145AD8E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -238,6 +271,16 @@
 			path = "Trail of HistoryUITests";
 			sourceTree = "<group>";
 		};
+		896E85D2910027162145AD8E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6D10F4F6240FDF5914D19411 /* libPods-Trail of History.a */,
+				663E40419345BFAA966D6C06 /* libPods-Trail of HistoryTests.a */,
+				1294D643F85DA3FD6135D9B1 /* libPods-Trail of HistoryUITests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E150ED411D7629CB006C40AF /* Temp */ = {
 			isa = PBXGroup;
 			children = (
@@ -263,9 +306,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4D8B76731C97944300A70B71 /* Build configuration list for PBXNativeTarget "Trail of History" */;
 			buildPhases = (
+				BD213B514E8AC991F7D0A5B9 /* [CP] Check Pods Manifest.lock */,
 				4D8B76441C97944300A70B71 /* Sources */,
 				4D8B76451C97944300A70B71 /* Frameworks */,
 				4D8B76461C97944300A70B71 /* Resources */,
+				0BE145A0735A724939A18E73 /* [CP] Embed Pods Frameworks */,
+				AF57DBF56DC8F390E826E88A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -280,9 +326,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4D8B76761C97944300A70B71 /* Build configuration list for PBXNativeTarget "Trail of HistoryTests" */;
 			buildPhases = (
+				AE9787A3E748272F0A904FBE /* [CP] Check Pods Manifest.lock */,
 				4D8B765B1C97944300A70B71 /* Sources */,
 				4D8B765C1C97944300A70B71 /* Frameworks */,
 				4D8B765D1C97944300A70B71 /* Resources */,
+				216D8E3BE706360735E3DA2F /* [CP] Embed Pods Frameworks */,
+				1A63F315B698C0208E1D6D65 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -298,9 +347,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4D8B76791C97944300A70B71 /* Build configuration list for PBXNativeTarget "Trail of HistoryUITests" */;
 			buildPhases = (
+				F7AF1FEC6313591423A350E9 /* [CP] Check Pods Manifest.lock */,
 				4D8B76661C97944300A70B71 /* Sources */,
 				4D8B76671C97944300A70B71 /* Frameworks */,
 				4D8B76681C97944300A70B71 /* Resources */,
+				363C98E482FB1B0896008BEC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -324,13 +375,16 @@
 				TargetAttributes = {
 					4D8B76471C97944300A70B71 = {
 						CreatedOnToolsVersion = 7.2.1;
+						LastSwiftMigration = 0800;
 					};
 					4D8B765E1C97944300A70B71 = {
 						CreatedOnToolsVersion = 7.2.1;
+						LastSwiftMigration = 0800;
 						TestTargetID = 4D8B76471C97944300A70B71;
 					};
 					4D8B76691C97944300A70B71 = {
 						CreatedOnToolsVersion = 7.2.1;
+						LastSwiftMigration = 0800;
 						TestTargetID = 4D8B76471C97944300A70B71;
 					};
 				};
@@ -392,12 +446,136 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0BE145A0735A724939A18E73 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Trail of History/Pods-Trail of History-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1A63F315B698C0208E1D6D65 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Trail of HistoryTests/Pods-Trail of HistoryTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		216D8E3BE706360735E3DA2F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Trail of HistoryTests/Pods-Trail of HistoryTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		363C98E482FB1B0896008BEC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Trail of HistoryUITests/Pods-Trail of HistoryUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AE9787A3E748272F0A904FBE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		AF57DBF56DC8F390E826E88A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Trail of History/Pods-Trail of History-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BD213B514E8AC991F7D0A5B9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F7AF1FEC6313591423A350E9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		4D8B76441C97944300A70B71 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				E139E73B1D9BE6FA0057F20D /* CardCollectionLayout.swift in Sources */,
+				4D8E69CA1D92075B00DC0269 /* MapViewCardCollectionViewFlowLayout.swift in Sources */,
 				4D8B764E1C97944300A70B71 /* ListViewController.swift in Sources */,
 				E1DFEBC21D77715E007359F4 /* NavigationController.swift in Sources */,
 				E1C238681D6CA65700A718A8 /* UIViewExtensions.swift in Sources */,
@@ -549,57 +727,71 @@
 		};
 		4D8B76741C97944300A70B71 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6FC7F45E7A9B75300AA3E164 /* Pods-Trail of History.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Trail of History/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cltmobile.Trail-of-History";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		4D8B76751C97944300A70B71 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F5EAD61089994794A61D00C3 /* Pods-Trail of History.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Trail of History/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cltmobile.Trail-of-History";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
 		4D8B76771C97944300A70B71 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2679BFF5225141B4C8CA3B32 /* Pods-Trail of HistoryTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = "Trail of HistoryTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cltmobile.Trail-of-HistoryTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Trail of History.app/Trail of History";
 			};
 			name = Debug;
 		};
 		4D8B76781C97944300A70B71 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F31A40223A68496C2A3DC939 /* Pods-Trail of HistoryTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = "Trail of HistoryTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cltmobile.Trail-of-HistoryTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Trail of History.app/Trail of History";
 			};
 			name = Release;
 		};
 		4D8B767A1C97944300A70B71 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FE9B8903B8591A989D29C6EF /* Pods-Trail of HistoryUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "Trail of HistoryUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cltmobile.Trail-of-HistoryUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = "Trail of History";
 				USES_XCTRUNNER = YES;
 			};
@@ -607,11 +799,13 @@
 		};
 		4D8B767B1C97944300A70B71 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3E23F6EF68C01C921852F36C /* Pods-Trail of HistoryUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "Trail of HistoryUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cltmobile.Trail-of-HistoryUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = "Trail of History";
 				USES_XCTRUNNER = YES;
 			};

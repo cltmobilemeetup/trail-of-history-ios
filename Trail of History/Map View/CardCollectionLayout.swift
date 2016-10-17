@@ -10,7 +10,7 @@ import UIKit
 
 class CardCollectionLayout: UICollectionViewFlowLayout {
     
-    override func targetContentOffsetForProposedContentOffset(proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
+    override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
 
         // The user has stopped scrolling the collection view. The proposed content offset tells us where the left hand side of the
         // collection view (i.e. the visible portion of the collection) will be positioned relative to the start of the collection's
@@ -28,11 +28,11 @@ class CardCollectionLayout: UICollectionViewFlowLayout {
             // This is the content offset at which the collection view would be centered were we to accept the proposed (lefthand side) offset.
             let proposedCenterOffset = proposedContentOffset.x + halfWidth;
             
-            if let attributesForVisibleCells = self.layoutAttributesForElementsInRect(collectionViewBounds) {
+            if let attributesForVisibleCells = self.layoutAttributesForElements(in: collectionViewBounds) {
 
                 // Find the cell whose center would be closest to the center of the collection view were we to accept the proposed offset.
                 var target: UICollectionViewLayoutAttributes?
-                for candidate in attributesForVisibleCells where candidate.representedElementCategory == UICollectionElementCategory.Cell {
+                for candidate in attributesForVisibleCells where candidate.representedElementCategory == UICollectionElementCategory.cell {
                     
                     if target == nil { // First time thru
                         target = candidate;
@@ -53,6 +53,6 @@ class CardCollectionLayout: UICollectionViewFlowLayout {
         }
         
         // Fallback
-        return super.targetContentOffsetForProposedContentOffset(proposedContentOffset, withScrollingVelocity: velocity)
+        return super.targetContentOffset(forProposedContentOffset: proposedContentOffset, withScrollingVelocity: velocity)
     }
 }

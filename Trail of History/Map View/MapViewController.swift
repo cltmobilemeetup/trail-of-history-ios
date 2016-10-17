@@ -29,22 +29,22 @@ class MapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var collectionView : UICollectionView!
     
-    private let poiCellReuseIdentifier = "PointOfInterestCell"
+    fileprivate let poiCellReuseIdentifier = "PointOfInterestCell"
 
-    private var currentPoiIndex = 0
-    private let imageForCurrent = UIImage(named: "CurrentPoiAnnotation")
-    private let imageForNotCurrent = UIImage(named: "PoiAnnotation")
+    fileprivate var currentPoiIndex = 0
+    fileprivate let imageForCurrent = UIImage(named: "CurrentPoiAnnotation")
+    fileprivate let imageForNotCurrent = UIImage(named: "PoiAnnotation")
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         navigationItem.titleView = UIView.fromNib("Title")
-        navigationItem.titleView?.backgroundColor = UIColor.clearColor() // It was set to an opaque color in the NIB so that the white, text images would be visible in the Interface Builder.
+        navigationItem.titleView?.backgroundColor = UIColor.clear // It was set to an opaque color in the NIB so that the white, text images would be visible in the Interface Builder.
         navigationItem.rightBarButtonItem?.tintColor = UIColor.tohTerracotaColor() // TODO: We should be able to access the TOH custom colors in the Interface Builder
          
         let poiCellNib = UINib(nibName: "PointOfInterestCell", bundle: nil)
-        collectionView.registerNib(poiCellNib, forCellWithReuseIdentifier: poiCellReuseIdentifier)
+        collectionView.register(poiCellNib, forCellWithReuseIdentifier: poiCellReuseIdentifier)
         collectionView.decelerationRate = UIScrollViewDecelerationRateFast
         
         mapView.showsUserLocation = true
@@ -54,15 +54,15 @@ class MapViewController: UIViewController {
         setCurrentTo(Trail.instance.pointsOfInterest[currentPoiIndex], suppressCardScrolling: true)
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         navigationItem.hidesBackButton = true
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
 
         case "Show Options"?:
-            let optionsViewController = segue.destinationViewController as! OptionsViewController
+            let optionsViewController = segue.destination as! OptionsViewController
             // TODO: Calculate the preferred size from the actual content of the Options controller's table.
             optionsViewController.preferredContentSize = CGSize(width: 150, height: 325)
             optionsViewController.delegate = self
@@ -79,12 +79,12 @@ class MapViewController: UIViewController {
 
 extension MapViewController : MKMapViewDelegate {
     
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         if let poi = annotation as? Trail.PointOfInterest {
             
             let reuseId = "PoiAnnotation"
-            var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
+            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId)
             if annotationView == nil  {
                 annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
             }
@@ -102,21 +102,21 @@ extension MapViewController : MKMapViewDelegate {
     }
     
     // Make the selected point of interest the new current POI
-    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
-        if let poi = view.annotation as? Trail.PointOfInterest where !isCurrent(poi) {
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        if let poi = view.annotation as? Trail.PointOfInterest , !isCurrent(poi) {
             changeCurrentTo(poi, suppressCardScrolling: false)
         }
     }
     
-    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         return Trail.instance.route.renderer
     }
     
     // As the user's location changes, update the distances of the POI collection's visible cards.
-    func mapView(mapView: MKMapView, didUpdateUserLocation userLocation: MKUserLocation) {
-        for index in collectionView.indexPathsForVisibleItems() {
-            let cell = collectionView.cellForItemAtIndexPath(index) as! PointOfInterestCell
-            let poi = Trail.instance.pointsOfInterest[index.item]
+    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+        for index in collectionView.indexPathsForVisibleItems {
+            let cell = collectionView.cellForItem(at: index) as! PointOfInterestCell
+            let poi = Trail.instance.pointsOfInterest[(index as NSIndexPath).item]
             cell.distanceLabel.text = distanceTo(pointOfInterest: poi)
         }
     }
@@ -127,61 +127,74 @@ extension MapViewController : UICollectionViewDelegate {
     // As the user scrolls a new point of interest card into view, we respond by making that card's POI
     // the current POI. We track the scrolling via a timer which will run for the duration of the scrolling.
 
-    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         //NSTimer.scheduledTimerWithTimeInterval(0.25, target: self, selector: #selector(currentPoiDetectionTimer), userInfo: nil, repeats: true)
-        let timer = NSTimer(timeInterval: 0.25, target: self, selector: #selector(currentPoiDetectionTimer), userInfo: nil, repeats: true)
-        NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
+        let timer = Timer(timeInterval: 0.25, target: self, selector: #selector(currentPoiDetectionTimer), userInfo: nil, repeats: true)
+        RunLoop.main.add(timer, forMode: RunLoopMode.commonModes)
     }
     
-    @objc func currentPoiDetectionTimer(timer: NSTimer) {
+    @objc func currentPoiDetectionTimer(_ timer: Timer) {
         let centerPoint = CGPoint(x: collectionView.frame.width/2, y: collectionView.frame.height/2)
-        let indexOfCenterCell = self.collectionView.indexPathForItemAtPoint(CGPoint(x: centerPoint.x + self.collectionView.contentOffset.x, y: centerPoint.y + self.collectionView.contentOffset.y))
-        if indexOfCenterCell != nil && indexOfCenterCell != currentPoiIndex {
-            changeCurrentTo(Trail.instance.pointsOfInterest[indexOfCenterCell!.item], suppressCardScrolling: true)
+        let indexOfCenterCell = self.collectionView.indexPathForItem(at: CGPoint(x: centerPoint.x + self.collectionView.contentOffset.x, y: centerPoint.y + self.collectionView.contentOffset.y))
+        if indexOfCenterCell != nil && indexOfCenterCell?.row != currentPoiIndex {
+            changeCurrentTo(Trail.instance.pointsOfInterest[(indexOfCenterCell! as NSIndexPath).item], suppressCardScrolling: true)
         }
 
-        if !collectionView.dragging && !collectionView.decelerating { timer.invalidate() }
+        if !collectionView.isDragging && !collectionView.isDecelerating { timer.invalidate() }
     }
 }
 
 // The FlowLayout looks for the UICollectionViewDelegateFlowLayout protocol's adoption on whatever object is set as the collection's delegate (i.e. UICollectionViewDelegate)
 extension MapViewController : UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(CGFloat(collectionView.bounds.size.width * 0.8), CGFloat(collectionView.bounds.size.height * 0.875))
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let screenSize: CGRect = UIScreen.main.bounds
+        return CGSize(width: CGFloat(screenSize.width * 0.8), height: CGFloat(70))
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.bounds.size.width * 0.1, height: 0)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        let screenSize: CGRect = UIScreen.main.bounds
+        return CGSize(width: screenSize.width * 0.1, height: 0)
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.bounds.size.width * 0.1, height: 0)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        let screenSize: CGRect = UIScreen.main.bounds
+        return CGSize(width: screenSize.width * 0.1, height: 0)
     }
+    
+    
+//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+//        return CGSize(width: CGFloat(collectionView.bounds.size.width * 0.8), height: CGFloat(collectionView.bounds.size.height * 0.875))
+//    }
+//    
+//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+//        return CGSize(width: collectionView.bounds.size.width * 0.1, height: 0)
+//    }
+//    
+//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+//        return CGSize(width: collectionView.bounds.size.width * 0.1, height: 0)
+//    }
 }
 
 extension MapViewController : UICollectionViewDataSource {
 
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return Trail.instance.pointsOfInterest.count
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        // The points of interest are sorted by longitude, westmost first. The cell at index 0 will use the data from the westmost (first) poi;
+        // the cell at index count - 1 will use the data from the eastmost (last) poi. Thus the horizontal sequencing of the cells from left to
+        // right mirrors the logitudinal sequencing of the points of interest from west to east.
+        let poi = Trail.instance.pointsOfInterest[(indexPath as NSIndexPath).item]
 
-        let poiCell = collectionView.dequeueReusableCellWithReuseIdentifier(poiCellReuseIdentifier, forIndexPath: indexPath) as! PointOfInterestCell
-
+        let poiCell = collectionView.dequeueReusableCell(withReuseIdentifier: poiCellReuseIdentifier, for: indexPath) as! PointOfInterestCell
+        poiCell.nameLabel.text = poi.title
+        poiCell.imageView.image = isCurrent(poi) ? imageForCurrent : imageForNotCurrent
+        poiCell.distanceLabel.text = distanceTo(pointOfInterest: poi)
         poiCell.layer.shadowOpacity = 0.3
         poiCell.layer.masksToBounds = false
         poiCell.layer.shadowOffset = CGSize(width: 4, height: 4)
         poiCell.collectionView = collectionView
-
-        // The points of interest are sorted by longitude, westmost first. The cell at index 0 will use the data from the westmost (first) poi;
-        // the cell at index count - 1 will use the data from the eastmost (last) poi. Thus the horizontal sequencing of the cells from left to
-        // right mirrors the logitudinal sequencing of the points of interest from west to east.
-        let poi = Trail.instance.pointsOfInterest[indexPath.item]
-        poiCell.nameLabel.text = poi.title
-        poiCell.imageView.image = isCurrent(poi) ? imageForCurrent : imageForNotCurrent
-        poiCell.distanceLabel.text = distanceTo(pointOfInterest: poi)
         
         return poiCell
     }
@@ -204,10 +217,10 @@ extension MapViewController : OptionsViewControllerDelegate {
         }
         set {
             if newValue {
-                mapView.addOverlay(Trail.instance.route)
+                mapView.add(Trail.instance.route)
             }
             else {
-                mapView.removeOverlay(Trail.instance.route)
+                mapView.remove(Trail.instance.route)
             }
         }
     }
@@ -220,7 +233,7 @@ extension MapViewController : OptionsViewControllerDelegate {
             // The canShowCallout value is the same for all of the POIs.
             // Find the first one and return its value.
             for poi in Trail.instance.pointsOfInterest {
-                if let view = mapView.viewForAnnotation(poi) {
+                if let view = mapView.view(for: poi) {
                     return view.canShowCallout
                 }
             }
@@ -228,7 +241,7 @@ extension MapViewController : OptionsViewControllerDelegate {
         }
         set {
             for poi in Trail.instance.pointsOfInterest {
-                if let view = mapView.viewForAnnotation(poi) {
+                if let view = mapView.view(for: poi) {
                     view.canShowCallout = newValue
                 }
             }
@@ -237,7 +250,7 @@ extension MapViewController : OptionsViewControllerDelegate {
     
     func zoomToTrail() {
         mapView.region = Trail.instance.region
-        mapView.setCenterCoordinate(Trail.instance.pointsOfInterest[currentPoiIndex].coordinate, animated: true)
+        mapView.setCenter(Trail.instance.pointsOfInterest[currentPoiIndex].coordinate, animated: true)
     }
 
     func zoomToUser() {
@@ -247,7 +260,7 @@ extension MapViewController : OptionsViewControllerDelegate {
 
     func zoomToBoth() {
         mapView.region = Trail.instance.region
-        if !mapView.userLocationVisible {
+        if !mapView.isUserLocationVisible {
             let trailRect = makeRect(center: Trail.instance.region.center, span: Trail.instance.region.span)
             let userRect = makeRect(center: mapView.userLocation.coordinate, span: Trail.instance.region.span)
             let combinedRect = MKMapRectUnion(trailRect, userRect)
@@ -258,34 +271,34 @@ extension MapViewController : OptionsViewControllerDelegate {
 
 extension MapViewController { // Utility Methods
 
-    private func isCurrent(poi: Trail.PointOfInterest) -> Bool{
-        return currentPoiIndex == Trail.instance.pointsOfInterest.indexOf(poi)!
+    fileprivate func isCurrent(_ poi: Trail.PointOfInterest) -> Bool{
+        return currentPoiIndex == Trail.instance.pointsOfInterest.index(of: poi)!
     }
 
-    private func changeCurrentTo(newCurrent: Trail.PointOfInterest, suppressCardScrolling: Bool) {
+    fileprivate func changeCurrentTo(_ newCurrent: Trail.PointOfInterest, suppressCardScrolling: Bool) {
         // Unset the old
         let currentPoi = Trail.instance.pointsOfInterest[currentPoiIndex]
-        mapView.viewForAnnotation(currentPoi)?.image = imageForNotCurrent
-        (collectionView.cellForItemAtIndexPath(NSIndexPath(forItem: currentPoiIndex, inSection: 0)) as? PointOfInterestCell)?.imageView.image = imageForNotCurrent
+        mapView.view(for: currentPoi)?.image = imageForNotCurrent
+        (collectionView.cellForItem(at: IndexPath(item: currentPoiIndex, section: 0)) as? PointOfInterestCell)?.imageView.image = imageForNotCurrent
 
         // Set the new
         setCurrentTo(newCurrent, suppressCardScrolling: suppressCardScrolling)
     }
     
-    private func setCurrentTo(poi: Trail.PointOfInterest, suppressCardScrolling: Bool) {
-        currentPoiIndex = Trail.instance.pointsOfInterest.indexOf(poi)!
+    fileprivate func setCurrentTo(_ poi: Trail.PointOfInterest, suppressCardScrolling: Bool) {
+        currentPoiIndex = Trail.instance.pointsOfInterest.index(of: poi)!
 
-        mapView.viewForAnnotation(poi)?.image = imageForCurrent
-        (collectionView.cellForItemAtIndexPath(NSIndexPath(forItem: currentPoiIndex, inSection: 0)) as? PointOfInterestCell)?.imageView.image = imageForCurrent
+        mapView.view(for: poi)?.image = imageForCurrent
+        (collectionView.cellForItem(at: IndexPath(item: currentPoiIndex, section: 0)) as? PointOfInterestCell)?.imageView.image = imageForCurrent
 
-        mapView.setCenterCoordinate(poi.coordinate, animated: true)
+        mapView.setCenter(poi.coordinate, animated: true)
 
         if !suppressCardScrolling {
-            collectionView.scrollToItemAtIndexPath(NSIndexPath(forItem: currentPoiIndex, inSection: 0), atScrollPosition: .CenteredHorizontally, animated: true)
+            collectionView.scrollToItem(at: IndexPath(item: currentPoiIndex, section: 0), at: .centeredHorizontally, animated: true)
         }
     }
     
-    private func distanceTo(pointOfInterest poi: Trail.PointOfInterest) -> String {
+    fileprivate func distanceTo(pointOfInterest poi: Trail.PointOfInterest) -> String {
         // The Trail class' singleton is using a location manager to update the distances of all of the
         // Points of Interest. The distances will be nil if location services are unavailable or unauthorized.
         if let distance = poi.distance { return "\(Int(round(distance))) yds" }
@@ -304,7 +317,7 @@ extension MapViewController { // Utility Methods
     //
     // For Points and Rects: x increases to the right, y increases down
     
-    private func makeRect(center center: CLLocationCoordinate2D, span: MKCoordinateSpan) -> MKMapRect {
+    fileprivate func makeRect(center: CLLocationCoordinate2D, span: MKCoordinateSpan) -> MKMapRect {
         let northWestCornerCoordinate = CLLocationCoordinate2D(latitude: center.latitude + span.latitudeDelta/2, longitude: center.longitude - span.longitudeDelta/2)
         let southEastCornetCoordinate = CLLocationCoordinate2D(latitude: center.latitude - span.latitudeDelta/2, longitude: center.longitude + span.longitudeDelta/2)
         let upperLeftCornerPoint = MKMapPointForCoordinate(northWestCornerCoordinate)

@@ -20,14 +20,14 @@ class NavigationController: UINavigationController {
 
 class NavigationControllerDelegate: NSObject, UINavigationControllerDelegate {
     
-    func navigationControllerSupportedInterfaceOrientations(navigationController: UINavigationController) -> UIInterfaceOrientationMask {
-        return .Portrait
+    func navigationControllerSupportedInterfaceOrientations(_ navigationController: UINavigationController) -> UIInterfaceOrientationMask {
+        return .portrait
     }
 }
 
 class NavigationBar: UINavigationBar {
 
-    override func sizeThatFits(size: CGSize) -> CGSize {
+    override func sizeThatFits(_ size: CGSize) -> CGSize {
         return super.sizeThatFits(size)
     }
 }

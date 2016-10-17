@@ -35,23 +35,23 @@ class Trail : NSObject {
     let region: MKCoordinateRegion // Usage: MapView.region = Trail.instance.region
     let pointsOfInterest: [PointOfInterest] // Usage: MapView.addAnnotations(Trail.instance.pointsOfInterest). Sorted by longitude, westmost first.
 
-    private let locationManager : CLLocationManager?
+    fileprivate let locationManager : CLLocationManager?
 
     // The bounds file is a dictionary of coordinates
-    private let boundsFileName = "TrailBounds.plist"
-    private enum Coordinates: String {
+    fileprivate let boundsFileName = "TrailBounds.plist"
+    fileprivate enum Coordinates: String {
         case midCoord
         case topLeftCoord
         case topRightCoord
         case bottomLeftCoord
     }
 
-    private override init() {
-        let boundsFileNameComponents = boundsFileName.componentsSeparatedByString(".")
-        let boundsFilePath = NSBundle.mainBundle().pathForResource(boundsFileNameComponents[0], ofType: boundsFileNameComponents[1])!
+    fileprivate override init() {
+        let boundsFileNameComponents = boundsFileName.components(separatedBy: ".")
+        let boundsFilePath = Bundle.main.path(forResource: boundsFileNameComponents[0], ofType: boundsFileNameComponents[1])!
         let properties = NSDictionary(contentsOfFile: boundsFilePath)!
        
-        func makeCoordinate(name: String) -> CLLocationCoordinate2D {
+        func makeCoordinate(_ name: String) -> CLLocationCoordinate2D {
             let point = CGPointFromString(properties[name] as! String)
             return CLLocationCoordinate2DMake(CLLocationDegrees(point.x), CLLocationDegrees(point.y))
         }
@@ -92,11 +92,11 @@ class Trail : NSObject {
         }
     }
 
-    private func alertUser(title: String?, body: String?) {
+    fileprivate func alertUser(_ title: String?, body: String?) {
         if let topController = UIApplication.topViewController() {
-            let alert = UIAlertController(title: title, message: body, preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default, handler: nil))
-            topController.presentViewController(alert, animated: false, completion: nil)
+            let alert = UIAlertController(title: title, message: body, preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+            topController.present(alert, animated: false, completion: nil)
         }
     }
 }
@@ -105,26 +105,26 @@ extension Trail {
     class Route: NSObject, MKOverlay {
         
         class Renderer : MKOverlayRenderer {
-            private static let routeImageFileName = "TrailRoute"
-            private let pathImage = UIImage(named: routeImageFileName)
+            fileprivate static let routeImageFileName = "TrailRoute"
+            fileprivate let pathImage = UIImage(named: routeImageFileName)
             
-            override func drawMapRect(mapRect: MKMapRect, zoomScale: MKZoomScale, inContext context: CGContext) {
+            override func draw(_ mapRect: MKMapRect, zoomScale: MKZoomScale, in context: CGContext) {
                 
-                let rendererRect = rectForMapRect(overlay.boundingMapRect)
+                let rendererRect = rect(for: overlay.boundingMapRect)
                 
-                CGContextScaleCTM(context, 1.0, -1.0)
-                CGContextTranslateCTM(context, 0.0, -rendererRect.size.height)
-                CGContextDrawImage(context, rendererRect, pathImage?.CGImage)
+                context.scaleBy(x: 1.0, y: -1.0)
+                context.translateBy(x: 0.0, y: -rendererRect.size.height)
+                context.draw((pathImage?.cgImage)!, in: rendererRect)
             }
         }
         
         // MKOverlay implementation
-        private(set) var coordinate: CLLocationCoordinate2D
-        private(set) var boundingMapRect: MKMapRect
+        fileprivate(set) var coordinate: CLLocationCoordinate2D
+        fileprivate(set) var boundingMapRect: MKMapRect
 
-        private(set) var renderer: Renderer!
+        fileprivate(set) var renderer: Renderer!
         
-        private init(midCoordinate: CLLocationCoordinate2D, boundingMapRect: MKMapRect) {
+        fileprivate init(midCoordinate: CLLocationCoordinate2D, boundingMapRect: MKMapRect) {
             self.coordinate = midCoordinate
             self.boundingMapRect = boundingMapRect
             super.init()
@@ -137,24 +137,26 @@ extension Trail {
 extension Trail {
     class PointOfInterest: NSObject, MKAnnotation {
         
-        private static func getPointsOfInterest() -> [PointOfInterest] {
+        fileprivate static func getPointsOfInterest() -> [PointOfInterest] {
             // The POI file is a dictionary of dictionaries. The keys of the outer dictionary
             // are the POI names. The inner dictionaries contain the POI's data.
             let poiFileName = "PointsOfInterest.plist"
             var pointsOfInterest = [PointOfInterest]()
-            let poiFileNameComponents = poiFileName.componentsSeparatedByString(".")
-            let poiFilePath = NSBundle.mainBundle().pathForResource(poiFileNameComponents[0], ofType: poiFileNameComponents[1])!
+            let poiFileNameComponents = poiFileName.components(separatedBy: ".")
+            let poiFilePath = Bundle.main.path(forResource: poiFileNameComponents[0], ofType: poiFileNameComponents[1])!
             for (name, data) in NSDictionary(contentsOfFile: poiFilePath)! {
+                let poiData = data as! [String:String]
                 
-                let location = CGPointFromString(data["location"] as! String)
-                let coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(location.x), longitude: CLLocationDegrees(location.y))
-                
-                let title = name as! String
-                let description = data["description"] as! String
-                let poi = PointOfInterest(title: title, coordinate: coordinate, narrative: description)
-                pointsOfInterest.append(poi)
+                if let poiLocation = poiData["location"], let description = poiData["description"] {
+                    let location = CGPointFromString(poiLocation)
+                    let coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(location.x), longitude: CLLocationDegrees(location.y))
+                    
+                    let title = name as! String
+                    let poi = PointOfInterest(title: title, coordinate: coordinate, narrative: description)
+                    pointsOfInterest.append(poi)
+                }
             }
-            return pointsOfInterest.sort { $0.coordinate.longitude < $1.coordinate.longitude }
+            return pointsOfInterest.sorted { $0.coordinate.longitude < $1.coordinate.longitude }
         }
 
         // MKAnnotation implementation
@@ -164,10 +166,10 @@ extension Trail {
 
         let narrative: String
         let location: CLLocation
-        private(set) var distance: Double? // The distance will remain nil if location services are unavailable or unauthorized.
+        fileprivate(set) var distance: Double? // The distance will remain nil if location services are unavailable or unauthorized.
 
         
-        private init(title: String, coordinate: CLLocationCoordinate2D, narrative: String) {
+        fileprivate init(title: String, coordinate: CLLocationCoordinate2D, narrative: String) {
             self.title = title
             self.coordinate = coordinate
             self.narrative = narrative
@@ -179,13 +181,13 @@ extension Trail {
 
 extension Trail : CLLocationManagerDelegate {
     
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         
         switch status {
-        case CLAuthorizationStatus.NotDetermined:
+        case CLAuthorizationStatus.notDetermined:
             manager.requestWhenInUseAuthorization();
             
-        case CLAuthorizationStatus.AuthorizedWhenInUse:
+        case CLAuthorizationStatus.authorizedWhenInUse:
             manager.startUpdatingLocation()
             
         default:
@@ -194,11 +196,11 @@ extension Trail : CLLocationManagerDelegate {
         }
     }
 
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let YardsPerMeter = 1.0936
         let userLocation = locations[locations.count - 1]
         for poi in pointsOfInterest {
-            poi.distance = userLocation.distanceFromLocation(poi.location) * YardsPerMeter
+            poi.distance = userLocation.distance(from: poi.location) * YardsPerMeter
         }
     }
 }
