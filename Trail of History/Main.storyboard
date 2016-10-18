@@ -1,39 +1,29 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9AF-Q7-mkU">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="9AF-Q7-mkU">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-<<<<<<< Updated upstream
         <!--ListViewController-->
         <scene sceneID="SNq-2O-0o5">
             <objects>
                 <viewControllerPlaceholder storyboardName="List" referencedIdentifier="ListViewController" id="RKH-HN-Jkh" sceneMemberID="viewController">
-=======
-        <!--List-->
-        <scene sceneID="SNq-2O-0o5">
-            <objects>
-                <viewControllerPlaceholder storyboardName="List" id="RKH-HN-Jkh" sceneMemberID="viewController">
->>>>>>> Stashed changes
                     <navigationItem key="navigationItem" id="EUi-73-gw8"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SwH-S8-jM6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-<<<<<<< Updated upstream
-            <point key="canvasLocation" x="-65.5" y="306"/>
-=======
-            <point key="canvasLocation" x="-138.5" y="306"/>
->>>>>>> Stashed changes
+            <point key="canvasLocation" x="148" y="305"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gi6-KV-CHm">
             <objects>
                 <navigationController id="9AF-Q7-mkU" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="A17-9R-qPL">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="A17-9R-qPL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.24313725531101227" green="0.23137255012989044" blue="0.20392157137393951" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.24313725531101227" green="0.23137255012989044" blue="0.20392157137393951" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="RKH-HN-Jkh" kind="relationship" relationship="rootViewController" id="MWx-0s-XXI"/>

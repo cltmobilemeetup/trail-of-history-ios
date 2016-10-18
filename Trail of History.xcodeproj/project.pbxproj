@@ -11,16 +11,16 @@
 		0C01F5131D63E0D1005C6284 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C01F5121D63E0D1005C6284 /* Main.storyboard */; };
 		0C01F5171D63E163005C6284 /* UIColor+CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C01F5161D63E163005C6284 /* UIColor+CustomColors.swift */; };
 		4422897E3CD919446A4E8B04 /* libPods-Trail of HistoryTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 663E40419345BFAA966D6C06 /* libPods-Trail of HistoryTests.a */; };
+		4D57B2821DB6E50000106362 /* List.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D57B2801DB6E50000106362 /* List.storyboard */; };
 		4D68CDFF8772D4729ECF188A /* libPods-Trail of History.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D10F4F6240FDF5914D19411 /* libPods-Trail of History.a */; };
 		4D8B764C1C97944300A70B71 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8B764B1C97944300A70B71 /* AppDelegate.swift */; };
-		4D8B764E1C97944300A70B71 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8B764D1C97944300A70B71 /* ListViewController.swift */; };
-		4D8B76511C97944300A70B71 /* List.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D8B764F1C97944300A70B71 /* List.storyboard */; };
 		4D8B76541C97944300A70B71 /* Trail_of_History.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4D8B76521C97944300A70B71 /* Trail_of_History.xcdatamodeld */; };
 		4D8B76561C97944300A70B71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D8B76551C97944300A70B71 /* Assets.xcassets */; };
 		4D8B76591C97944300A70B71 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D8B76571C97944300A70B71 /* LaunchScreen.storyboard */; };
 		4D8B76641C97944300A70B71 /* Trail_of_HistoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8B76631C97944300A70B71 /* Trail_of_HistoryTests.swift */; };
 		4D8B766F1C97944300A70B71 /* Trail_of_HistoryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8B766E1C97944300A70B71 /* Trail_of_HistoryUITests.swift */; };
 		4D8E69CA1D92075B00DC0269 /* MapViewCardCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8E69C91D92075B00DC0269 /* MapViewCardCollectionViewFlowLayout.swift */; };
+		4DDD56EA1DB6DF8800325C58 /* List View in Resources */ = {isa = PBXBuildFile; fileRef = 4DDD56E91DB6DF8800325C58 /* List View */; };
 		AFC8D1CE24F14651A7D54F8C /* libPods-Trail of HistoryUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1294D643F85DA3FD6135D9B1 /* libPods-Trail of HistoryUITests.a */; };
 		E1110D461D83564E00CA5135 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1110D441D83564E00CA5135 /* OptionsViewController.swift */; };
 		E114C71E1D7B0D8500BE3984 /* PointOfInterestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E114C71D1D7B0D8500BE3984 /* PointOfInterestCell.swift */; };
@@ -66,10 +66,9 @@
 		1294D643F85DA3FD6135D9B1 /* libPods-Trail of HistoryUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Trail of HistoryUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2679BFF5225141B4C8CA3B32 /* Pods-Trail of HistoryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trail of HistoryTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Trail of HistoryTests/Pods-Trail of HistoryTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3E23F6EF68C01C921852F36C /* Pods-Trail of HistoryUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trail of HistoryUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Trail of HistoryUITests/Pods-Trail of HistoryUITests.release.xcconfig"; sourceTree = "<group>"; };
+		4D57B2811DB6E50000106362 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/List.storyboard; sourceTree = "<group>"; };
 		4D8B76481C97944300A70B71 /* Trail of History.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Trail of History.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D8B764B1C97944300A70B71 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4D8B764D1C97944300A70B71 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
-		4D8B76501C97944300A70B71 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/List.storyboard; sourceTree = "<group>"; };
 		4D8B76531C97944300A70B71 /* Trail_of_History.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Trail_of_History.xcdatamodel; sourceTree = "<group>"; };
 		4D8B76551C97944300A70B71 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4D8B76581C97944300A70B71 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -81,6 +80,7 @@
 		4D8B766E1C97944300A70B71 /* Trail_of_HistoryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trail_of_HistoryUITests.swift; sourceTree = "<group>"; };
 		4D8B76701C97944300A70B71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4D8E69C91D92075B00DC0269 /* MapViewCardCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewCardCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		4DDD56E91DB6DF8800325C58 /* List View */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "List View"; sourceTree = "<group>"; };
 		663E40419345BFAA966D6C06 /* libPods-Trail of HistoryTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Trail of HistoryTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D10F4F6240FDF5914D19411 /* libPods-Trail of History.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Trail of History.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FC7F45E7A9B75300AA3E164 /* Pods-Trail of History.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trail of History.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Trail of History/Pods-Trail of History.debug.xcconfig"; sourceTree = "<group>"; };
@@ -141,23 +141,13 @@
 			children = (
 				4D8B765A1C97944300A70B71 /* Info.plist */,
 				4D8B76551C97944300A70B71 /* Assets.xcassets */,
+				4D57B2801DB6E50000106362 /* List.storyboard */,
 				0C01F5121D63E0D1005C6284 /* Main.storyboard */,
 				4D8B76571C97944300A70B71 /* LaunchScreen.storyboard */,
 				E150ED421D763903006C40AF /* Archer-Medium.otf */,
 				E1DFEBAF1D7663B9007359F4 /* DIN Condensed Bold.ttf */,
 			);
 			name = Resources;
-			sourceTree = "<group>";
-		};
-		0C01F50B1D63DDDE005C6284 /* List View */ = {
-			isa = PBXGroup;
-			children = (
-				4D8B764F1C97944300A70B71 /* List.storyboard */,
-				4D8B764D1C97944300A70B71 /* ListViewController.swift */,
-				FCF3B6DE1D64093900CC8A59 /* POICollectionViewCell.swift */,
-				FCF3B6DF1D64093900CC8A59 /* POICollectionViewCell.xib */,
-			);
-			name = "List View";
 			sourceTree = "<group>";
 		};
 		0C01F50C1D63DDF1005C6284 /* Map View */ = {
@@ -244,12 +234,12 @@
 		4D8B764A1C97944300A70B71 /* Trail of History */ = {
 			isa = PBXGroup;
 			children = (
+				4DDD56E91DB6DF8800325C58 /* List View */,
 				4D8B764B1C97944300A70B71 /* AppDelegate.swift */,
 				0C01F50A1D63DDCB005C6284 /* Resources */,
 				0C01F5141D63E135005C6284 /* Common */,
 				0C01F50D1D63DDF6005C6284 /* Detail View */,
 				0C01F50C1D63DDF1005C6284 /* Map View */,
-				0C01F50B1D63DDDE005C6284 /* List View */,
 				4D8B76521C97944300A70B71 /* Trail_of_History.xcdatamodeld */,
 			);
 			path = "Trail of History";
@@ -372,7 +362,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "CLT Mobile";
 				TargetAttributes = {
 					4D8B76471C97944300A70B71 = {
@@ -416,6 +406,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DDD56EA1DB6DF8800325C58 /* List View in Resources */,
 				4D8B76591C97944300A70B71 /* LaunchScreen.storyboard in Resources */,
 				E138C1A91D8C3D3800E81D06 /* ReadMe.rtf in Resources */,
 				4D8B76561C97944300A70B71 /* Assets.xcassets in Resources */,
@@ -423,8 +414,8 @@
 				E1C2383F1D6B29E900A718A8 /* PointOfInterestCell.xib in Resources */,
 				E1F984E31D6F692D00D28411 /* Title.xib in Resources */,
 				E1DFEBBB1D775E7A007359F4 /* PointsOfInterest.plist in Resources */,
+				4D57B2821DB6E50000106362 /* List.storyboard in Resources */,
 				E1DFEBB01D7663B9007359F4 /* DIN Condensed Bold.ttf in Resources */,
-				4D8B76511C97944300A70B71 /* List.storyboard in Resources */,
 				0C01F50F1D63DE30005C6284 /* Detail.storyboard in Resources */,
 				E1C2383C1D6B28C700A718A8 /* Map.storyboard in Resources */,
 				E1DFEBBC1D775E7A007359F4 /* TrailBounds.plist in Resources */,
@@ -578,13 +569,11 @@
 			files = (
 				E139E73B1D9BE6FA0057F20D /* CardCollectionLayout.swift in Sources */,
 				4D8E69CA1D92075B00DC0269 /* MapViewCardCollectionViewFlowLayout.swift in Sources */,
-				4D8B764E1C97944300A70B71 /* ListViewController.swift in Sources */,
 				E1DFEBC21D77715E007359F4 /* NavigationController.swift in Sources */,
 				E1C238681D6CA65700A718A8 /* UIViewExtensions.swift in Sources */,
 				E1DFEBB81D7705D7007359F4 /* Trail.swift in Sources */,
 				E114C71E1D7B0D8500BE3984 /* PointOfInterestCell.swift in Sources */,
 				4D8B76541C97944300A70B71 /* Trail_of_History.xcdatamodeld in Sources */,
-				FCF3B6E01D64093900CC8A59 /* POICollectionViewCell.swift in Sources */,
 				E1D6AA6F1D88D43B002987BA /* UIApplicationExtensions.swift in Sources */,
 				0C01F5171D63E163005C6284 /* UIColor+CustomColors.swift in Sources */,
 				4D8B764C1C97944300A70B71 /* AppDelegate.swift in Sources */,
@@ -626,10 +615,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		4D8B764F1C97944300A70B71 /* List.storyboard */ = {
+		4D57B2801DB6E50000106362 /* List.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				4D8B76501C97944300A70B71 /* Base */,
+				4D57B2811DB6E50000106362 /* Base */,
 			);
 			name = List.storyboard;
 			sourceTree = "<group>";
@@ -658,8 +647,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -703,8 +694,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -723,6 +716,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
