@@ -19,7 +19,6 @@
 		4D8B76591C97944300A70B71 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D8B76571C97944300A70B71 /* LaunchScreen.storyboard */; };
 		4D8B76641C97944300A70B71 /* Trail_of_HistoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8B76631C97944300A70B71 /* Trail_of_HistoryTests.swift */; };
 		4D8B766F1C97944300A70B71 /* Trail_of_HistoryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8B766E1C97944300A70B71 /* Trail_of_HistoryUITests.swift */; };
-		4D8E69CA1D92075B00DC0269 /* MapViewCardCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8E69C91D92075B00DC0269 /* MapViewCardCollectionViewFlowLayout.swift */; };
 		4DDD56EA1DB6DF8800325C58 /* List View in Resources */ = {isa = PBXBuildFile; fileRef = 4DDD56E91DB6DF8800325C58 /* List View */; };
 		AFC8D1CE24F14651A7D54F8C /* libPods-Trail of HistoryUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1294D643F85DA3FD6135D9B1 /* libPods-Trail of HistoryUITests.a */; };
 		E1110D461D83564E00CA5135 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1110D441D83564E00CA5135 /* OptionsViewController.swift */; };
@@ -80,7 +79,6 @@
 		4D8B766A1C97944300A70B71 /* Trail of HistoryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Trail of HistoryUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D8B766E1C97944300A70B71 /* Trail_of_HistoryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trail_of_HistoryUITests.swift; sourceTree = "<group>"; };
 		4D8B76701C97944300A70B71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4D8E69C91D92075B00DC0269 /* MapViewCardCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewCardCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		4DDD56E91DB6DF8800325C58 /* List View */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "List View"; sourceTree = "<group>"; };
 		663E40419345BFAA966D6C06 /* libPods-Trail of HistoryTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Trail of HistoryTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D10F4F6240FDF5914D19411 /* libPods-Trail of History.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Trail of History.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -162,7 +160,6 @@
 				E1110D441D83564E00CA5135 /* OptionsViewController.swift */,
 				E1C2383D1D6B29E900A718A8 /* PointOfInterestCell.xib */,
 				E114C71D1D7B0D8500BE3984 /* PointOfInterestCell.swift */,
-				4D8E69C91D92075B00DC0269 /* MapViewCardCollectionViewFlowLayout.swift */,
 				E1F984E21D6F692D00D28411 /* Title.xib */,
 				E1DFEBB71D7705D7007359F4 /* Trail.swift */,
 				E1DFEBB21D7701AF007359F4 /* Data */,
@@ -371,6 +368,7 @@
 				TargetAttributes = {
 					4D8B76471C97944300A70B71 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = UR6MRM7GRB;
 						LastSwiftMigration = 0800;
 					};
 					4D8B765E1C97944300A70B71 = {
@@ -588,7 +586,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E139E73B1D9BE6FA0057F20D /* CardCollectionLayout.swift in Sources */,
-				4D8E69CA1D92075B00DC0269 /* MapViewCardCollectionViewFlowLayout.swift in Sources */,
 				E1DFEBC21D77715E007359F4 /* NavigationController.swift in Sources */,
 				E1C238681D6CA65700A718A8 /* UIViewExtensions.swift in Sources */,
 				E1DFEBB81D7705D7007359F4 /* Trail.swift in Sources */,
@@ -748,6 +745,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = UR6MRM7GRB;
 				INFOPLIST_FILE = "Trail of History/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cltmobile.Trail-of-History";
@@ -763,6 +761,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = UR6MRM7GRB;
 				INFOPLIST_FILE = "Trail of History/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cltmobile.Trail-of-History";
