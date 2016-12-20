@@ -147,9 +147,8 @@ extension Trail {
             for (name, data) in NSDictionary(contentsOfFile: poiFilePath)! {
                 let poiData = data as! [String:String]
                 
-                if let poiLocation = poiData["location"], let description = poiData["description"] {
-                    let location = CGPointFromString(poiLocation)
-                    let coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(location.x), longitude: CLLocationDegrees(location.y))
+                if let latitude = poiData["latitude"], let longitude = poiData["longitude"], let description = poiData["description"] {
+                    let coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude)!, longitude: CLLocationDegrees(longitude)!)
                     
                     let title = name as! String
                     let poi = PointOfInterest(title: title, coordinate: coordinate, narrative: description)

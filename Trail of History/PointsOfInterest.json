@@ -1,0 +1,45 @@
+{
+  "pointOfInterest" : {
+    "-KPouRkGrVFmiUg-OunS" : {
+      "description" : "Starting from a small dry goods store in Monroe, North Carolina, William Henry Belk opened retail stores in Charlotte and other communities across the southeast from the end of the nineteenth-century through the mid twentieth-century.",
+      "imageUrl" : "https://firebasestorage.googleapis.com/v0/b/trail-of-ollen.appspot.com/o/images%2Fbelk.jpg?alt=media&token=0eb27627-05da-4ca4-b6b9-bb896d87b922",
+      "latitude" : 35.212547,
+      "longitude" : -80.83627,
+      "name" : "William Henry Belk",
+      "uid" : "-KPouRkGrVFmiUg-OunS"
+    },
+    "-KPoup9lStpM2tZEZkPr" : {
+      "description" : "A prominent African American businessman and civic leader, Thaddeus (Thad) Lincoln Tate made a significant contribution to the Charlotte community in the early to mid twentieth-century.",
+      "imageUrl" : "https://firebasestorage.googleapis.com/v0/b/trail-of-ollen.appspot.com/o/images%2Fthaddeustate.jpeg?alt=media&token=a561eaff-b64b-430f-bcfd-e3f27de2291d",
+      "latitude" : 35.212177,
+      "longitude" : -80.836235,
+      "name" : "Thaddeus Tate",
+      "uid" : "-KPoup9lStpM2tZEZkPr"
+    },
+    "-KPousJ4PYHBxIW7RY3m" : {
+      "description" : "On May 19, 1775 a rider raced into Charlottetowne with news of the massacre of colonists by the British at the Battle of Concord and Lexington.",
+      "imageUrl" : "https://firebasestorage.googleapis.com/v0/b/trail-of-ollen.appspot.com/o/images%2Fcaptainjack.png?alt=media&token=ad06e93b-7d7d-47c4-ac7b-57ad98186bf8",
+      "latitude" : 35.21687,
+      "longitude" : -80.8327,
+      "name" : "Captain Jack",
+      "uid" : "-KPousJ4PYHBxIW7RY3m"
+    },
+    "-KPouxawWJ-S_IFuUqSG" : {
+      "description" : "Thomas “Kanawha” Spratt was among the earliest settlers in this part of the Carolinas. His father, also named Thomas Spratt, purchased land on Twelve Mile Creek, near present-day Fort Mill, SC, in 1750 and later added two plantations.",
+      "imageUrl" : "https://firebasestorage.googleapis.com/v0/b/trail-of-ollen.appspot.com/o/images%2Ftsprattkhaigler.jpg?alt=media&token=215f74c9-6b13-42ab-9506-88317245d514",
+      "latitude" : 35.22006,
+      "longitude" : -80.83041,
+      "name" : "Thomas Spratt and King Haigler",
+      "uid" : "-KPouxawWJ-S_IFuUqSG"
+    },
+    "-KPov2XF4D6WFKrlVMl0" : {
+      "description" : "Thomas Polk, one of the earliest settlers of Mecklenburg County, was a trained surveyor, a prosperous planter, and a local leader.",
+      "imageUrl" : "https://firebasestorage.googleapis.com/v0/b/trail-of-ollen.appspot.com/o/images%2Ftoh.jpg?alt=media&token=3e433ca5-bda2-4748-b785-4cb734064a0c",
+      "latitude" : 35.21912,
+      "longitude" : -80.82952,
+      "name" : "Thomas Polk",
+      "uid" : "-KPov2XF4D6WFKrlVMl0"
+    }
+  }
+}
+

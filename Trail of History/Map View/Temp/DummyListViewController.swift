@@ -11,11 +11,15 @@ import UIKit
 class DummyListViewController: UITableViewController {
 
     fileprivate let cellReuseIdentifier = "POI Name"
-    fileprivate let poiNames = ["Captain Jack", "William Henry Blake", "Thomas Polk", "Thad Tate", "Jane Wilkes", "Thomas Sprate and King Haigler", "Emily King"]
+    //fileprivate let poiNames = ["Captain Jack", "William Henry Blake", "Thomas Polk", "Thad Tate", "Jane Wilkes", "Thomas Sprate and King Haigler", "Emily King"]
+    fileprivate var poiNames = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        PointOfInterest.getAll { poi in
+            self.poiNames.append(poi.name)
+            self.tableView.reloadData()
+        }
         //printfonts()
     }
 
