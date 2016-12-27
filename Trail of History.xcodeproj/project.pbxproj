@@ -36,9 +36,6 @@
 		E1D6AA6F1D88D43B002987BA /* UIApplicationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D6AA6E1D88D43B002987BA /* UIApplicationExtensions.swift */; };
 		E1D6DC7B1E071721001DFA9C /* PointsOfInterest.json in Resources */ = {isa = PBXBuildFile; fileRef = E1D6DC7A1E071721001DFA9C /* PointsOfInterest.json */; };
 		E1DFEBB01D7663B9007359F4 /* DIN Condensed Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E1DFEBAF1D7663B9007359F4 /* DIN Condensed Bold.ttf */; };
-		E1DFEBB81D7705D7007359F4 /* Trail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFEBB71D7705D7007359F4 /* Trail.swift */; };
-		E1DFEBBB1D775E7A007359F4 /* PointsOfInterest.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1DFEBB91D775E7A007359F4 /* PointsOfInterest.plist */; };
-		E1DFEBBC1D775E7A007359F4 /* TrailBounds.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1DFEBBA1D775E7A007359F4 /* TrailBounds.plist */; };
 		E1DFEBC11D77715E007359F4 /* DummyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFEBBE1D77715E007359F4 /* DummyListViewController.swift */; };
 		E1DFEBC21D77715E007359F4 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFEBBF1D77715E007359F4 /* NavigationController.swift */; };
 		E1F984E31D6F692D00D28411 /* Title.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1F984E21D6F692D00D28411 /* Title.xib */; };
@@ -100,9 +97,6 @@
 		E1D6AA6E1D88D43B002987BA /* UIApplicationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIApplicationExtensions.swift; sourceTree = "<group>"; };
 		E1D6DC7A1E071721001DFA9C /* PointsOfInterest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PointsOfInterest.json; sourceTree = "<group>"; };
 		E1DFEBAF1D7663B9007359F4 /* DIN Condensed Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DIN Condensed Bold.ttf"; sourceTree = "<group>"; };
-		E1DFEBB71D7705D7007359F4 /* Trail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Trail.swift; path = "Map View/Trail.swift"; sourceTree = "<group>"; };
-		E1DFEBB91D775E7A007359F4 /* PointsOfInterest.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PointsOfInterest.plist; path = "Map View/Data/PointsOfInterest.plist"; sourceTree = "<group>"; };
-		E1DFEBBA1D775E7A007359F4 /* TrailBounds.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = TrailBounds.plist; path = "Map View/Data/TrailBounds.plist"; sourceTree = "<group>"; };
 		E1DFEBBE1D77715E007359F4 /* DummyListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DummyListViewController.swift; path = "Map View/Temp/DummyListViewController.swift"; sourceTree = "<group>"; };
 		E1DFEBBF1D77715E007359F4 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationController.swift; path = "Map View/Temp/NavigationController.swift"; sourceTree = "<group>"; };
 		E1F984E21D6F692D00D28411 /* Title.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Title.xib; path = "Map View/Title.xib"; sourceTree = "<group>"; };
@@ -165,8 +159,6 @@
 				E1C2383D1D6B29E900A718A8 /* PointOfInterestCell.xib */,
 				E114C71D1D7B0D8500BE3984 /* PointOfInterestCell.swift */,
 				E1F984E21D6F692D00D28411 /* Title.xib */,
-				E1DFEBB71D7705D7007359F4 /* Trail.swift */,
-				E1DFEBB21D7701AF007359F4 /* Data */,
 				E150ED411D7629CB006C40AF /* Temp */,
 			);
 			name = "Map View";
@@ -286,15 +278,6 @@
 				E1DFEBBF1D77715E007359F4 /* NavigationController.swift */,
 			);
 			name = Temp;
-			sourceTree = "<group>";
-		};
-		E1DFEBB21D7701AF007359F4 /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				E1DFEBB91D775E7A007359F4 /* PointsOfInterest.plist */,
-				E1DFEBBA1D775E7A007359F4 /* TrailBounds.plist */,
-			);
-			name = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -422,13 +405,11 @@
 				0C01F5131D63E0D1005C6284 /* Main.storyboard in Resources */,
 				E1C2383F1D6B29E900A718A8 /* PointOfInterestCell.xib in Resources */,
 				E1F984E31D6F692D00D28411 /* Title.xib in Resources */,
-				E1DFEBBB1D775E7A007359F4 /* PointsOfInterest.plist in Resources */,
 				4D57B2821DB6E50000106362 /* List.storyboard in Resources */,
 				E1DFEBB01D7663B9007359F4 /* DIN Condensed Bold.ttf in Resources */,
 				0C01F50F1D63DE30005C6284 /* Detail.storyboard in Resources */,
 				E1C2383C1D6B28C700A718A8 /* Map.storyboard in Resources */,
 				E1D6DC7B1E071721001DFA9C /* PointsOfInterest.json in Resources */,
-				E1DFEBBC1D775E7A007359F4 /* TrailBounds.plist in Resources */,
 				E150ED441D763903006C40AF /* Archer-Medium.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -595,7 +576,6 @@
 				E139E73B1D9BE6FA0057F20D /* CardCollectionLayout.swift in Sources */,
 				E1DFEBC21D77715E007359F4 /* NavigationController.swift in Sources */,
 				E1C238681D6CA65700A718A8 /* UIViewExtensions.swift in Sources */,
-				E1DFEBB81D7705D7007359F4 /* Trail.swift in Sources */,
 				E114C71E1D7B0D8500BE3984 /* PointOfInterestCell.swift in Sources */,
 				4D8B76541C97944300A70B71 /* Trail_of_History.xcdatamodeld in Sources */,
 				E13F30881E0D53CD009EBF74 /* PointOfInterest.swift in Sources */,

@@ -54,11 +54,13 @@ class MapViewController: UIViewController {
     }
 
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var collectionView : UICollectionView!
-    
+    fileprivate var boundary: MKCoordinateRegion!
     fileprivate var currentPoi: PoiAnnotation?
     fileprivate var poiAnnotations = [PoiAnnotation]()
+
+    @IBOutlet weak var collectionView : UICollectionView!
     fileprivate let poiCellReuseIdentifier = "PointOfInterestCell"
+    
     private var listenerToken: PointOfInterest.Notifier.Token!
 
     override func viewDidLoad() {
@@ -73,7 +75,7 @@ class MapViewController: UIViewController {
         collectionView.decelerationRate = UIScrollViewDecelerationRateFast
         
         mapView.showsUserLocation = true
-        mapView.region = Trail.instance.region
+        boundary = mapView.region
 
         listenerToken = PointOfInterest.notifier.register(listener: poiListener, dispatchQueue: DispatchQueue.main)
     }
@@ -101,6 +103,48 @@ class MapViewController: UIViewController {
     }
 
     func poiListener(poi: PointOfInterest, event: PointOfInterest.Notifier.Event) {
+
+        func updateBoundary() {
+            if poiAnnotations.count > 0 {
+                var westmost = poiAnnotations[0].poi.coordinate.longitude
+                var eastmost = westmost
+                var northmost = poiAnnotations[0].poi.coordinate.latitude
+                var southmost = northmost
+                
+                for poi in poiAnnotations {
+                    if poi.coordinate.longitude < westmost { westmost = poi.coordinate.longitude }
+                    else if poi.coordinate.longitude > eastmost { eastmost = poi.coordinate.longitude }
+                    if poi.coordinate.latitude > northmost { northmost = poi.coordinate.latitude }
+                    else if poi.coordinate.latitude < southmost { southmost = poi.coordinate.latitude }
+                }
+
+                westmost -= 0.005
+                eastmost += 0.005
+                northmost += 0.005
+                southmost -= 0.005
+
+                let latitudeDelta = northmost - southmost
+                let longitudeDelta = eastmost - westmost
+                let span = MKCoordinateSpanMake(latitudeDelta, longitudeDelta)
+                let midPoint = CLLocationCoordinate2DMake(southmost + latitudeDelta/2, westmost + longitudeDelta/2)
+                
+                boundary = MKCoordinateRegionMake(midPoint, span)
+                mapView.region = boundary
+            }
+        }
+
+        func findCentermost() -> PoiAnnotation? { // East to west centermost
+            var centermost: PoiAnnotation?
+            var delta = Double.greatestFiniteMagnitude
+            for annotation in poiAnnotations {
+                let newDelta = fabs(mapView.region.center.longitude - annotation.coordinate.longitude)
+                if newDelta < delta {
+                    delta = newDelta
+                    centermost = annotation
+                }
+            }
+            return centermost
+        }
 
         switch event {
 
@@ -131,12 +175,17 @@ class MapViewController: UIViewController {
             }
         }
 
-        poiAnnotations = poiAnnotations.sorted { $0.poi.coordinate.longitude < $1.poi.coordinate.longitude } // westmost first
+        poiAnnotations = poiAnnotations.sorted { $0.poi.coordinate.longitude < $1.poi.coordinate.longitude } // Westmost first
 
-        if currentPoi == nil && poiAnnotations.count > 0 {
-            currentPoi = poiAnnotations[0]
-            mapView.view(for: currentPoi!)?.image = #imageLiteral(resourceName: "CurrentPoiAnnotationImage")
-            mapView.setCenter(currentPoi!.coordinate, animated: true)
+        updateBoundary()
+
+        if let centermost = findCentermost() {
+            if let current = currentPoi {
+                mapView.view(for: current)?.image = #imageLiteral(resourceName: "PoiAnnotationImage")
+            }
+            currentPoi = centermost
+            mapView.view(for: centermost)?.image = #imageLiteral(resourceName: "CurrentPoiAnnotationImage")
+            mapView.setCenter(centermost.coordinate, animated: true)
         }
 
         collectionView.reloadData()
@@ -191,10 +240,6 @@ extension MapViewController : MKMapViewDelegate {
                 collectionView.scrollToItem(at: path, at: .centeredHorizontally, animated: true)
             }
         }
-    }
-    
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        return Trail.instance.route.renderer
     }
     
     // As the user's location changes, update the distances of the POI collection's visible cards.
@@ -308,6 +353,7 @@ extension MapViewController : OptionsViewControllerDelegate {
         }
     }
 
+/*
     var trailRouteVisible: Bool {
         get {
             // We only have 1 possible overlay (currently)
@@ -322,6 +368,7 @@ extension MapViewController : OptionsViewControllerDelegate {
             }
         }
     }
+*/
     
     // The POI Annotations set their subtitle to display their coordinates.
     // We might not want callouts in the final version and/or we might want to display something different. For
@@ -343,22 +390,22 @@ extension MapViewController : OptionsViewControllerDelegate {
     }
     
     func zoomToTrail() {
-        mapView.region = Trail.instance.region
+        mapView.region = boundary
         if let current = currentPoi {
             mapView.setCenter(current.coordinate, animated: true)
         }
     }
 
     func zoomToUser() {
-        let userRect = makeRect(center: mapView.userLocation.coordinate, span: Trail.instance.region.span)
+        let userRect = makeRect(center: mapView.userLocation.coordinate, span: boundary.span)
         mapView.region = MKCoordinateRegionForMapRect(userRect)
     }
 
     func zoomToBoth() {
-        mapView.region = Trail.instance.region
+        mapView.region = boundary
         if !mapView.isUserLocationVisible {
-            let trailRect = makeRect(center: Trail.instance.region.center, span: Trail.instance.region.span)
-            let userRect = makeRect(center: mapView.userLocation.coordinate, span: Trail.instance.region.span)
+            let trailRect = makeRect(center: boundary.center, span: boundary.span)
+            let userRect = makeRect(center: mapView.userLocation.coordinate, span: boundary.span)
             let combinedRect = MKMapRectUnion(trailRect, userRect)
             mapView.region = MKCoordinateRegionForMapRect(combinedRect)
         }
