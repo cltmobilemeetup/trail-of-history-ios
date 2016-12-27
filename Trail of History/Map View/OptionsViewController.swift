@@ -11,7 +11,7 @@ import MapKit
 
 protocol OptionsViewControllerDelegate: class {
     var mapType: MKMapType { get set }
-    var trailRouteVisible: Bool { get set }
+    //var trailRouteVisible: Bool { get set }
     var calloutsEnabled: Bool { get set }
     func zoomToTrail()
     func zoomToUser()
@@ -25,7 +25,7 @@ class OptionsViewController: UITableViewController {
         case Satellite
         case Hybrid
         
-        case TrailRoute
+        //case TrailRoute
         case Callouts
         
         case ZoomToTrail
@@ -70,7 +70,7 @@ class OptionsViewController: UITableViewController {
             break
         }
 
-        CellIdentifier.TrailRoute.getCell(tableView)?.accessoryType = delegate.trailRouteVisible ? .checkmark : .none
+        //CellIdentifier.TrailRoute.getCell(tableView)?.accessoryType = delegate.trailRouteVisible ? .checkmark : .none
         CellIdentifier.Callouts.getCell(tableView)?.accessoryType = delegate.calloutsEnabled ? .checkmark : .none
     }
 
@@ -94,9 +94,9 @@ class OptionsViewController: UITableViewController {
             }
 
         // Map Features
-        case .TrailRoute:
-            cell.accessoryType = cell.accessoryType == .none ? .checkmark : .none
-            delegate.trailRouteVisible = cell.accessoryType == .checkmark
+        //case .TrailRoute:
+            //cell.accessoryType = cell.accessoryType == .none ? .checkmark : .none
+            //delegate.trailRouteVisible = cell.accessoryType == .checkmark
         case .Callouts:
             cell.accessoryType = cell.accessoryType == .none ? .checkmark : .none
             delegate.calloutsEnabled = cell.accessoryType == .checkmark

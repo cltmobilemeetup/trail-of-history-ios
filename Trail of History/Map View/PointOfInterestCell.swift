@@ -15,6 +15,7 @@ class PointOfInterestCell: UICollectionViewCell {
     @IBOutlet weak var distanceLabel: UILabel!
     
     weak var collectionView: UICollectionView!
+    var poi: PointOfInterest!
 
     fileprivate lazy var detailView: UILabel = {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
@@ -32,10 +33,8 @@ class PointOfInterestCell: UICollectionViewCell {
 
     @IBAction func presentDetailView(_ sender: UIButton) {
         if detailView.superview == nil {
-            let index = (collectionView.indexPath(for: self)! as NSIndexPath).item
-            let poi = Trail.instance.pointsOfInterest[index]
-            detailView.text = poi.narrative
-            
+            detailView.text = poi.description
+
             let parentView = collectionView.superview!
             parentView.addSubview(detailView)
             detailView.bounds = parentView.bounds.insetBy(dx: 50, dy: 100)
