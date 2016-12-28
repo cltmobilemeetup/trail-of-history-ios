@@ -33,7 +33,7 @@ class Trail : NSObject {
 
     let route: Route // Usage: MapView.addOverlay(Trail.instance.route)
     let region: MKCoordinateRegion // Usage: MapView.region = Trail.instance.region
-    let pointsOfInterest: [PointOfInterest] // Usage: MapView.addAnnotations(Trail.instance.pointsOfInterest). Sorted by longitude, westmost first.
+//    let pointsOfInterest: [PointOfInterest] // Usage: MapView.addAnnotations(Trail.instance.pointsOfInterest). Sorted by longitude, westmost first.
 
     fileprivate let locationManager : CLLocationManager?
 
@@ -75,12 +75,12 @@ class Trail : NSObject {
         region = MKCoordinateRegionMake(midCoordinate, span)
 
 
-        pointsOfInterest = PointOfInterest.getPointsOfInterest()
+//        pointsOfInterest = PointOfInterest.getPointsOfInterest()
 
         locationManager = CLLocationManager.locationServicesEnabled() ? CLLocationManager() : nil
 
         super.init()
-
+/*
         if let manager = locationManager {
             //locationManager.desiredAccuracy = 1
             //locationManager.distanceFilter = 0.5
@@ -90,6 +90,7 @@ class Trail : NSObject {
         else {
             alertUser("Location Services Needed", body: "Please enable location services so that Trail of History can show you where you are on the trail and what the distances to the points of interest are.")
         }
+*/
     }
 
     fileprivate func alertUser(_ title: String?, body: String?) {
@@ -133,29 +134,16 @@ extension Trail {
         }
     }
 }
-
+/*
 extension Trail {
     class PointOfInterest: NSObject, MKAnnotation {
         
         fileprivate static func getPointsOfInterest() -> [PointOfInterest] {
-            // The POI file is a dictionary of dictionaries. The keys of the outer dictionary
-            // are the POI names. The inner dictionaries contain the POI's data.
-            let poiFileName = "PointsOfInterest.plist"
-            var pointsOfInterest = [PointOfInterest]()
-            let poiFileNameComponents = poiFileName.components(separatedBy: ".")
-            let poiFilePath = Bundle.main.path(forResource: poiFileNameComponents[0], ofType: poiFileNameComponents[1])!
-            for (name, data) in NSDictionary(contentsOfFile: poiFilePath)! {
-                let poiData = data as! [String:String]
-                
-                if let poiLocation = poiData["location"], let description = poiData["description"] {
-                    let location = CGPointFromString(poiLocation)
-                    let coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(location.x), longitude: CLLocationDegrees(location.y))
-                    
-                    let title = name as! String
-                    let poi = PointOfInterest(title: title, coordinate: coordinate, narrative: description)
-                    pointsOfInterest.append(poi)
-                }
+            var  pointsOfInterest = [PointOfInterest]()
+            for poi in PoiLoader.getSync() {
+                pointsOfInterest.append(PointOfInterest(title: poi.name, coordinate: poi.coordinate, narrative: poi.description))
             }
+            
             return pointsOfInterest.sorted { $0.coordinate.longitude < $1.coordinate.longitude }
         }
 
@@ -179,7 +167,7 @@ extension Trail {
     }
 }
 
-extension Trail : CLLocationManagerDelegate {
+ extension Trail : CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         
@@ -204,3 +192,5 @@ extension Trail : CLLocationManagerDelegate {
         }
     }
 }
+ */
+

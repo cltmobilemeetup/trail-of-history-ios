@@ -19,13 +19,14 @@
 		4D8B76591C97944300A70B71 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D8B76571C97944300A70B71 /* LaunchScreen.storyboard */; };
 		4D8B76641C97944300A70B71 /* Trail_of_HistoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8B76631C97944300A70B71 /* Trail_of_HistoryTests.swift */; };
 		4D8B766F1C97944300A70B71 /* Trail_of_HistoryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8B766E1C97944300A70B71 /* Trail_of_HistoryUITests.swift */; };
-		4D8E69CA1D92075B00DC0269 /* MapViewCardCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8E69C91D92075B00DC0269 /* MapViewCardCollectionViewFlowLayout.swift */; };
 		4DDD56EA1DB6DF8800325C58 /* List View in Resources */ = {isa = PBXBuildFile; fileRef = 4DDD56E91DB6DF8800325C58 /* List View */; };
 		AFC8D1CE24F14651A7D54F8C /* libPods-Trail of HistoryUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1294D643F85DA3FD6135D9B1 /* libPods-Trail of HistoryUITests.a */; };
 		E1110D461D83564E00CA5135 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1110D441D83564E00CA5135 /* OptionsViewController.swift */; };
 		E114C71E1D7B0D8500BE3984 /* PointOfInterestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E114C71D1D7B0D8500BE3984 /* PointOfInterestCell.swift */; };
 		E138C1A91D8C3D3800E81D06 /* ReadMe.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E138C1A81D8C3D3800E81D06 /* ReadMe.rtf */; };
 		E139E73B1D9BE6FA0057F20D /* CardCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E139E73A1D9BE6FA0057F20D /* CardCollectionLayout.swift */; };
+		E13F30881E0D53CD009EBF74 /* PointOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13F30871E0D53CD009EBF74 /* PointOfInterest.swift */; };
+		E14F8F281E044C7F004AB05D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E14F8F271E044C7F004AB05D /* GoogleService-Info.plist */; };
 		E150ED441D763903006C40AF /* Archer-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = E150ED421D763903006C40AF /* Archer-Medium.otf */; };
 		E1C2383C1D6B28C700A718A8 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1C2383B1D6B28C700A718A8 /* Map.storyboard */; };
 		E1C2383F1D6B29E900A718A8 /* PointOfInterestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1C2383D1D6B29E900A718A8 /* PointOfInterestCell.xib */; };
@@ -33,6 +34,7 @@
 		E1C238661D6C9EF900A718A8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C238651D6C9EF900A718A8 /* MapKit.framework */; };
 		E1C238681D6CA65700A718A8 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C238671D6CA65700A718A8 /* UIViewExtensions.swift */; };
 		E1D6AA6F1D88D43B002987BA /* UIApplicationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D6AA6E1D88D43B002987BA /* UIApplicationExtensions.swift */; };
+		E1D6DC7B1E071721001DFA9C /* PointsOfInterest.json in Resources */ = {isa = PBXBuildFile; fileRef = E1D6DC7A1E071721001DFA9C /* PointsOfInterest.json */; };
 		E1DFEBB01D7663B9007359F4 /* DIN Condensed Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E1DFEBAF1D7663B9007359F4 /* DIN Condensed Bold.ttf */; };
 		E1DFEBB81D7705D7007359F4 /* Trail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFEBB71D7705D7007359F4 /* Trail.swift */; };
 		E1DFEBBB1D775E7A007359F4 /* PointsOfInterest.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1DFEBB91D775E7A007359F4 /* PointsOfInterest.plist */; };
@@ -79,7 +81,6 @@
 		4D8B766A1C97944300A70B71 /* Trail of HistoryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Trail of HistoryUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D8B766E1C97944300A70B71 /* Trail_of_HistoryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trail_of_HistoryUITests.swift; sourceTree = "<group>"; };
 		4D8B76701C97944300A70B71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4D8E69C91D92075B00DC0269 /* MapViewCardCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewCardCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		4DDD56E91DB6DF8800325C58 /* List View */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "List View"; sourceTree = "<group>"; };
 		663E40419345BFAA966D6C06 /* libPods-Trail of HistoryTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Trail of HistoryTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D10F4F6240FDF5914D19411 /* libPods-Trail of History.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Trail of History.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,6 +89,8 @@
 		E114C71D1D7B0D8500BE3984 /* PointOfInterestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PointOfInterestCell.swift; path = "Map View/PointOfInterestCell.swift"; sourceTree = "<group>"; };
 		E138C1A81D8C3D3800E81D06 /* ReadMe.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; name = ReadMe.rtf; path = "Map View/ReadMe.rtf"; sourceTree = "<group>"; };
 		E139E73A1D9BE6FA0057F20D /* CardCollectionLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardCollectionLayout.swift; path = "Map View/CardCollectionLayout.swift"; sourceTree = "<group>"; };
+		E13F30871E0D53CD009EBF74 /* PointOfInterest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointOfInterest.swift; sourceTree = "<group>"; };
+		E14F8F271E044C7F004AB05D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E150ED421D763903006C40AF /* Archer-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Archer-Medium.otf"; sourceTree = "<group>"; };
 		E1C2383B1D6B28C700A718A8 /* Map.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Map.storyboard; path = "Map View/Map.storyboard"; sourceTree = "<group>"; };
 		E1C2383D1D6B29E900A718A8 /* PointOfInterestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PointOfInterestCell.xib; path = "Map View/PointOfInterestCell.xib"; sourceTree = "<group>"; };
@@ -95,6 +98,7 @@
 		E1C238651D6C9EF900A718A8 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E1C238671D6CA65700A718A8 /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		E1D6AA6E1D88D43B002987BA /* UIApplicationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIApplicationExtensions.swift; sourceTree = "<group>"; };
+		E1D6DC7A1E071721001DFA9C /* PointsOfInterest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PointsOfInterest.json; sourceTree = "<group>"; };
 		E1DFEBAF1D7663B9007359F4 /* DIN Condensed Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DIN Condensed Bold.ttf"; sourceTree = "<group>"; };
 		E1DFEBB71D7705D7007359F4 /* Trail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Trail.swift; path = "Map View/Trail.swift"; sourceTree = "<group>"; };
 		E1DFEBB91D775E7A007359F4 /* PointsOfInterest.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PointsOfInterest.plist; path = "Map View/Data/PointsOfInterest.plist"; sourceTree = "<group>"; };
@@ -160,7 +164,6 @@
 				E1110D441D83564E00CA5135 /* OptionsViewController.swift */,
 				E1C2383D1D6B29E900A718A8 /* PointOfInterestCell.xib */,
 				E114C71D1D7B0D8500BE3984 /* PointOfInterestCell.swift */,
-				4D8E69C91D92075B00DC0269 /* MapViewCardCollectionViewFlowLayout.swift */,
 				E1F984E21D6F692D00D28411 /* Title.xib */,
 				E1DFEBB71D7705D7007359F4 /* Trail.swift */,
 				E1DFEBB21D7701AF007359F4 /* Data */,
@@ -180,7 +183,9 @@
 		0C01F5141D63E135005C6284 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				E1D6DC7A1E071721001DFA9C /* PointsOfInterest.json */,
 				0C01F5151D63E144005C6284 /* UI */,
+				E13F30871E0D53CD009EBF74 /* PointOfInterest.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -234,6 +239,7 @@
 		4D8B764A1C97944300A70B71 /* Trail of History */ = {
 			isa = PBXGroup;
 			children = (
+				E14F8F271E044C7F004AB05D /* GoogleService-Info.plist */,
 				4DDD56E91DB6DF8800325C58 /* List View */,
 				4D8B764B1C97944300A70B71 /* AppDelegate.swift */,
 				0C01F50A1D63DDCB005C6284 /* Resources */,
@@ -344,6 +350,7 @@
 				4D8B76671C97944300A70B71 /* Frameworks */,
 				4D8B76681C97944300A70B71 /* Resources */,
 				363C98E482FB1B0896008BEC /* [CP] Copy Pods Resources */,
+				AAAB9B5A75C96FBEB566D2A7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -367,6 +374,7 @@
 				TargetAttributes = {
 					4D8B76471C97944300A70B71 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = UR6MRM7GRB;
 						LastSwiftMigration = 0800;
 					};
 					4D8B765E1C97944300A70B71 = {
@@ -408,6 +416,7 @@
 			files = (
 				4DDD56EA1DB6DF8800325C58 /* List View in Resources */,
 				4D8B76591C97944300A70B71 /* LaunchScreen.storyboard in Resources */,
+				E14F8F281E044C7F004AB05D /* GoogleService-Info.plist in Resources */,
 				E138C1A91D8C3D3800E81D06 /* ReadMe.rtf in Resources */,
 				4D8B76561C97944300A70B71 /* Assets.xcassets in Resources */,
 				0C01F5131D63E0D1005C6284 /* Main.storyboard in Resources */,
@@ -418,6 +427,7 @@
 				E1DFEBB01D7663B9007359F4 /* DIN Condensed Bold.ttf in Resources */,
 				0C01F50F1D63DE30005C6284 /* Detail.storyboard in Resources */,
 				E1C2383C1D6B28C700A718A8 /* Map.storyboard in Resources */,
+				E1D6DC7B1E071721001DFA9C /* PointsOfInterest.json in Resources */,
 				E1DFEBBC1D775E7A007359F4 /* TrailBounds.plist in Resources */,
 				E150ED441D763903006C40AF /* Archer-Medium.otf in Resources */,
 			);
@@ -500,6 +510,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Trail of HistoryUITests/Pods-Trail of HistoryUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		AAAB9B5A75C96FBEB566D2A7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Trail of HistoryUITests/Pods-Trail of HistoryUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		AE9787A3E748272F0A904FBE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -512,7 +537,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		AF57DBF56DC8F390E826E88A /* [CP] Copy Pods Resources */ = {
@@ -542,7 +567,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		F7AF1FEC6313591423A350E9 /* [CP] Check Pods Manifest.lock */ = {
@@ -557,7 +582,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -568,12 +593,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				E139E73B1D9BE6FA0057F20D /* CardCollectionLayout.swift in Sources */,
-				4D8E69CA1D92075B00DC0269 /* MapViewCardCollectionViewFlowLayout.swift in Sources */,
 				E1DFEBC21D77715E007359F4 /* NavigationController.swift in Sources */,
 				E1C238681D6CA65700A718A8 /* UIViewExtensions.swift in Sources */,
 				E1DFEBB81D7705D7007359F4 /* Trail.swift in Sources */,
 				E114C71E1D7B0D8500BE3984 /* PointOfInterestCell.swift in Sources */,
 				4D8B76541C97944300A70B71 /* Trail_of_History.xcdatamodeld in Sources */,
+				E13F30881E0D53CD009EBF74 /* PointOfInterest.swift in Sources */,
 				E1D6AA6F1D88D43B002987BA /* UIApplicationExtensions.swift in Sources */,
 				0C01F5171D63E163005C6284 /* UIColor+CustomColors.swift in Sources */,
 				4D8B764C1C97944300A70B71 /* AppDelegate.swift in Sources */,
@@ -728,6 +753,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = UR6MRM7GRB;
 				INFOPLIST_FILE = "Trail of History/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cltmobile.Trail-of-History";
@@ -743,6 +769,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = UR6MRM7GRB;
 				INFOPLIST_FILE = "Trail of History/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cltmobile.Trail-of-History";

@@ -11,12 +11,32 @@ import UIKit
 class DummyListViewController: UITableViewController {
 
     fileprivate let cellReuseIdentifier = "POI Name"
-    fileprivate let poiNames = ["Captain Jack", "William Henry Blake", "Thomas Polk", "Thad Tate", "Jane Wilkes", "Thomas Sprate and King Haigler", "Emily King"]
+    fileprivate var pointsOfInterest = [PointOfInterest]()
+    private var listenerToken: PointOfInterest.Notifier.Token!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        listenerToken = PointOfInterest.notifier.register(listener: poiListener, dispatchQueue: DispatchQueue.main)
+
         //printfonts()
+    }
+
+    func poiListener(poi: PointOfInterest, event: PointOfInterest.Notifier.Event) {
+        
+        switch event {
+        case .added:
+            pointsOfInterest.append(poi)
+        case .updated:
+            pointsOfInterest = pointsOfInterest.filter { $0.id != poi.id }
+            pointsOfInterest.append(poi)
+        case .removed:
+            pointsOfInterest = pointsOfInterest.filter { $0.id != poi.id }
+        }
+
+        pointsOfInterest = pointsOfInterest.sorted { $0.coordinate.longitude < $1.coordinate.longitude }
+        
+        tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -26,12 +46,12 @@ class DummyListViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return poiNames.count
+        return pointsOfInterest.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath)
-        cell.textLabel?.text = poiNames[(indexPath as NSIndexPath).row]
+        cell.textLabel?.text = pointsOfInterest[indexPath.item].name
         return cell
     }
 
