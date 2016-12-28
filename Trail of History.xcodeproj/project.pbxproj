@@ -28,6 +28,7 @@
 		E13F30881E0D53CD009EBF74 /* PointOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13F30871E0D53CD009EBF74 /* PointOfInterest.swift */; };
 		E14F8F281E044C7F004AB05D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E14F8F271E044C7F004AB05D /* GoogleService-Info.plist */; };
 		E150ED441D763903006C40AF /* Archer-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = E150ED421D763903006C40AF /* Archer-Medium.otf */; };
+		E1823A371E14635600498A92 /* AlertUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1823A361E14635600498A92 /* AlertUser.swift */; };
 		E1C2383C1D6B28C700A718A8 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1C2383B1D6B28C700A718A8 /* Map.storyboard */; };
 		E1C2383F1D6B29E900A718A8 /* PointOfInterestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1C2383D1D6B29E900A718A8 /* PointOfInterestCell.xib */; };
 		E1C238461D6B6AFD00A718A8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C238451D6B6AFD00A718A8 /* MapViewController.swift */; };
@@ -89,6 +90,7 @@
 		E13F30871E0D53CD009EBF74 /* PointOfInterest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointOfInterest.swift; sourceTree = "<group>"; };
 		E14F8F271E044C7F004AB05D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E150ED421D763903006C40AF /* Archer-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Archer-Medium.otf"; sourceTree = "<group>"; };
+		E1823A361E14635600498A92 /* AlertUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertUser.swift; sourceTree = "<group>"; };
 		E1C2383B1D6B28C700A718A8 /* Map.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Map.storyboard; path = "Map View/Map.storyboard"; sourceTree = "<group>"; };
 		E1C2383D1D6B29E900A718A8 /* PointOfInterestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PointOfInterestCell.xib; path = "Map View/PointOfInterestCell.xib"; sourceTree = "<group>"; };
 		E1C238451D6B6AFD00A718A8 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = "Map View/MapViewController.swift"; sourceTree = "<group>"; };
@@ -175,9 +177,9 @@
 		0C01F5141D63E135005C6284 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				E13F30871E0D53CD009EBF74 /* PointOfInterest.swift */,
 				E1D6DC7A1E071721001DFA9C /* PointsOfInterest.json */,
 				0C01F5151D63E144005C6284 /* UI */,
-				E13F30871E0D53CD009EBF74 /* PointOfInterest.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -188,6 +190,7 @@
 				0C01F5161D63E163005C6284 /* UIColor+CustomColors.swift */,
 				E1C238671D6CA65700A718A8 /* UIViewExtensions.swift */,
 				E1D6AA6E1D88D43B002987BA /* UIApplicationExtensions.swift */,
+				E1823A361E14635600498A92 /* AlertUser.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -577,6 +580,7 @@
 				E1DFEBC21D77715E007359F4 /* NavigationController.swift in Sources */,
 				E1C238681D6CA65700A718A8 /* UIViewExtensions.swift in Sources */,
 				E114C71E1D7B0D8500BE3984 /* PointOfInterestCell.swift in Sources */,
+				E1823A371E14635600498A92 /* AlertUser.swift in Sources */,
 				4D8B76541C97944300A70B71 /* Trail_of_History.xcdatamodeld in Sources */,
 				E13F30881E0D53CD009EBF74 /* PointOfInterest.swift in Sources */,
 				E1D6AA6F1D88D43B002987BA /* UIApplicationExtensions.swift in Sources */,

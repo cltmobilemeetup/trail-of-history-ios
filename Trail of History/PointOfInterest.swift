@@ -12,7 +12,9 @@ import CoreLocation
 
 class PointOfInterest {
 
-    class Notifier {
+    class DatabaseNotifier {
+
+        static let instance = DatabaseNotifier()
 
         enum Event {
             case added
@@ -132,7 +134,7 @@ class PointOfInterest {
             }
         }
         
-        fileprivate init() {}
+        private init() {}
         
         func register(listener: @escaping Listener, dispatchQueue: DispatchQueue) -> Token {
             return Registrant(listener: listener, dispatchQueue: dispatchQueue)
@@ -178,8 +180,67 @@ class PointOfInterest {
         }
     }
 
-    static let notifier = Notifier()
-    
+    private class DistanceToUserUpdater : NSObject, CLLocationManagerDelegate {
+
+        static let instance = DistanceToUserUpdater()
+
+        private class PoiReference {
+            weak var poi : PointOfInterest?
+            init (poi : PointOfInterest) {
+                self.poi = poi
+            }
+        }
+
+        private var poiReferences = [PoiReference]()
+        private let locationManager : CLLocationManager?
+        private let YardsPerMeter = 1.0936
+
+        private override init() {
+            locationManager = CLLocationManager.locationServicesEnabled() ? CLLocationManager() : nil
+
+            super.init()
+
+            if let manager = locationManager {
+                //locationManager.desiredAccuracy = 1
+                //locationManager.distanceFilter = 0.5
+                manager.delegate = self
+                manager.startUpdatingLocation()
+            }
+            else {
+                alertUser("Location Services Needed", body: "Please enable location services so that Trail of History can show you where you are on the trail and what the distances to the points of interest are.")
+            }
+        }
+
+        func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+            
+            switch status {
+            case CLAuthorizationStatus.notDetermined:
+                manager.requestWhenInUseAuthorization();
+                
+            case CLAuthorizationStatus.authorizedWhenInUse:
+                manager.startUpdatingLocation()
+                
+            default:
+                alertUser("Location Access Not Authorized", body: "Trail of History will not be able show you the distance to the points of interest. You can change the authorization in Settings")
+                break
+            }
+        }
+        
+        func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+            let userLocation = locations[locations.count - 1]
+            for ref in poiReferences {
+                if let poi = ref.poi {
+                    poi.distanceFromUser = userLocation.distance(from: poi.location) * YardsPerMeter
+                }
+            }
+            poiReferences = poiReferences.filter { nil != $0.poi }
+        }
+ 
+        func add(_ poi: PointOfInterest) {
+            poiReferences.append(PoiReference(poi: poi))
+        }
+    }
+
     let id: String
     let name: String
     let description: String
@@ -189,6 +250,7 @@ class PointOfInterest {
     fileprivate let imageUrl: URL
 
     private let location: CLLocation
+    private var distanceFromUser: Double? // Units are yards
 
     fileprivate init?(properties: Dictionary<String, Any>) {
         if  let id = properties["uid"], let name = properties["name"], let latitude = properties["latitude"],
@@ -204,15 +266,20 @@ class PointOfInterest {
             let url = URL(string: imageUrl as! String)
             if url == nil { return nil }
             self.imageUrl = url!
-            
+
+            DistanceToUserUpdater.instance.add(self)
         }
         else {
             return nil
         }
     }
 
-    func distance(to location: CLLocation) -> Double {
-        let YardsPerMeter = 1.0936
-        return location.distance(from: self.location) * YardsPerMeter
+    func distanceToUser() -> String {
+        // The Trail class' singleton is using a location manager to update the distances of all of the
+        // Points of Interest. The distances will be nil if location services are unavailable or unauthorized.
+        if let distance = distanceFromUser {
+            return "\(Int(round(distance))) yds"
+        }
+        return "<unknown>"
     }
 }

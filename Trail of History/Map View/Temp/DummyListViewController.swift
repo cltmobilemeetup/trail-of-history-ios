@@ -12,17 +12,17 @@ class DummyListViewController: UITableViewController {
 
     fileprivate let cellReuseIdentifier = "POI Name"
     fileprivate var pointsOfInterest = [PointOfInterest]()
-    private var listenerToken: PointOfInterest.Notifier.Token!
+    private var listenerToken: PointOfInterest.DatabaseNotifier.Token!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        listenerToken = PointOfInterest.notifier.register(listener: poiListener, dispatchQueue: DispatchQueue.main)
+        listenerToken = PointOfInterest.DatabaseNotifier.instance.register(listener: poiListener, dispatchQueue: DispatchQueue.main)
 
         //printfonts()
     }
 
-    func poiListener(poi: PointOfInterest, event: PointOfInterest.Notifier.Event) {
+    func poiListener(poi: PointOfInterest, event: PointOfInterest.DatabaseNotifier.Event) {
         
         switch event {
         case .added:

@@ -61,7 +61,7 @@ class MapViewController: UIViewController {
     @IBOutlet weak var collectionView : UICollectionView!
     fileprivate let poiCellReuseIdentifier = "PointOfInterestCell"
     
-    private var listenerToken: PointOfInterest.Notifier.Token!
+    private var listenerToken: PointOfInterest.DatabaseNotifier.Token!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,7 +77,7 @@ class MapViewController: UIViewController {
         mapView.showsUserLocation = true
         boundary = mapView.region
 
-        listenerToken = PointOfInterest.notifier.register(listener: poiListener, dispatchQueue: DispatchQueue.main)
+        listenerToken = PointOfInterest.DatabaseNotifier.instance.register(listener: poiListener, dispatchQueue: DispatchQueue.main)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -102,7 +102,7 @@ class MapViewController: UIViewController {
         }
     }
 
-    func poiListener(poi: PointOfInterest, event: PointOfInterest.Notifier.Event) {
+    func poiListener(poi: PointOfInterest, event: PointOfInterest.DatabaseNotifier.Event) {
 
         func updateBoundary() {
             if poiAnnotations.count > 0 {
@@ -241,14 +241,6 @@ extension MapViewController : MKMapViewDelegate {
             }
         }
     }
-    
-    // As the user's location changes, update the distances of the POI collection's visible cards.
-    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
-        for index in collectionView.indexPathsForVisibleItems {
-            let cell = collectionView.cellForItem(at: index) as! PointOfInterestCell
-            cell.distanceLabel.text = distance(to: cell.poi)
-        }
-    }
 }
 
 extension MapViewController : UICollectionViewDelegate {
@@ -331,7 +323,7 @@ extension MapViewController : UICollectionViewDataSource {
         let poiCell = collectionView.dequeueReusableCell(withReuseIdentifier: poiCellReuseIdentifier, for: indexPath) as! PointOfInterestCell
         poiCell.nameLabel.text = poi.name
         poiCell.imageView.image = isCurrent(annotation) ? #imageLiteral(resourceName: "CurrentPoiAnnotationImage") : #imageLiteral(resourceName: "PoiAnnotationImage")
-        poiCell.distanceLabel.text = distance(to: poi)
+        poiCell.distanceLabel.text = poi.distanceToUser()
         poiCell.layer.shadowOpacity = 0.3
         poiCell.layer.masksToBounds = false
         poiCell.layer.shadowOffset = CGSize(width: 4, height: 4)
@@ -416,15 +408,6 @@ extension MapViewController { // Utility Methods
 
     fileprivate func isCurrent(_ annotation: PoiAnnotation) -> Bool {
         return currentPoi?.poi.id == annotation.poi.id
-    }
-
-    fileprivate func distance(to poi: PointOfInterest) -> String {
-        // The Trail class' singleton is using a location manager to update the distances of all of the
-        // Points of Interest. The distances will be nil if location services are unavailable or unauthorized.
-        if let location = mapView.userLocation.location {
-            return "\(Int(round(poi.distance(to: location)))) yds"
-        }
-        return "<unknown>"
     }
 
     // TODO: I am fairly certain that makeRect() will fail if the user and the Trail of History
