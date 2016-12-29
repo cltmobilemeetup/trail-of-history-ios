@@ -45,6 +45,9 @@
                     <navigationItem key="navigationItem" title="Trail of History" id="2ij-4Q-gb9">
                         <barButtonItem key="rightBarButtonItem" title="Map" id="jbT-Ga-86d">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <segue destination="gEc-BO-G8V" kind="show" id="RV7-7n-mBr"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
@@ -52,6 +55,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lPC-Yk-CLU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="130" y="516"/>
+        </scene>
+        <!--Map-->
+        <scene sceneID="bxB-uo-DHr">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Map" id="gEc-BO-G8V" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qwu-gL-hqm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="742" y="515"/>
         </scene>
     </scenes>
 </document>

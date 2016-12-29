@@ -20,7 +20,6 @@
 		AFC8D1CE24F14651A7D54F8C /* libPods-Trail of HistoryUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1294D643F85DA3FD6135D9B1 /* libPods-Trail of HistoryUITests.a */; };
 		E1110D461D83564E00CA5135 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1110D441D83564E00CA5135 /* OptionsViewController.swift */; };
 		E114C71E1D7B0D8500BE3984 /* PointOfInterestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E114C71D1D7B0D8500BE3984 /* PointOfInterestCell.swift */; };
-		E138C1A91D8C3D3800E81D06 /* ReadMe.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E138C1A81D8C3D3800E81D06 /* ReadMe.rtf */; };
 		E139E73B1D9BE6FA0057F20D /* CardCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E139E73A1D9BE6FA0057F20D /* CardCollectionLayout.swift */; };
 		E13F30881E0D53CD009EBF74 /* PointOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13F30871E0D53CD009EBF74 /* PointOfInterest.swift */; };
 		E14F8F281E044C7F004AB05D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E14F8F271E044C7F004AB05D /* GoogleService-Info.plist */; };
@@ -83,7 +82,6 @@
 		6FC7F45E7A9B75300AA3E164 /* Pods-Trail of History.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trail of History.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Trail of History/Pods-Trail of History.debug.xcconfig"; sourceTree = "<group>"; };
 		E1110D441D83564E00CA5135 /* OptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OptionsViewController.swift; path = "Map View/OptionsViewController.swift"; sourceTree = "<group>"; };
 		E114C71D1D7B0D8500BE3984 /* PointOfInterestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PointOfInterestCell.swift; path = "Map View/PointOfInterestCell.swift"; sourceTree = "<group>"; };
-		E138C1A81D8C3D3800E81D06 /* ReadMe.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; name = ReadMe.rtf; path = "Map View/ReadMe.rtf"; sourceTree = "<group>"; };
 		E139E73A1D9BE6FA0057F20D /* CardCollectionLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardCollectionLayout.swift; path = "Map View/CardCollectionLayout.swift"; sourceTree = "<group>"; };
 		E13F30871E0D53CD009EBF74 /* PointOfInterest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PointOfInterest.swift; path = Common/PointOfInterest.swift; sourceTree = "<group>"; };
 		E14F8F271E044C7F004AB05D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Resources/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -153,7 +151,6 @@
 			isa = PBXGroup;
 			children = (
 				E139E73A1D9BE6FA0057F20D /* CardCollectionLayout.swift */,
-				E138C1A81D8C3D3800E81D06 /* ReadMe.rtf */,
 				E1C2383B1D6B28C700A718A8 /* Map.storyboard */,
 				E1C238451D6B6AFD00A718A8 /* MapViewController.swift */,
 				E1110D441D83564E00CA5135 /* OptionsViewController.swift */,
@@ -209,7 +206,6 @@
 		4D8B763F1C97944300A70B71 = {
 			isa = PBXGroup;
 			children = (
-				E1C238651D6C9EF900A718A8 /* MapKit.framework */,
 				4D8B764A1C97944300A70B71 /* Trail of History */,
 				4D8B76621C97944300A70B71 /* Trail of HistoryTests */,
 				4D8B766D1C97944300A70B71 /* Trail of HistoryUITests */,
@@ -232,10 +228,10 @@
 		4D8B764A1C97944300A70B71 /* Trail of History */ = {
 			isa = PBXGroup;
 			children = (
-				E1823A4B1E15602F00498A92 /* NavigationController.swift */,
 				4D8B764B1C97944300A70B71 /* AppDelegate.swift */,
 				E1823A471E1550D100498A92 /* LaunchScreen.storyboard */,
 				0C01F5121D63E0D1005C6284 /* Main.storyboard */,
+				E1823A4B1E15602F00498A92 /* NavigationController.swift */,
 				4D8B765A1C97944300A70B71 /* Info.plist */,
 				0C01F50D1D63DDF6005C6284 /* Detail View */,
 				E1823A3E1E1548D300498A92 /* List View */,
@@ -268,6 +264,7 @@
 		896E85D2910027162145AD8E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E1C238651D6C9EF900A718A8 /* MapKit.framework */,
 				6D10F4F6240FDF5914D19411 /* libPods-Trail of History.a */,
 				663E40419345BFAA966D6C06 /* libPods-Trail of HistoryTests.a */,
 				1294D643F85DA3FD6135D9B1 /* libPods-Trail of HistoryUITests.a */,
@@ -278,8 +275,8 @@
 		E1823A3E1E1548D300498A92 /* List View */ = {
 			isa = PBXGroup;
 			children = (
-				E1823A491E155C0D00498A92 /* ListViewController.swift */,
 				E1823A451E15500500498A92 /* List.storyboard */,
+				E1823A491E155C0D00498A92 /* ListViewController.swift */,
 				E1823A401E1548EC00498A92 /* POICollectionViewCell.swift */,
 				E1823A411E1548EC00498A92 /* POICollectionViewCell.xib */,
 			);
@@ -404,7 +401,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E14F8F281E044C7F004AB05D /* GoogleService-Info.plist in Resources */,
-				E138C1A91D8C3D3800E81D06 /* ReadMe.rtf in Resources */,
 				4D8B76561C97944300A70B71 /* Assets.xcassets in Resources */,
 				0C01F5131D63E0D1005C6284 /* Main.storyboard in Resources */,
 				E1823A441E1548EC00498A92 /* POICollectionViewCell.xib in Resources */,
