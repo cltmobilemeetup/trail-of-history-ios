@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="200" height="37"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Charlotte" translatesAutoresizingMaskIntoConstraints="NO" id="afL-k2-tWR" userLabel="Charlotte">
+                    <rect key="frame" x="54" y="0.0" width="93" height="11"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="93" id="M6Y-rg-cXC"/>
+                        <constraint firstAttribute="height" constant="11" id="b58-bh-aNK"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Trail of History" translatesAutoresizingMaskIntoConstraints="NO" id="nLT-ua-eLp" userLabel="Trail of History">
+                    <rect key="frame" x="2" y="12" width="197" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="197" id="Hbb-Xh-YJZ"/>
+                        <constraint firstAttribute="height" constant="22" id="uKE-Hz-5CO"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="afL-k2-tWR" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="BD7-Sc-MXu"/>
+                <constraint firstItem="nLT-ua-eLp" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="JWU-r0-Qs2"/>
+                <constraint firstItem="afL-k2-tWR" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Kfu-nX-ytV"/>
+                <constraint firstItem="nLT-ua-eLp" firstAttribute="top" secondItem="afL-k2-tWR" secondAttribute="bottom" constant="1" id="hgy-Tb-SwU"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="250.5" y="142"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Charlotte" width="93" height="11"/>
+        <image name="Trail of History" width="197" height="22"/>
+    </resources>
+</document>

@@ -1,75 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Archer-Medium.otf">
-            <string>Archer-Medium</string>
-        </array>
-    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="POICollectionViewCell" customModule="Trail_of_History" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="401" height="100"/>
-            <autoresizingMask key="autoresizingMask"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="SCb-I3-zSh" customClass="PointOfInterestCell" customModule="Trail_of_History" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="330" height="83"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="401" height="100"/>
-                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="captain_jack" translatesAutoresizingMaskIntoConstraints="NO" id="byz-wR-O4i"/>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Hx-xX-pE5">
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="3" id="45s-RB-JYe"/>
-                            <constraint firstAttribute="width" constant="33" id="4xX-c0-X4e"/>
-                        </constraints>
-                    </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="300" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZlU-gM-e9l">
-                        <fontDescription key="fontDescription" name="Archer-Medium" family="Archer" pointSize="13"/>
-                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="yds" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aY8-r7-ltq">
-                        <fontDescription key="fontDescription" name="Archer-Medium" family="Archer" pointSize="13"/>
-                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Captain Jack" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tvm-3R-5uo">
-                        <fontDescription key="fontDescription" name="Archer-Medium" family="Archer" pointSize="24"/>
-                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                </subviews>
+                <rect key="frame" x="0.0" y="0.0" width="330" height="83"/>
+                <autoresizingMask key="autoresizingMask"/>
             </view>
-            <constraints>
-                <constraint firstAttribute="trailing" secondItem="byz-wR-O4i" secondAttribute="trailing" id="0nM-Gw-02D"/>
-                <constraint firstItem="Tvm-3R-5uo" firstAttribute="centerX" secondItem="byz-wR-O4i" secondAttribute="centerX" id="3SQ-fc-6Co"/>
-                <constraint firstItem="2Hx-xX-pE5" firstAttribute="centerX" secondItem="byz-wR-O4i" secondAttribute="centerX" id="3pX-FP-gfg"/>
-                <constraint firstItem="Tvm-3R-5uo" firstAttribute="top" relation="greaterThanOrEqual" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="5Uj-Zg-bzQ"/>
-                <constraint firstItem="ZlU-gM-e9l" firstAttribute="centerX" secondItem="Tvm-3R-5uo" secondAttribute="centerX" id="8nS-Mq-JBS"/>
-                <constraint firstItem="ZlU-gM-e9l" firstAttribute="top" secondItem="2Hx-xX-pE5" secondAttribute="bottom" constant="10" id="AaZ-GH-S9B"/>
-                <constraint firstItem="aY8-r7-ltq" firstAttribute="centerX" secondItem="Tvm-3R-5uo" secondAttribute="centerX" id="D8d-fU-jZ6"/>
-                <constraint firstItem="2Hx-xX-pE5" firstAttribute="top" secondItem="Tvm-3R-5uo" secondAttribute="bottom" constant="5" id="Kn4-32-TvE"/>
-                <constraint firstItem="aY8-r7-ltq" firstAttribute="top" secondItem="ZlU-gM-e9l" secondAttribute="bottom" constant="4" id="KuQ-TA-Kl6"/>
-                <constraint firstAttribute="bottom" secondItem="byz-wR-O4i" secondAttribute="bottom" id="RUn-uN-kV4"/>
-                <constraint firstItem="2Hx-xX-pE5" firstAttribute="centerX" secondItem="Tvm-3R-5uo" secondAttribute="centerX" id="gHd-Vb-cwe"/>
-                <constraint firstAttribute="bottom" secondItem="aY8-r7-ltq" secondAttribute="bottom" constant="4" id="jRM-Lz-srF"/>
-                <constraint firstItem="byz-wR-O4i" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="q3Q-rH-eli"/>
-                <constraint firstItem="byz-wR-O4i" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="qSL-SO-wM0"/>
-            </constraints>
-            <size key="customSize" width="401" height="87"/>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="gHd-Vb-cwe"/>
-                </mask>
-            </variation>
-            <point key="canvasLocation" x="407.5" y="361"/>
+            <size key="customSize" width="330" height="83"/>
+            <point key="canvasLocation" x="244" y="246.5"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="captain_jack" width="559" height="367"/>
-    </resources>
 </document>

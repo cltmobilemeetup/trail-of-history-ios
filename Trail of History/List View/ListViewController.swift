@@ -8,18 +8,23 @@
 
 import UIKit
 
-class ListViewController: UITableViewController {
+class ListViewController: UICollectionViewController {
 
-    fileprivate let cellReuseIdentifier = "POI Name"
+    fileprivate let poiCellReuseIdentifier = "PointOfInterestCell"
     fileprivate var pointsOfInterest = [PointOfInterest]()
     private var listenerToken: PointOfInterest.DatabaseNotifier.Token!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        listenerToken = PointOfInterest.DatabaseNotifier.instance.register(listener: poiListener, dispatchQueue: DispatchQueue.main)
+        navigationItem.titleView = UIView.fromNib("Title")
+        navigationItem.titleView?.backgroundColor = UIColor.clear // It was set to an opaque color in the NIB so that the white, text images would be visible in the Interface Builder.
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.tohTerracotaColor() // TODO: We should be able to access the TOH custom colors in the Interface Builder
 
-        //printfonts()
+        let poiCellNib: UINib? = UINib(nibName: "PointOfInterestCell", bundle: nil)
+        collectionView?.register(poiCellNib, forCellWithReuseIdentifier: poiCellReuseIdentifier)
+
+        listenerToken = PointOfInterest.DatabaseNotifier.instance.register(listener: poiListener, dispatchQueue: DispatchQueue.main)
     }
 
     func poiListener(poi: PointOfInterest, event: PointOfInterest.DatabaseNotifier.Event) {
@@ -36,34 +41,54 @@ class ListViewController: UITableViewController {
 
         pointsOfInterest = pointsOfInterest.sorted { $0.coordinate.longitude < $1.coordinate.longitude }
         
-        tableView.reloadData()
+        collectionView?.reloadData()
     }
 
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return pointsOfInterest.count
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let poiCell = collectionView.dequeueReusableCell(withReuseIdentifier: poiCellReuseIdentifier, for: indexPath) as! PointOfInterestCell
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath)
-        cell.textLabel?.text = pointsOfInterest[indexPath.item].name
-        return cell
+        let image = pointsOfInterest[indexPath.item].image
+        poiCell.backgroundView = UIImageView(image: image)
+        
+        return poiCell
     }
 
     @IBAction func unwind(_ segue:UIStoryboardSegue) {
     }
 
-    func printfonts() {
-        for family: String in UIFont.familyNames {
-            print("\(family)")
-            for names: String in UIFont.fontNames(forFamilyName: family) {
-                print("== \(names)")
-            }
-        }
+}
+
+extension ListViewController : UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: CGFloat(UIScreen.main.bounds.width), height: CGFloat(120))
     }
+
+    /*
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        let screenSize: CGRect = UIScreen.main.bounds
+        return CGSize(width: screenSize.width * 0.1, height: 0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        let screenSize: CGRect = UIScreen.main.bounds
+        return CGSize(width: screenSize.width * 0.1, height: 0)
+    }
+
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        return CGSize(width: CGFloat(collectionView.bounds.size.width * 0.8), height: CGFloat(collectionView.bounds.size.height * 0.875))
+    }
+
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.bounds.size.width * 0.1, height: 0)
+    }
+
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.bounds.size.width * 0.1, height: 0)
+    }
+*/
 }

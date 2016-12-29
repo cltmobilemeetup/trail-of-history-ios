@@ -101,7 +101,7 @@
 		E1D6AA6E1D88D43B002987BA /* UIApplicationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIApplicationExtensions.swift; path = Common/UI/UIApplicationExtensions.swift; sourceTree = "<group>"; };
 		E1D6DC7A1E071721001DFA9C /* PointsOfInterest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = PointsOfInterest.json; path = Common/PointsOfInterest.json; sourceTree = "<group>"; };
 		E1DFEBAF1D7663B9007359F4 /* DIN Condensed Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN Condensed Bold.ttf"; path = "Resources/DIN Condensed Bold.ttf"; sourceTree = "<group>"; };
-		E1F984E21D6F692D00D28411 /* Title.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Title.xib; path = "Map View/Title.xib"; sourceTree = "<group>"; };
+		E1F984E21D6F692D00D28411 /* Title.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Title.xib; path = Common/Title.xib; sourceTree = "<group>"; };
 		F31A40223A68496C2A3DC939 /* Pods-Trail of HistoryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trail of HistoryTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Trail of HistoryTests/Pods-Trail of HistoryTests.release.xcconfig"; sourceTree = "<group>"; };
 		F5EAD61089994794A61D00C3 /* Pods-Trail of History.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trail of History.release.xcconfig"; path = "Pods/Target Support Files/Pods-Trail of History/Pods-Trail of History.release.xcconfig"; sourceTree = "<group>"; };
 		FE9B8903B8591A989D29C6EF /* Pods-Trail of HistoryUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trail of HistoryUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Trail of HistoryUITests/Pods-Trail of HistoryUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -156,7 +156,6 @@
 				E1110D441D83564E00CA5135 /* OptionsViewController.swift */,
 				E1C2383D1D6B29E900A718A8 /* PointOfInterestCard.xib */,
 				E114C71D1D7B0D8500BE3984 /* PointOfInterestCard.swift */,
-				E1F984E21D6F692D00D28411 /* Title.xib */,
 			);
 			name = "Map View";
 			sourceTree = "<group>";
@@ -172,6 +171,7 @@
 		0C01F5141D63E135005C6284 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				E1F984E21D6F692D00D28411 /* Title.xib */,
 				E13F30871E0D53CD009EBF74 /* PointOfInterest.swift */,
 				E1D6DC7A1E071721001DFA9C /* PointsOfInterest.json */,
 				0C01F5151D63E144005C6284 /* UI */,
