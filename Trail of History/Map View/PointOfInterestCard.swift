@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PointOfInterestCell: UICollectionViewCell {
+class PointOfInterestCard: UICollectionViewCell {
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!

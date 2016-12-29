@@ -59,7 +59,7 @@ class MapViewController: UIViewController {
     fileprivate var poiAnnotations = [PoiAnnotation]()
 
     @IBOutlet weak var collectionView : UICollectionView!
-    fileprivate let poiCellReuseIdentifier = "PointOfInterestCell"
+    fileprivate let poiCardReuseIdentifier = "PointOfInterestCard"
     
     private var listenerToken: PointOfInterest.DatabaseNotifier.Token!
 
@@ -70,8 +70,8 @@ class MapViewController: UIViewController {
         navigationItem.titleView?.backgroundColor = UIColor.clear // It was set to an opaque color in the NIB so that the white, text images would be visible in the Interface Builder.
         navigationItem.rightBarButtonItem?.tintColor = UIColor.tohTerracotaColor() // TODO: We should be able to access the TOH custom colors in the Interface Builder
          
-        let poiCellNib = UINib(nibName: "PointOfInterestCell", bundle: nil)
-        collectionView.register(poiCellNib, forCellWithReuseIdentifier: poiCellReuseIdentifier)
+        let poiCardNib = UINib(nibName: "PointOfInterestCard", bundle: nil)
+        collectionView.register(poiCardNib, forCellWithReuseIdentifier: poiCardReuseIdentifier)
         collectionView.decelerationRate = UIScrollViewDecelerationRateFast
         
         mapView.showsUserLocation = true
@@ -227,7 +227,7 @@ extension MapViewController : MKMapViewDelegate {
             if let current = currentPoi {
                 mapView.view(for: current)?.image = #imageLiteral(resourceName: "PoiAnnotationImage")
                 if let index = poiAnnotations.index(where: { $0.poi.id == current.poi.id }) {
-                    (collectionView.cellForItem(at: IndexPath(item: index, section: 0)) as? PointOfInterestCell)?.imageView.image = #imageLiteral(resourceName: "PoiAnnotationImage")
+                    (collectionView.cellForItem(at: IndexPath(item: index, section: 0)) as? PointOfInterestCard)?.imageView.image = #imageLiteral(resourceName: "PoiAnnotationImage")
                 }
             }
             
@@ -236,7 +236,7 @@ extension MapViewController : MKMapViewDelegate {
             mapView.setCenter(currentPoi!.coordinate, animated: true)
             if let index = poiAnnotations.index(where: { $0.poi.id == selected.poi.id }) {
                 let path = IndexPath(item: index, section: 0)
-                (collectionView.cellForItem(at: path) as? PointOfInterestCell)?.imageView.image = #imageLiteral(resourceName: "CurrentPoiAnnotationImage")
+                (collectionView.cellForItem(at: path) as? PointOfInterestCard)?.imageView.image = #imageLiteral(resourceName: "CurrentPoiAnnotationImage")
                 collectionView.scrollToItem(at: path, at: .centeredHorizontally, animated: true)
             }
         }
@@ -261,14 +261,14 @@ extension MapViewController : UICollectionViewDelegate {
             if let current = currentPoi {
                 mapView.view(for: current)?.image = #imageLiteral(resourceName: "PoiAnnotationImage")
                 if let index = poiAnnotations.index(where: { $0.poi.id == current.poi.id }) {
-                    (collectionView.cellForItem(at: IndexPath(item: index, section: 0)) as? PointOfInterestCell)?.imageView.image = #imageLiteral(resourceName: "PoiAnnotationImage")
+                    (collectionView.cellForItem(at: IndexPath(item: index, section: 0)) as? PointOfInterestCard)?.imageView.image = #imageLiteral(resourceName: "PoiAnnotationImage")
                 }
             }
             
             currentPoi = poiAnnotations[indexOfCenterCell.item]
             mapView.view(for: currentPoi!)?.image = #imageLiteral(resourceName: "CurrentPoiAnnotationImage")
             mapView.setCenter(currentPoi!.coordinate, animated: true)
-            (collectionView.cellForItem(at: indexOfCenterCell) as? PointOfInterestCell)?.imageView.image = #imageLiteral(resourceName: "CurrentPoiAnnotationImage")
+            (collectionView.cellForItem(at: indexOfCenterCell) as? PointOfInterestCard)?.imageView.image = #imageLiteral(resourceName: "CurrentPoiAnnotationImage")
         }
 
         if !collectionView.isDragging && !collectionView.isDecelerating { timer.invalidate() }
@@ -320,7 +320,7 @@ extension MapViewController : UICollectionViewDataSource {
         let annotation = poiAnnotations[indexPath.item]
         let poi = annotation.poi
 
-        let poiCell = collectionView.dequeueReusableCell(withReuseIdentifier: poiCellReuseIdentifier, for: indexPath) as! PointOfInterestCell
+        let poiCell = collectionView.dequeueReusableCell(withReuseIdentifier: poiCardReuseIdentifier, for: indexPath) as! PointOfInterestCard
         poiCell.nameLabel.text = poi.name
         poiCell.imageView.image = isCurrent(annotation) ? #imageLiteral(resourceName: "CurrentPoiAnnotationImage") : #imageLiteral(resourceName: "PoiAnnotationImage")
         poiCell.distanceLabel.text = poi.distanceToUser()
