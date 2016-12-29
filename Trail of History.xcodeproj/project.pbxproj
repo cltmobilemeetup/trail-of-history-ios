@@ -37,7 +37,6 @@
 		E1C238661D6C9EF900A718A8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C238651D6C9EF900A718A8 /* MapKit.framework */; };
 		E1C238681D6CA65700A718A8 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C238671D6CA65700A718A8 /* UIViewExtensions.swift */; };
 		E1D6AA6F1D88D43B002987BA /* UIApplicationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D6AA6E1D88D43B002987BA /* UIApplicationExtensions.swift */; };
-		E1D6DC7B1E071721001DFA9C /* PointsOfInterest.json in Resources */ = {isa = PBXBuildFile; fileRef = E1D6DC7A1E071721001DFA9C /* PointsOfInterest.json */; };
 		E1DFEBB01D7663B9007359F4 /* DIN Condensed Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E1DFEBAF1D7663B9007359F4 /* DIN Condensed Bold.ttf */; };
 		E1F984E31D6F692D00D28411 /* Title.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1F984E21D6F692D00D28411 /* Title.xib */; };
 /* End PBXBuildFile section */
@@ -99,7 +98,6 @@
 		E1C238651D6C9EF900A718A8 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E1C238671D6CA65700A718A8 /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIViewExtensions.swift; path = Common/UI/UIViewExtensions.swift; sourceTree = "<group>"; };
 		E1D6AA6E1D88D43B002987BA /* UIApplicationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIApplicationExtensions.swift; path = Common/UI/UIApplicationExtensions.swift; sourceTree = "<group>"; };
-		E1D6DC7A1E071721001DFA9C /* PointsOfInterest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = PointsOfInterest.json; path = Common/PointsOfInterest.json; sourceTree = "<group>"; };
 		E1DFEBAF1D7663B9007359F4 /* DIN Condensed Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN Condensed Bold.ttf"; path = "Resources/DIN Condensed Bold.ttf"; sourceTree = "<group>"; };
 		E1F984E21D6F692D00D28411 /* Title.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Title.xib; path = Common/Title.xib; sourceTree = "<group>"; };
 		F31A40223A68496C2A3DC939 /* Pods-Trail of HistoryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trail of HistoryTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Trail of HistoryTests/Pods-Trail of HistoryTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -173,7 +171,6 @@
 			children = (
 				E1F984E21D6F692D00D28411 /* Title.xib */,
 				E13F30871E0D53CD009EBF74 /* PointOfInterest.swift */,
-				E1D6DC7A1E071721001DFA9C /* PointsOfInterest.json */,
 				0C01F5151D63E144005C6284 /* UI */,
 			);
 			name = Common;
@@ -411,7 +408,6 @@
 				0C01F50F1D63DE30005C6284 /* Detail.storyboard in Resources */,
 				E1C2383C1D6B28C700A718A8 /* Map.storyboard in Resources */,
 				E1823A481E1550D100498A92 /* LaunchScreen.storyboard in Resources */,
-				E1D6DC7B1E071721001DFA9C /* PointsOfInterest.json in Resources */,
 				E150ED441D763903006C40AF /* Archer-Medium.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

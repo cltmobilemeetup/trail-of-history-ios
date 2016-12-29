@@ -9,4 +9,6 @@
 import UIKit
 
 class PointOfInterestCell: UICollectionViewCell {
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var distanceLabel: UILabel!
 }

@@ -17,9 +17,42 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="330" height="83"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vYJ-mW-LW6" userLabel="Name">
+                        <rect key="frame" x="145.5" y="14" width="40.5" height="17.5"/>
+                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line" translatesAutoresizingMaskIntoConstraints="NO" id="cla-Om-ig3" userLabel="Seperator">
+                        <rect key="frame" x="147" y="40" width="36" height="3"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FQx-M5-W6t" userLabel="Distance">
+                        <rect key="frame" x="136" y="51" width="58.5" height="17.5"/>
+                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
             </view>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="vYJ-mW-LW6" firstAttribute="centerX" secondItem="SCb-I3-zSh" secondAttribute="centerX" id="GE2-kk-49H"/>
+                <constraint firstItem="FQx-M5-W6t" firstAttribute="centerX" secondItem="SCb-I3-zSh" secondAttribute="centerX" id="JTL-BV-1IR"/>
+                <constraint firstItem="cla-Om-ig3" firstAttribute="centerX" secondItem="SCb-I3-zSh" secondAttribute="centerX" id="LV3-cy-z5f"/>
+                <constraint firstItem="FQx-M5-W6t" firstAttribute="top" secondItem="cla-Om-ig3" secondAttribute="bottom" constant="8" id="VpG-ZG-vAK"/>
+                <constraint firstItem="cla-Om-ig3" firstAttribute="centerY" secondItem="SCb-I3-zSh" secondAttribute="centerY" id="ZHV-0o-FEi"/>
+                <constraint firstItem="vYJ-mW-LW6" firstAttribute="bottom" secondItem="cla-Om-ig3" secondAttribute="top" constant="-8" id="uag-f4-K0x"/>
+            </constraints>
             <size key="customSize" width="330" height="83"/>
+            <connections>
+                <outlet property="distanceLabel" destination="FQx-M5-W6t" id="Cc2-qM-SlE"/>
+                <outlet property="nameLabel" destination="vYJ-mW-LW6" id="xpv-mx-9d1"/>
+            </connections>
             <point key="canvasLocation" x="244" y="246.5"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="line" width="36" height="3"/>
+    </resources>
 </document>

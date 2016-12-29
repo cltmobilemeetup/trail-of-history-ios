@@ -50,10 +50,13 @@ class ListViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        let poi = pointsOfInterest[indexPath.item]
+
         let poiCell = collectionView.dequeueReusableCell(withReuseIdentifier: poiCellReuseIdentifier, for: indexPath) as! PointOfInterestCell
 
-        let image = pointsOfInterest[indexPath.item].image
-        poiCell.backgroundView = UIImageView(image: image)
+        poiCell.backgroundView = UIImageView(image: poi.image)
+        poiCell.nameLabel.text = poi.name
+        poiCell.distanceLabel.text = poi.distanceToUser()
         
         return poiCell
     }
