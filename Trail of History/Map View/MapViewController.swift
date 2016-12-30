@@ -12,10 +12,10 @@ import MapKit
 // The Map View Controller presents a MKMapView and a UICollectionView. Each of these two views present the Trail of History's
 // points of interest. The map view presents a set of annotations. The collection view presents a set of cards. The map view
 // controller uses the concept of a "current" point of interest to keep these two views in sync. The current point of interest
-// is the one whose card occupies the majority of the card collection view (the UICollectionView's width has been configured
-// such that only one card can be entirely visible; the other cards will be partially visible on the left or the right) and
-// whose map annotation is highlighted and centered. Initially the current point of interest is set to the first (westmost)
-// point of interest. The user can change the current point of interest in one of two ways:
+// is the one whose card is centered in the card collection view and whose map annotation is highlighted and centered in the map.
+// Initially the current point of interest is set to the middle (from an east/west perspective) point of interest.
+//
+// The user can change the current point of interest in one of two ways:
 //      1) By tapping on a different map annotation. The controller will highlight that annotation and center the map on it.
 //      2) By scrolling the collection view to a different card.
 // Whenever the user performs one of the above actions, the controller will automatically perform the other. Thus the annotations
@@ -33,7 +33,6 @@ class MapViewController: UIViewController {
         dynamic var coordinate: CLLocationCoordinate2D
 
         var poi: PointOfInterest
-        
 
         init(poi: PointOfInterest) {
             title = poi.name
@@ -43,7 +42,6 @@ class MapViewController: UIViewController {
             self.poi = poi
         }
 
-        // TODO: Ensure that MapKit is picking up the changes via KVO
         func update(with poi: PointOfInterest) {
             title = poi.name
             subtitle = "lat \(poi.coordinate.latitude), long \(poi.coordinate.longitude)"
@@ -57,6 +55,7 @@ class MapViewController: UIViewController {
     fileprivate var boundary: MKCoordinateRegion!
     fileprivate var currentPoi: PoiAnnotation?
     fileprivate var poiAnnotations = [PoiAnnotation]()
+    fileprivate var _calloutsEnabled = false
 
     @IBOutlet weak var collectionView : UICollectionView!
     fileprivate let poiCardReuseIdentifier = "PointOfInterestCard"
@@ -78,6 +77,8 @@ class MapViewController: UIViewController {
         boundary = mapView.region
 
         listenerToken = PointOfInterest.DatabaseNotifier.instance.register(listener: poiListener, dispatchQueue: DispatchQueue.main)
+        
+        OptionsViewController.initialize(delegate: self)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -367,14 +368,10 @@ extension MapViewController : OptionsViewControllerDelegate {
     // now it is useful as a validation tool when we are testing by physically walking the Trail.
     var calloutsEnabled: Bool {
         get {
-            // The canShowCallout value is the same for all of the POIs.
-            // Find the first one and return its value.
-            if poiAnnotations.count > 0, let view = mapView.view(for: poiAnnotations[0]) {
-                return view.canShowCallout
-            }
-            return false
+            return _calloutsEnabled
         }
         set {
+            _calloutsEnabled = newValue
             for annotation in poiAnnotations {
                 mapView.view(for: annotation)?.canShowCallout = newValue
             }
