@@ -31,6 +31,8 @@
 		E1823A481E1550D100498A92 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1823A471E1550D100498A92 /* LaunchScreen.storyboard */; };
 		E1823A4A1E155C0D00498A92 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1823A491E155C0D00498A92 /* ListViewController.swift */; };
 		E1823A4C1E15602F00498A92 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1823A4B1E15602F00498A92 /* NavigationController.swift */; };
+		E1823A4E1E16BD4900498A92 /* UIWindowExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1823A4D1E16BD4900498A92 /* UIWindowExtensions.swift */; };
+		E1823A521E170BE100498A92 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1823A511E170BE100498A92 /* DetailView.swift */; };
 		E1C2383C1D6B28C700A718A8 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1C2383B1D6B28C700A718A8 /* Map.storyboard */; };
 		E1C2383F1D6B29E900A718A8 /* PointOfInterestCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1C2383D1D6B29E900A718A8 /* PointOfInterestCard.xib */; };
 		E1C238461D6B6AFD00A718A8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C238451D6B6AFD00A718A8 /* MapViewController.swift */; };
@@ -92,6 +94,8 @@
 		E1823A471E1550D100498A92 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E1823A491E155C0D00498A92 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListViewController.swift; path = "List View/ListViewController.swift"; sourceTree = "<group>"; };
 		E1823A4B1E15602F00498A92 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		E1823A4D1E16BD4900498A92 /* UIWindowExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIWindowExtensions.swift; path = Common/UI/UIWindowExtensions.swift; sourceTree = "<group>"; };
+		E1823A511E170BE100498A92 /* DetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailView.swift; path = "Detail View/DetailView.swift"; sourceTree = "<group>"; };
 		E1C2383B1D6B28C700A718A8 /* Map.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Map.storyboard; path = "Map View/Map.storyboard"; sourceTree = "<group>"; };
 		E1C2383D1D6B29E900A718A8 /* PointOfInterestCard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PointOfInterestCard.xib; path = "Map View/PointOfInterestCard.xib"; sourceTree = "<group>"; };
 		E1C238451D6B6AFD00A718A8 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = "Map View/MapViewController.swift"; sourceTree = "<group>"; };
@@ -162,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				0C01F50E1D63DE30005C6284 /* Detail.storyboard */,
+				E1823A511E170BE100498A92 /* DetailView.swift */,
 			);
 			name = "Detail View";
 			sourceTree = "<group>";
@@ -183,6 +188,7 @@
 				E1C238671D6CA65700A718A8 /* UIViewExtensions.swift */,
 				E1D6AA6E1D88D43B002987BA /* UIApplicationExtensions.swift */,
 				E1823A361E14635600498A92 /* AlertUser.swift */,
+				E1823A4D1E16BD4900498A92 /* UIWindowExtensions.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -573,10 +579,12 @@
 			files = (
 				E139E73B1D9BE6FA0057F20D /* CardCollectionLayout.swift in Sources */,
 				E1C238681D6CA65700A718A8 /* UIViewExtensions.swift in Sources */,
+				E1823A4E1E16BD4900498A92 /* UIWindowExtensions.swift in Sources */,
 				E114C71E1D7B0D8500BE3984 /* PointOfInterestCard.swift in Sources */,
 				E1823A371E14635600498A92 /* AlertUser.swift in Sources */,
 				4D8B76541C97944300A70B71 /* Trail_of_History.xcdatamodeld in Sources */,
 				E1823A4C1E15602F00498A92 /* NavigationController.swift in Sources */,
+				E1823A521E170BE100498A92 /* DetailView.swift in Sources */,
 				E13F30881E0D53CD009EBF74 /* PointOfInterest.swift in Sources */,
 				E1D6AA6F1D88D43B002987BA /* UIApplicationExtensions.swift in Sources */,
 				0C01F5171D63E163005C6284 /* UIColor+CustomColors.swift in Sources */,

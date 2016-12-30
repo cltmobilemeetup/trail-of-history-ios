@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vYJ-mW-LW6" userLabel="Name">
-                        <rect key="frame" x="145.5" y="14" width="40.5" height="17.5"/>
+                        <rect key="frame" x="145" y="14" width="41" height="18"/>
                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -28,7 +28,7 @@
                         <rect key="frame" x="147" y="40" width="36" height="3"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FQx-M5-W6t" userLabel="Distance">
-                        <rect key="frame" x="136" y="51" width="58.5" height="17.5"/>
+                        <rect key="frame" x="136" y="51" width="59" height="18"/>
                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>

@@ -61,6 +61,12 @@ class ListViewController: UICollectionViewController {
         return poiCell
     }
 
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("Selected \(indexPath.item)")
+        DetailView.instance.present(poi: pointsOfInterest[indexPath.item])
+        collectionView.deselectItem(at: indexPath, animated: false)
+    }
+
     @IBAction func unwind(_ segue:UIStoryboardSegue) {
     }
 

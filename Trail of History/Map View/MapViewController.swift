@@ -330,7 +330,6 @@ extension MapViewController : UICollectionViewDataSource {
         poiCell.layer.shadowOffset = CGSize(width: 4, height: 4)
 
         poiCell.poi = poi
-        poiCell.collectionView = collectionView
         
         return poiCell
     }
