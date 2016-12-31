@@ -24,26 +24,25 @@ class PointOfInterest {
         
         typealias Listener = (PointOfInterest, Event) -> Void
         
-        class Token {
-            fileprivate init() {}
+        final class Token {
+            var token: Any!
+            init(token: Any) { self.token = token }
         }
         
-        private class Registrant : Token {
+        private class Registrant {
             
-            private var listener: Listener?
-            private var dispatchQueue: DispatchQueue?
-            private var reference: FIRDatabaseReference?
+            private var listener: Listener
+            private var dispatchQueue: DispatchQueue
+            private var reference: FIRDatabaseReference
             
             fileprivate init(listener: @escaping Listener, dispatchQueue: DispatchQueue) {
                 self.listener = listener
                 self.dispatchQueue = dispatchQueue
                 self.reference = FIRDatabase.database().reference(withPath: "pointOfInterest")
-                
-                super.init()
-                
-                reference!.observe(.childAdded,   with: { self.notify(properties: $0.value as! [String: Any], event: .added) })
-                reference!.observe(.childChanged, with: { self.notify(properties: $0.value as! [String: Any], event: .updated) })
-                reference!.observe(.childRemoved, with: { self.notify(properties: $0.value as! [String: Any], event: .removed) })
+
+                reference.observe(.childAdded,   with: { self.notify(properties: $0.value as! [String: Any], event: .added) })
+                reference.observe(.childChanged, with: { self.notify(properties: $0.value as! [String: Any], event: .updated) })
+                reference.observe(.childRemoved, with: { self.notify(properties: $0.value as! [String: Any], event: .removed) })
             }
             
             deinit {
@@ -51,13 +50,7 @@ class PointOfInterest {
             }
             
             fileprivate func cancel() {
-                if let ref = reference {
-                    ref.removeAllObservers()
-                    reference = nil
-                    
-                    listener = nil
-                    dispatchQueue = nil
-                }
+                reference.removeAllObservers()
             }
             
             private func notify(properties: [String: Any], event: Event) {
@@ -81,30 +74,35 @@ class PointOfInterest {
                     }
                     else {
                         if let response = response as? HTTPURLResponse {
-                            if let data = data {
-                                image = UIImage(data: data)
-                                if image == nil {
-                                    errorText = "UIImage could not be created (image data is corrupt?)"
+                            if response.statusCode == 200 {
+                                if let data = data {
+                                    image = UIImage(data: data)
+                                    if image == nil {
+                                        errorText = "image data is corrupt"
+                                    }
+                                }
+                                else {
+                                    errorText = "image data is nil"
                                 }
                             }
                             else {
-                                errorText = "Image data = nil (http response code = \(response.statusCode).)"
+                                errorText = "http response code = \(response.statusCode)"
                             }
                         }
                         else {
-                            errorText = "Http response = nil"
+                            errorText = "http response is nil"
                         }
                     }
                     
                     // If the image could not be obtained then create a "standin" image that will inform the user.
                     if image == nil {
-                        image = self.generateImage(from: "\(poi.name)'s image could not be downloaded\n\n[image url: \(poi.imageUrl)]\n[details: \(errorText)]")
+                        image = self.generateImage(from: "Image Error: \(errorText)")
                     }
                     
                     poi.image = image!
                     
-                    self.dispatchQueue!.async {
-                        self.listener!(poi, event)
+                    self.dispatchQueue.async {
+                        self.listener(poi, event)
                     }
                     
                 }
@@ -112,20 +110,15 @@ class PointOfInterest {
             }
             
             private func generateImage(from: String) -> UIImage {
-                let image = UIImage(named: "blank")!
-                
-                let imageView = UIImageView(image: image)
-                imageView.backgroundColor = UIColor.clear
-                imageView.frame = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
-                
-                let label = UILabel(frame: imageView.frame)
+                let label = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 25))
                 label.backgroundColor = UIColor.clear
                 label.textAlignment = .center
-                label.textColor = UIColor.white
+                label.textColor = UIColor.red
+                label.font = UIFont.systemFont(ofSize: 4)
+                label.numberOfLines = 0
                 label.text = from
                 
                 UIGraphicsBeginImageContextWithOptions(label.bounds.size, false, 0);
-                imageView.layer.render(in: UIGraphicsGetCurrentContext()!)
                 label.layer.render(in: UIGraphicsGetCurrentContext()!)
                 let textImage = UIGraphicsGetImageFromCurrentImageContext()!
                 UIGraphicsEndImageContext();
@@ -137,46 +130,14 @@ class PointOfInterest {
         private init() {}
         
         func register(listener: @escaping Listener, dispatchQueue: DispatchQueue) -> Token {
-            return Registrant(listener: listener, dispatchQueue: dispatchQueue)
+            return Token(token: Registrant(listener: listener, dispatchQueue: dispatchQueue))
         }
         
         func deregister(token: Token) {
-            (token as? Registrant)?.cancel()
-        }
-        
-        private func loadFrom(file: String) -> [PointOfInterest]? {
-            
-            var pointsOfInterest: [PointOfInterest]?
-            
-            let components = file.components(separatedBy: ".")
-            if  components.count == 2,
-                let filePath = Bundle.main.path(forResource: components[0], ofType: components[1]),
-                let rawData = try? Data(contentsOf: URL(fileURLWithPath: filePath)),
-                let jsonData = try? JSONSerialization.jsonObject(with: rawData) {
-                
-                let container = jsonData as! [String : Dictionary<String, Dictionary<String, Any>>]
-                let list = container["pointOfInterest"]!
-                if list.count > 0 {
-                    
-                    for (_, properties) in list {
-                        if let poi = PointOfInterest(properties: properties) {
-                            if pointsOfInterest == nil { pointsOfInterest = [PointOfInterest]() }
-                            pointsOfInterest!.append(poi)
-                        }
-                        else {
-                            print("Invalid POI data: \(properties)")
-                        }
-                    }
-                }
-                else {
-                    print("The Points of Interest file does not contain any valid data")
-                }
+            if let registrant = token.token as? Registrant {
+                registrant.cancel()
+                token.token = nil
             }
-            else {
-                print("The Points of Interest file cannot be loaded/parsed")
-            }
-            
-            return pointsOfInterest
         }
     }
 
