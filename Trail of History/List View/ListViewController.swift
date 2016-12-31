@@ -54,7 +54,9 @@ class ListViewController: UICollectionViewController {
 
         let poiCell = collectionView.dequeueReusableCell(withReuseIdentifier: poiCellReuseIdentifier, for: indexPath) as! PointOfInterestCell
 
-        poiCell.backgroundView = UIImageView(image: poi.image)
+        let imageView = UIImageView(image: poi.image)
+        imageView.contentMode = .scaleToFill // or .scaleAspectFit, or .scaleAspectFill
+        poiCell.backgroundView = imageView
         poiCell.nameLabel.text = poi.name
         poiCell.distanceLabel.text = poi.distanceToUser()
         
