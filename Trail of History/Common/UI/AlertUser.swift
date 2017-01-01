@@ -8,7 +8,7 @@
 
 import UIKit
 
-func alertUser(_ title: String?, body: String?) {
+func alertUser(title: String?, body: String?) {
     if let topController = UIApplication.topViewController() {
         let alert = UIAlertController(title: title, message: body, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))

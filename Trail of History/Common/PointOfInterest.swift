@@ -126,9 +126,71 @@ class PointOfInterest {
                 return textImage
             }
         }
+
+        private enum ConnectionState {
+            case initialCall
+            case neverConnected
+            case connected
+            case disconnected
+        }
+
+        private let connectedRef: FIRDatabaseReference
+        private var connectionState: ConnectionState = .initialCall
+        private let alertTitle = "Trail of History Database"
+        private let magicPath = ".info/connected"
+
+        private init() {
+            // At startup time the connection observer will be called twice. The first time with a value of false.
+            // The second time with a value of true(false) according to whether everything [Device is connected to the
+            // network, Firebase server is up] is(is not) up and running. Thereafter the observer will be called
+            // once whenever the connection state changes.
+    
+            connectedRef = FIRDatabase.database().reference(withPath: magicPath)
+            connectedRef.observe(.value, with: {
+                var isConnected = false
+                if let connected = $0.value as? Bool, connected { isConnected = true }
+
+                switch self.connectionState {
+
+                case .initialCall:
+                    assert(!isConnected, "Our assumption that the observer's initial call will be with a value of false has been violated!")
+                    self.connectionState = .neverConnected
+
+                case .neverConnected:
+                    if isConnected {
+                        self.connectionState = .connected
+                    } else {
+                        self.connectionState = .disconnected
+                        alertUser(title: self.alertTitle, body: "We could not connect to the database. Please ensure that your device is connected to the internet.")
+                    }
+
+                case .connected:
+                    assert(!isConnected, "We are already connected. Why are we being called again with a value of true?")
+                    if !isConnected {
+                        self.connectionState = .disconnected
+                        alertUser(title: self.alertTitle, body: "The connection to the database has been lost. The app will continue to work with the Points of Interest that have already been downloaded. You will not receive updates (which, anyway, are rare).")
+                    }
+
+                case .disconnected:
+                    assert(isConnected, "We are already disconnected. Why are we being called again with a value of false?")
+                    if isConnected {
+                        self.connectionState = .connected
+                        alertUser(title: self.alertTitle, body: "The connection to the database has been established.")
+                    }
+                }
+            })
+
+//            let timer = Timer(timeInterval: 5, target: self, selector: #selector(databaseConnectionTimer), userInfo: nil, repeats: false)
+//            RunLoop.main.add(timer, forMode: RunLoopMode.commonModes)
+        }
         
-        private init() {}
-        
+        @objc func databaseConnectionTimer(_ timer: Timer) {
+            if self.connectionState == .neverConnected {
+                alertUser(title: alertTitle, body: "We have been unable to establish a connection to the database. Please ensure that your device is connected to the internet.")
+                self.connectionState = .disconnected // Doing this causes the connection established alert to be presented if/when the connection happens (see the connectedRef observer)
+            }
+        }
+
         func register(listener: @escaping Listener, dispatchQueue: DispatchQueue) -> Token {
             return Token(token: Registrant(listener: listener, dispatchQueue: dispatchQueue))
         }
@@ -168,7 +230,7 @@ class PointOfInterest {
                 manager.startUpdatingLocation()
             }
             else {
-                alertUser("Location Services Needed", body: "Please enable location services so that Trail of History can show you where you are on the trail and what the distances to the points of interest are.")
+                alertUser(title: "Location Services Needed", body: "Please enable location services so that Trail of History can show you where you are on the trail and what the distances to the points of interest are.")
             }
         }
 
@@ -182,7 +244,7 @@ class PointOfInterest {
                 manager.startUpdatingLocation()
                 
             default:
-                alertUser("Location Access Not Authorized", body: "Trail of History will not be able show you the distance to the points of interest. You can change the authorization in Settings")
+                alertUser(title: "Location Access Not Authorized", body: "Trail of History will not be able show you the distance to the points of interest. You can change the authorization in Settings")
                 break
             }
         }
