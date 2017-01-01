@@ -5,6 +5,10 @@
 
 target 'Trail of History' do
 
+pod 'Firebase/Core'
+pod 'Firebase/Database'
+pod 'Firebase/Auth'
+
 end
 
 target 'Trail of HistoryTests' do

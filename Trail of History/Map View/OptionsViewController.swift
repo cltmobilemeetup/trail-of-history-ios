@@ -11,7 +11,7 @@ import MapKit
 
 protocol OptionsViewControllerDelegate: class {
     var mapType: MKMapType { get set }
-    var trailRouteVisible: Bool { get set }
+    //var trailRouteVisible: Bool { get set }
     var calloutsEnabled: Bool { get set }
     func zoomToTrail()
     func zoomToUser()
@@ -20,12 +20,14 @@ protocol OptionsViewControllerDelegate: class {
 
 class OptionsViewController: UITableViewController {
 
+    // On the storyboard, the table view's static cells have been given
+    // reuse identifiers equal to the raw values of the CellIdentifier enum.
     enum CellIdentifier: String {
         case Standard
         case Satellite
         case Hybrid
         
-        case TrailRoute
+        //case TrailRoute
         case Callouts
         
         case ZoomToTrail
@@ -35,14 +37,15 @@ class OptionsViewController: UITableViewController {
         var mapType: MKMapType? {
             get {
                 switch(self) {
-                case CellIdentifier.Standard: return MKMapType.standard
-                case CellIdentifier.Satellite: return MKMapType.satellite
-                case CellIdentifier.Hybrid: return MKMapType.hybrid
+                case .Standard: return MKMapType.standard
+                case .Satellite: return MKMapType.satellite
+                case .Hybrid: return MKMapType.hybrid
                 default: return nil
                 }
             }
         }
         
+        // Find the table cell whose reuse identifier is equal to the raw value of self
         func getCell(_ table: UITableView) -> UITableViewCell? {
             for section in 0 ..< table.numberOfSections {
                 for row in 0 ..< table.numberOfRows(inSection: section) {
@@ -52,6 +55,21 @@ class OptionsViewController: UITableViewController {
             }
             return nil
         }
+    }
+    
+    enum UserDefaultsKey: String {
+        case mapType
+        case callouts
+    }
+
+    static func initialize(delegate: OptionsViewControllerDelegate) {
+        let userDefaults = UserDefaults.standard
+        
+        if let mapTypeName = userDefaults.string(forKey: UserDefaultsKey.mapType.rawValue), let mapType = CellIdentifier(rawValue: mapTypeName)?.mapType {
+            delegate.mapType = mapType
+        }
+        
+        delegate.calloutsEnabled = userDefaults.bool(forKey: UserDefaultsKey.callouts.rawValue)
     }
 
     weak var delegate: OptionsViewControllerDelegate!
@@ -70,7 +88,7 @@ class OptionsViewController: UITableViewController {
             break
         }
 
-        CellIdentifier.TrailRoute.getCell(tableView)?.accessoryType = delegate.trailRouteVisible ? .checkmark : .none
+        //CellIdentifier.TrailRoute.getCell(tableView)?.accessoryType = delegate.trailRouteVisible ? .checkmark : .none
         CellIdentifier.Callouts.getCell(tableView)?.accessoryType = delegate.calloutsEnabled ? .checkmark : .none
     }
 
@@ -91,15 +109,19 @@ class OptionsViewController: UITableViewController {
                     id.getCell(tableView)?.accessoryType = .none
                 }
                 delegate.mapType = identifier.mapType!
+                UserDefaults.standard.set(identifier.rawValue, forKey: UserDefaultsKey.mapType.rawValue)
             }
 
         // Map Features
+        /*
         case .TrailRoute:
             cell.accessoryType = cell.accessoryType == .none ? .checkmark : .none
             delegate.trailRouteVisible = cell.accessoryType == .checkmark
+        */
         case .Callouts:
             cell.accessoryType = cell.accessoryType == .none ? .checkmark : .none
             delegate.calloutsEnabled = cell.accessoryType == .checkmark
+            UserDefaults.standard.set(delegate.calloutsEnabled, forKey: UserDefaultsKey.callouts.rawValue)
 
         // Map Actions
         case .ZoomToTrail:
